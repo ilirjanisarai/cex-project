@@ -1,0 +1,2477 @@
+<!DOCTYPE html>
+<html lang="sq" class="dt">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="default"/>
+<meta name="theme-color" content="#1a2e50"/>
+<title>TIA – Udhëzuesi i Aeroportit të Tiranës</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet"/>
+<style>
+/* ── BREAKPOINT SWITCHER ── */
+html.dt .mobile-root { display: none !important; }
+html.dt .desktop-root { display: block; }
+html.mb .desktop-root { display: none !important; }
+html.mb .mobile-root { display: flex; }
+
+/* ══ DESKTOP CSS ══ */
+
+:root{
+  --sky:#f4f6fa;
+  --sky2:#eaecf5;
+  --accent:#c87a00;
+  --accent2:#b86e00;
+  --teal:#0a9e90;
+  --red:#cc2222;
+  --green:#0e9e55;
+  --muted:#6b7a99;
+  --card:#ffffff;
+  --card2:#f0f3fa;
+  --border:rgba(0,0,0,0.09);
+  --text:#1a2340;
+  --radius:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--sky);
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+
+
+/* HEADER */
+header{
+  position:relative;z-index:10;
+  background:linear-gradient(135deg,#1a2e50 0%,#1e3a6a 60%,#162848 100%);
+  border-bottom:1px solid var(--border);
+  padding:0 2rem;
+}
+.header-top{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.2rem 0 0.8rem;
+  border-bottom:1px solid var(--border);
+}
+.logo{display:flex;align-items:center;gap:12px}
+.logo-icon{
+  width:44px;height:44px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;
+}
+.logo-text h1{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:800;color:white;line-height:1}
+.logo-text span{font-size:0.75rem;color:var(--muted);font-weight:400}
+.header-time{text-align:right}
+.header-time .time-big{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:700;color:var(--accent2);line-height:1}
+.header-time .time-date{font-size:0.75rem;color:var(--muted)}
+
+/* NAV TABS */
+.nav-tabs{
+  display:flex;gap:4px;padding:0.5rem 0;
+  overflow-x:auto;scrollbar-width:none;
+}
+.nav-tabs::-webkit-scrollbar{display:none}
+.tab-btn{
+  flex-shrink:0;
+  padding:0.45rem 1rem;
+  border:none;border-radius:8px;
+  background:transparent;color:var(--muted);
+  font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:500;
+  cursor:pointer;transition:all .2s;
+  display:flex;align-items:center;gap:6px;
+  white-space:nowrap;
+}
+.tab-btn:hover{background:var(--card2);color:var(--text)}
+.tab-btn.active{
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#000;font-weight:700;
+}
+
+/* MAIN */
+main{position:relative;z-index:1;padding:1.5rem 1.5rem 4rem;max-width:1100px;margin:0 auto}
+
+/* SECTIONS */
+.section{display:none;animation:fadeIn .3s ease}
+.section.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* HERO CARD */
+.hero-card{
+  background:linear-gradient(135deg,#e8f0fe 0%,#f0f4ff 100%);
+  border:1px solid rgba(100,130,200,0.2);
+  border-radius:var(--radius);
+  padding:1.5rem;
+  margin-bottom:1.2rem;
+  position:relative;overflow:hidden;
+}
+.hero-card::before{
+  content:'';position:absolute;top:-40px;right:-40px;
+  width:160px;height:160px;
+  background:radial-gradient(circle,rgba(200,122,0,0.1),transparent);
+  border-radius:50%;
+}
+.hero-card h2{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:700;margin-bottom:0.3rem}
+.hero-card p{color:var(--muted);font-size:0.87rem;line-height:1.6}
+
+/* GRID */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1rem}
+@media(max-width:600px){.grid-2,.grid-3{grid-template-columns:1fr}}
+
+/* TRANSPORT CARDS */
+.transport-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:1.2rem;
+  cursor:pointer;
+  transition:all .25s;
+  position:relative;overflow:hidden;
+}
+.transport-card:hover,.transport-card.selected{
+  border-color:var(--accent);
+  background:var(--card2);
+  transform:translateY(-2px);
+  box-shadow:0 8px 24px rgba(200,122,0,0.12);
+}
+.transport-card .icon{font-size:2rem;margin-bottom:0.6rem}
+.transport-card h3{font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:700;margin-bottom:0.3rem}
+.transport-card .meta{font-size:0.78rem;color:var(--muted);margin-bottom:0.6rem}
+.transport-detail{
+  display:none;margin-top:0.8rem;
+  padding-top:0.8rem;border-top:1px solid var(--border);
+}
+.transport-card.selected .transport-detail{display:block}
+.detail-row{display:flex;gap:8px;align-items:flex-start;margin-bottom:0.5rem}
+.detail-row .dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--accent);flex-shrink:0;margin-top:5px;
+}
+.detail-row p{font-size:0.8rem;color:var(--muted);line-height:1.5}
+
+/* STEPS */
+.steps{margin:1rem 0}
+.step{
+  display:flex;gap:1rem;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:1.1rem 1.2rem;
+  margin-bottom:0.8rem;
+  transition:all .2s;
+  cursor:pointer;
+}
+.step:hover{border-color:rgba(200,122,0,0.3);background:var(--card2)}
+.step-num{
+  width:32px;height:32px;flex-shrink:0;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:800;
+  color:#000;
+}
+.step-content h3{font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:700;margin-bottom:0.2rem}
+.step-content p{font-size:0.82rem;color:var(--muted);line-height:1.5}
+.step-extra{
+  display:none;margin-top:0.7rem;
+  padding:0.7rem;background:rgba(0,0,0,0.04);
+  border-radius:8px;
+}
+.step.open .step-extra{display:block}
+.step-extra ul{list-style:none}
+.step-extra ul li{
+  font-size:0.8rem;color:var(--muted);
+  padding:0.25rem 0;
+  padding-left:1rem;position:relative;
+}
+.step-extra ul li::before{
+  content:'✓';color:var(--green);
+  position:absolute;left:0;font-size:0.7rem;top:0.3rem;
+}
+.step-extra .warn{color:var(--accent);display:block;margin-top:0.4rem;font-size:0.78rem}
+
+/* BAGGAGE */
+.baggage-table{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);overflow:hidden;margin-bottom:1rem;
+}
+.baggage-table table{width:100%;border-collapse:collapse}
+.baggage-table th{
+  background:linear-gradient(135deg,rgba(232,160,32,0.2),rgba(244,200,66,0.1));
+  padding:0.7rem 1rem;font-family:'Syne',sans-serif;font-size:0.8rem;
+  font-weight:700;text-align:left;color:var(--accent2);
+}
+.baggage-table td{
+  padding:0.6rem 1rem;font-size:0.82rem;color:var(--muted);
+  border-top:1px solid var(--border);
+}
+.baggage-table tr:hover td{background:rgba(255,255,255,0.03)}
+.tag-free{background:rgba(29,190,114,0.15);color:var(--green);padding:2px 8px;border-radius:20px;font-size:0.72rem;font-weight:600}
+.tag-paid{background:rgba(232,64,64,0.15);color:var(--red);padding:2px 8px;border-radius:20px;font-size:0.72rem;font-weight:600}
+.tag-info{background:rgba(232,160,32,0.15);color:var(--accent);padding:2px 8px;border-radius:20px;font-size:0.72rem;font-weight:600}
+
+/* SECURITY TIPS */
+.tips-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0.7rem;margin-bottom:1rem}
+@media(max-width:600px){.tips-grid{grid-template-columns:1fr}}
+.tip-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:10px;padding:1rem;
+  display:flex;gap:10px;align-items:flex-start;
+}
+.tip-card .tip-ico{font-size:1.4rem;flex-shrink:0}
+.tip-card h4{font-family:'Syne',sans-serif;font-size:0.82rem;font-weight:700;margin-bottom:0.2rem}
+.tip-card p{font-size:0.77rem;color:var(--muted);line-height:1.5}
+.tip-card.danger{border-color:rgba(232,64,64,0.3)}
+.tip-card.safe{border-color:rgba(29,190,114,0.3)}
+.tip-card.warn{border-color:rgba(232,160,32,0.3)}
+
+/* AIRPORT MAP */
+.map-wrap{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);padding:1.2rem;
+  margin-bottom:1rem;
+}
+.map-wrap h3{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;margin-bottom:1rem;color:var(--accent2)}
+.terminal-map{width:100%;border-radius:10px;overflow:hidden}
+.gate-selector{
+  display:flex;flex-wrap:wrap;gap:6px;margin-top:1rem;
+}
+.gate-btn{
+  padding:0.3rem 0.7rem;
+  border:1px solid var(--border);border-radius:6px;
+  background:transparent;color:var(--muted);font-size:0.78rem;
+  cursor:pointer;font-family:'DM Sans',sans-serif;
+  transition:all .2s;
+}
+.gate-btn:hover,.gate-btn.active{
+  background:var(--accent);color:#000;border-color:var(--accent);font-weight:700;
+}
+.gate-info{
+  margin-top:0.8rem;padding:0.8rem;
+  background:rgba(0,0,0,0.04);border-radius:8px;
+  font-size:0.82rem;color:var(--muted);line-height:1.6;
+  display:none;
+}
+.gate-info.show{display:block}
+
+/* FLIGHTS TABLE */
+.flights-header{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:1rem;
+}
+.flights-toggle{
+  display:flex;gap:4px;
+  background:var(--card2);border-radius:8px;padding:4px;
+}
+.fl-tab{
+  padding:0.35rem 0.9rem;border-radius:6px;border:none;
+  background:transparent;color:var(--muted);font-size:0.8rem;
+  cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:500;
+  transition:all .2s;
+}
+.fl-tab.active{background:var(--accent);color:#000;font-weight:700}
+.search-flight{
+  width:100%;padding:0.6rem 1rem;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:8px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.85rem;
+  outline:none;margin-bottom:0.8rem;
+}
+.search-flight:focus{border-color:var(--accent)}
+.flights-table{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);overflow:hidden;
+}
+.fl-head{
+  display:grid;grid-template-columns:80px 1fr 100px 90px 80px;
+  padding:0.6rem 1rem;
+  background:rgba(255,255,255,0.04);
+  font-size:0.72rem;color:var(--muted);font-weight:600;
+  text-transform:uppercase;letter-spacing:0.5px;
+  border-bottom:1px solid var(--border);
+}
+.fl-row{
+  display:grid;grid-template-columns:80px 1fr 100px 90px 80px;
+  padding:0.65rem 1rem;border-bottom:1px solid var(--border);
+  align-items:center;transition:background .15s;cursor:default;
+}
+.fl-row:last-child{border-bottom:none}
+.fl-row:hover{background:rgba(255,255,255,0.03)}
+.fl-no{font-family:'Syne',sans-serif;font-size:0.82rem;font-weight:700;color:white}
+.fl-dest{font-size:0.82rem}
+.fl-dest small{display:block;font-size:0.72rem;color:var(--muted)}
+.fl-time{font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:600;color:var(--accent2)}
+.fl-gate{font-size:0.8rem;color:var(--teal)}
+.fl-status span{
+  padding:2px 8px;border-radius:20px;font-size:0.7rem;font-weight:600;
+}
+.status-on-time{background:rgba(29,190,114,0.15);color:var(--green)}
+.status-delayed{background:rgba(232,64,64,0.15);color:var(--red)}
+.status-boarding{background:rgba(29,184,168,0.15);color:var(--teal)}
+.status-landed{background:rgba(138,154,184,0.15);color:var(--muted)}
+.status-cancelled{background:rgba(232,64,64,0.25);color:var(--red)}
+.status-scheduled{background:rgba(232,160,32,0.12);color:var(--accent)}
+
+.refresh-btn{
+  padding:0.35rem 0.9rem;
+  background:linear-gradient(135deg,var(--teal),#0da090);
+  border:none;border-radius:7px;color:white;
+  font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:600;
+  cursor:pointer;display:flex;align-items:center;gap:5px;
+  transition:opacity .2s;
+}
+.refresh-btn:hover{opacity:0.85}
+.last-updated{font-size:0.73rem;color:var(--muted)}
+
+/* CHECKLIST */
+.checklist{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.2rem}
+.checklist h3{font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:700;margin-bottom:0.8rem;color:var(--accent2)}
+.check-item{
+  display:flex;align-items:center;gap:10px;
+  padding:0.55rem 0;border-bottom:1px solid var(--border);cursor:pointer;
+}
+.check-item:last-child{border-bottom:none}
+.check-box{
+  width:20px;height:20px;border-radius:5px;flex-shrink:0;
+  border:2px solid var(--border);transition:all .2s;
+  display:flex;align-items:center;justify-content:center;font-size:0.75rem;
+}
+.check-item.checked .check-box{
+  background:var(--green);border-color:var(--green);
+}
+.check-item .check-label{font-size:0.82rem;transition:color .2s}
+.check-item.checked .check-label{color:var(--muted);text-decoration:line-through}
+.progress-bar-wrap{height:4px;background:var(--border);border-radius:4px;margin-bottom:1rem}
+.progress-bar{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--green),var(--teal));transition:width .4s ease}
+
+/* ALERT BANNER */
+.alert-banner{
+  background:linear-gradient(135deg,rgba(200,122,0,0.08),rgba(200,122,0,0.03));
+  border:1px solid rgba(200,122,0,0.25);
+  border-radius:10px;padding:0.8rem 1rem;
+  margin-bottom:1rem;display:flex;gap:10px;align-items:center;
+  font-size:0.82rem;
+}
+.alert-banner .ico{font-size:1.1rem}
+
+/* SECTION TITLE */
+.sec-title{
+  font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;
+  margin-bottom:0.8rem;color:var(--accent2);
+  display:flex;align-items:center;gap:8px;
+}
+.sec-title::after{
+  content:'';flex:1;height:1px;background:var(--border);
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+
+/* RESPONSIVE */
+@media(max-width:700px){
+  .fl-head,.fl-row{grid-template-columns:70px 1fr 85px 60px 70px;font-size:0.75rem}
+  main{padding:1rem}
+}
+@media(max-width:500px){
+  .fl-head .fl-gate,.fl-row .fl-gate{display:none}
+  .fl-head,.fl-row{grid-template-columns:65px 1fr 85px 70px}
+}
+
+
+/* ══ MOBILE CSS ══ */
+
+:root{
+  --bg:#f2f4f8;
+  --bg2:#e8ebf4;
+  --accent:#c87a00;
+  --accent2:#a86400;
+  --teal:#0a9e90;
+  --red:#cc2222;
+  --green:#0e9e55;
+  --muted:#6b7a99;
+  --card:#ffffff;
+  --card2:#f0f3fa;
+  --border:rgba(0,0,0,0.08);
+  --text:#1a2340;
+  --header-h:56px;
+  --nav-h:64px;
+  --radius:16px;
+  --radius-sm:10px;
+  --safe-bottom:env(safe-area-inset-bottom, 0px);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;overflow:hidden}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  display:flex;flex-direction:column;
+  position:fixed;width:100%;
+}
+
+/* ── HEADER ── */
+.app-header{
+  flex-shrink:0;
+  height:var(--header-h);
+  background:linear-gradient(135deg,#1a2e50,#1e3a6a);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 16px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.15);
+  position:relative;z-index:100;
+}
+.app-header .logo{display:flex;align-items:center;gap:10px}
+.app-header .logo-ico{
+  width:34px;height:34px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  border-radius:8px;display:flex;align-items:center;justify-content:center;
+  font-size:16px;
+}
+.app-header .logo-text{line-height:1}
+.app-header .logo-text strong{font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:800;color:white;display:block}
+.app-header .logo-text span{font-size:0.65rem;color:rgba(255,255,255,0.55)}
+.app-header .htime{text-align:right}
+.app-header .htime .hbig{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:700;color:#f4c842;line-height:1}
+.app-header .htime .hsmall{font-size:0.62rem;color:rgba(255,255,255,0.5)}
+
+/* ── SCROLL AREA ── */
+.scroll-area{
+  flex:1;overflow-y:auto;overflow-x:hidden;
+  -webkit-overflow-scrolling:touch;
+  padding-bottom:calc(var(--nav-h) + var(--safe-bottom) + 8px);
+}
+
+/* ── BOTTOM NAV ── */
+.bottom-nav{
+  flex-shrink:0;
+  height:calc(var(--nav-h) + var(--safe-bottom));
+  padding-bottom:var(--safe-bottom);
+  background:white;
+  border-top:1px solid var(--border);
+  display:flex;
+  box-shadow:0 -2px 12px rgba(0,0,0,0.08);
+  position:relative;z-index:100;
+}
+.nav-item{
+  flex:1;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:3px;cursor:pointer;
+  padding:8px 4px 4px;
+  border:none;background:transparent;
+  transition:all .2s;
+  position:relative;
+}
+.nav-item .nav-ico{font-size:1.35rem;transition:transform .2s}
+.nav-item .nav-lbl{font-size:0.6rem;font-weight:500;color:var(--muted);transition:color .2s;white-space:nowrap}
+.nav-item.active .nav-lbl{color:var(--accent);font-weight:700}
+.nav-item.active .nav-ico{transform:scale(1.15)}
+.nav-item::after{
+  content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:0;height:3px;border-radius:0 0 3px 3px;
+  background:var(--accent);transition:width .25s;
+}
+.nav-item.active::after{width:28px}
+
+/* ── SECTIONS ── */
+.section{display:none;padding:12px 14px 0;}
+.section.active{display:block;animation:fadeUp .25s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── HERO BANNER ── */
+.hero{
+  background:linear-gradient(135deg,#e8f0fe,#f0f4ff);
+  border:1px solid rgba(100,130,200,0.15);
+  border-radius:var(--radius);
+  padding:14px 16px;margin-bottom:12px;
+  position:relative;overflow:hidden;
+}
+.hero::after{
+  content:'✈️';position:absolute;right:14px;top:50%;
+  transform:translateY(-50%);font-size:2.8rem;opacity:0.12;
+}
+.hero h2{font-family:'Syne',sans-serif;font-size:1rem;font-weight:800;margin-bottom:4px}
+.hero p{font-size:0.78rem;color:var(--muted);line-height:1.55}
+
+/* ── ALERT ── */
+.alert{
+  background:rgba(200,122,0,0.07);
+  border:1px solid rgba(200,122,0,0.22);
+  border-radius:var(--radius-sm);
+  padding:10px 12px;margin-bottom:12px;
+  display:flex;gap:8px;align-items:flex-start;
+  font-size:0.78rem;line-height:1.5;
+}
+.alert .ai{font-size:1rem;flex-shrink:0;margin-top:1px}
+
+/* ── SECTION LABEL ── */
+.sec-lbl{
+  font-family:'Syne',sans-serif;font-size:0.7rem;font-weight:800;
+  text-transform:uppercase;letter-spacing:0.8px;
+  color:var(--muted);margin:0 0 8px;
+  display:flex;align-items:center;gap:6px;
+}
+.sec-lbl::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* ── TRANSPORT CARDS ── */
+.tcard{
+  background:var(--card);
+  border:1.5px solid var(--border);
+  border-radius:var(--radius);
+  padding:14px;margin-bottom:10px;
+  cursor:pointer;transition:all .2s;
+  position:relative;
+}
+.tcard.open{border-color:var(--accent);box-shadow:0 4px 16px rgba(200,122,0,0.1)}
+.tcard-top{display:flex;align-items:center;gap:12px}
+.tcard-ico{
+  width:44px;height:44px;flex-shrink:0;
+  background:var(--bg2);border-radius:12px;
+  display:flex;align-items:center;justify-content:center;font-size:1.5rem;
+}
+.tcard.open .tcard-ico{background:rgba(200,122,0,0.1)}
+.tcard-info h3{font-family:'Syne',sans-serif;font-size:0.9rem;font-weight:700}
+.tcard-info .meta{font-size:0.73rem;color:var(--muted);margin-top:2px}
+.tcard-arrow{
+  margin-left:auto;font-size:0.8rem;color:var(--muted);
+  transition:transform .25s;flex-shrink:0;
+}
+.tcard.open .tcard-arrow{transform:rotate(180deg);color:var(--accent)}
+.tcard-body{
+  display:none;margin-top:12px;padding-top:12px;
+  border-top:1px solid var(--border);
+}
+.tcard.open .tcard-body{display:block}
+.drow{display:flex;gap:8px;margin-bottom:8px;align-items:flex-start}
+.drow .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:5px}
+.drow p{font-size:0.78rem;color:var(--muted);line-height:1.55}
+
+/* ── STEP CARDS ── */
+.step{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);padding:14px;
+  margin-bottom:8px;cursor:pointer;transition:all .2s;
+  display:flex;gap:12px;
+}
+.step.open{border-color:rgba(200,122,0,0.3);background:#fffaf5}
+.snum{
+  width:30px;height:30px;flex-shrink:0;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-family:'Syne',sans-serif;font-size:0.82rem;font-weight:800;color:white;
+}
+.scont h3{font-family:'Syne',sans-serif;font-size:0.88rem;font-weight:700;margin-bottom:2px}
+.scont p{font-size:0.76rem;color:var(--muted);line-height:1.5}
+.sextra{
+  display:none;margin-top:10px;padding:10px;
+  background:rgba(0,0,0,0.035);border-radius:8px;
+}
+.step.open .sextra{display:block}
+.sextra ul{list-style:none}
+.sextra li{
+  font-size:0.76rem;color:var(--muted);
+  padding:3px 0 3px 18px;position:relative;line-height:1.5;
+}
+.sextra li::before{content:'✓';color:var(--green);position:absolute;left:2px;font-size:0.65rem;top:4px}
+.sextra .warn{font-size:0.74rem;color:var(--accent);display:block;margin-top:6px;line-height:1.5}
+
+/* ── BAGGAGE TABLE ── */
+.btable-wrap{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);overflow:hidden;margin-bottom:12px;
+}
+.btrow{
+  padding:10px 14px;border-bottom:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;gap:8px;
+}
+.btrow:last-child{border-bottom:none}
+.btrow-label{font-size:0.78rem;font-weight:600;color:var(--text)}
+.btrow-sub{font-size:0.7rem;color:var(--muted);margin-top:2px}
+.bthead{
+  background:linear-gradient(135deg,rgba(200,122,0,0.12),rgba(200,122,0,0.05));
+  padding:8px 14px;
+  font-family:'Syne',sans-serif;font-size:0.7rem;font-weight:800;
+  color:var(--accent2);text-transform:uppercase;letter-spacing:0.5px;
+}
+.tag{padding:2px 8px;border-radius:20px;font-size:0.68rem;font-weight:700;flex-shrink:0}
+.tag-free{background:rgba(14,158,85,0.12);color:var(--green)}
+.tag-paid{background:rgba(204,34,34,0.12);color:var(--red)}
+.tag-info{background:rgba(200,122,0,0.12);color:var(--accent)}
+
+/* ── TIP CARDS ── */
+.tip-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius-sm);padding:12px;
+  display:flex;gap:10px;align-items:flex-start;margin-bottom:8px;
+}
+.tip-card .tico{font-size:1.4rem;flex-shrink:0}
+.tip-card h4{font-family:'Syne',sans-serif;font-size:0.8rem;font-weight:700;margin-bottom:2px}
+.tip-card p{font-size:0.74rem;color:var(--muted);line-height:1.5}
+.tip-card.danger{border-color:rgba(204,34,34,0.25);background:#fff8f8}
+.tip-card.safe{border-color:rgba(14,158,85,0.25);background:#f6fff9}
+.tip-card.warn{border-color:rgba(200,122,0,0.25);background:#fffaf4}
+
+/* ── MAP SVG ── */
+.map-box{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);overflow:hidden;margin-bottom:12px;
+}
+.map-box-head{
+  padding:12px 14px;
+  font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:700;color:var(--text);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:6px;
+}
+.map-svg-wrap{padding:12px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.gate-pills{
+  display:flex;gap:6px;padding:0 14px 14px;
+  overflow-x:auto;scrollbar-width:none;
+}
+.gate-pills::-webkit-scrollbar{display:none}
+.gpill{
+  flex-shrink:0;padding:5px 12px;
+  border:1.5px solid var(--border);border-radius:20px;
+  background:transparent;color:var(--muted);font-size:0.75rem;font-weight:600;
+  cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;
+}
+.gpill.active{background:var(--accent);color:white;border-color:var(--accent)}
+.gate-detail{
+  display:none;margin:0 14px 14px;padding:10px;
+  background:rgba(200,122,0,0.06);border-radius:var(--radius-sm);
+  font-size:0.76rem;color:var(--muted);line-height:1.6;
+  border:1px solid rgba(200,122,0,0.15);
+}
+.gate-detail.show{display:block}
+
+/* ── FLIGHTS ── */
+.fl-switcher{
+  display:flex;gap:6px;margin-bottom:10px;
+}
+.fl-sw-btn{
+  flex:1;padding:8px;border-radius:10px;border:1.5px solid var(--border);
+  background:var(--card);color:var(--muted);
+  font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:600;
+  cursor:pointer;transition:all .2s;text-align:center;
+}
+.fl-sw-btn.active{
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:white;border-color:transparent;
+}
+.fl-search{
+  width:100%;padding:9px 12px;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:10px;color:var(--text);
+  font-family:'DM Sans',sans-serif;font-size:0.82rem;
+  outline:none;margin-bottom:8px;
+}
+.fl-search:focus{border-color:var(--accent)}
+.fl-meta{
+  display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;
+}
+.fl-refresh{
+  display:flex;align-items:center;gap:4px;
+  padding:5px 10px;background:var(--teal);
+  border:none;border-radius:8px;color:white;
+  font-size:0.72rem;font-weight:600;cursor:pointer;
+  font-family:'DM Sans',sans-serif;
+}
+.fl-updated{font-size:0.68rem;color:var(--muted)}
+.fl-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius-sm);padding:12px 14px;
+  margin-bottom:6px;display:flex;align-items:center;gap:10px;
+  transition:background .15s;
+}
+.fl-card:active{background:var(--card2)}
+.fl-airline{
+  font-family:'Syne',sans-serif;font-size:0.78rem;font-weight:800;
+  color:var(--text);width:60px;flex-shrink:0;
+}
+.fl-info{flex:1}
+.fl-dest-name{font-size:0.82rem;font-weight:600;color:var(--text)}
+.fl-dest-sub{font-size:0.68rem;color:var(--muted);margin-top:1px}
+.fl-right{text-align:right;flex-shrink:0}
+.fl-time-big{font-family:'Syne',sans-serif;font-size:0.92rem;font-weight:700;color:var(--accent2);display:block}
+.fl-gate-lbl{font-size:0.65rem;color:var(--teal);font-weight:600;display:block;margin-top:2px}
+.fl-status-badge{display:inline-block;padding:2px 7px;border-radius:20px;font-size:0.65rem;font-weight:700;margin-top:3px}
+.s-ontime{background:rgba(14,158,85,0.12);color:var(--green)}
+.s-delayed{background:rgba(204,34,34,0.12);color:var(--red)}
+.s-boarding{background:rgba(10,158,144,0.12);color:var(--teal)}
+.s-landed{background:rgba(107,122,153,0.12);color:var(--muted)}
+.s-scheduled{background:rgba(200,122,0,0.1);color:var(--accent)}
+.s-cancelled{background:rgba(204,34,34,0.2);color:var(--red)}
+
+/* ── CHECKLIST ── */
+.prog-wrap{margin-bottom:10px}
+.prog-bar-bg{height:6px;background:var(--bg2);border-radius:4px;overflow:hidden}
+.prog-bar-fg{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--green),var(--teal));transition:width .4s ease}
+.prog-lbl{font-size:0.72rem;color:var(--muted);margin-top:4px}
+.cl-group{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:10px}
+.cl-group-head{
+  padding:10px 14px;
+  font-family:'Syne',sans-serif;font-size:0.72rem;font-weight:800;
+  text-transform:uppercase;letter-spacing:0.5px;color:var(--muted);
+  background:var(--card2);border-bottom:1px solid var(--border);
+}
+.cl-item{
+  display:flex;align-items:center;gap:12px;
+  padding:11px 14px;border-bottom:1px solid var(--border);
+  cursor:pointer;transition:background .15s;
+}
+.cl-item:last-child{border-bottom:none}
+.cl-item:active{background:var(--card2)}
+.cl-box{
+  width:22px;height:22px;border-radius:6px;flex-shrink:0;
+  border:2px solid var(--border);transition:all .2s;
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.7rem;color:white;
+}
+.cl-item.checked .cl-box{background:var(--green);border-color:var(--green)}
+.cl-lbl{font-size:0.8rem;line-height:1.4;transition:color .2s}
+.cl-item.checked .cl-lbl{color:var(--muted);text-decoration:line-through}
+.cl-actions{display:flex;gap:8px;padding:4px 0 8px}
+.cl-btn{
+  flex:1;padding:9px;border-radius:10px;border:1.5px solid var(--border);
+  background:var(--card);color:var(--muted);
+  font-family:'DM Sans',sans-serif;font-size:0.76rem;font-weight:600;
+  cursor:pointer;text-align:center;transition:all .2s;
+}
+.cl-btn.primary{
+  background:linear-gradient(135deg,var(--green),#0a8a45);
+  color:white;border-color:transparent;
+}
+
+/* ── GMAP IFRAME ── */
+.gmap-box{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);overflow:hidden;margin-bottom:12px;
+}
+.gmap-box iframe{display:block}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:3px;height:3px}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+
+/* ── EMPTY STATE ── */
+.empty{padding:24px;text-align:center;color:var(--muted);font-size:0.82rem}
+
+
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════ -->
+<!--              DESKTOP VERSION               -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="desktop-root">
+<header>
+  <div class="header-top">
+    <div class="logo">
+      <div class="logo-icon">✈️</div>
+      <div class="logo-text">
+        <h1>TIA – Tirana Airport</h1>
+        <span>Udhëzuesi Interaktiv i Pasagjerit</span>
+      </div>
+    </div>
+    <div class="header-time">
+      <div class="time-big" id="liveClock">--:--</div>
+      <div class="time-date" id="liveDate">--</div>
+    </div>
+  </div>
+  <nav class="nav-tabs">
+    <button class="tab-btn active" data-tab="transport">🚗 Si të arrij</button>
+    <button class="tab-btn" data-tab="checkin">🎫 Check-in</button>
+    <button class="tab-btn" data-tab="baggage">🧳 Bagazhet</button>
+    <button class="tab-btn" data-tab="security">🔒 Kontrolli</button>
+    <button class="tab-btn" data-tab="gates">🗺️ Harta & Gates</button>
+    <button class="tab-btn" data-tab="flights">📟 Fluturimet</button>
+    <button class="tab-btn" data-tab="checklist">✅ Lista ime</button>
+  </nav>
+</header>
+
+<main>
+
+<!-- ========== TRANSPORT ========== -->
+<div class="section active" id="tab-transport">
+  <div class="hero-card">
+    <h2>Si të arrij në Aeroportin e Tiranës?</h2>
+    <p>Aeroporti Ndërkombëtar Nënë Tereza (TIA) ndodhet rreth 17 km në veri-perëndim të qendrës së Tiranës, në fshatin Rinas. Zgjidhni mënyrën tuaj të transportit më poshtë.</p>
+  </div>
+
+  <div class="alert-banner">
+    <span class="ico">⏰</span>
+    <span><strong>Rekomandim:</strong> Mbërrini <strong>2 orë</strong> para nisjes për fluturime europiane dhe <strong>3 orë</strong> për fluturime ndërkontinentale.</span>
+  </div>
+
+  <div class="sec-title">Zgjidhni transportin tuaj</div>
+
+  <div class="grid-3">
+    <div class="transport-card" onclick="selectTransport(this,'car')">
+      <div class="icon">🚗</div>
+      <h3>Me makinën tuaj</h3>
+      <div class="meta">📍 20–25 min nga Tirana</div>
+      <div class="transport-detail">
+        <div class="detail-row"><div class="dot"></div><p>Ndiqni rrugën SH2 (Tiranë–Durrës) drejt veri-perëndimit, pastaj kthehuni në SH60 sipas shenjave "Aeroport Rinas".</p></div>
+        <div class="detail-row"><div class="dot"></div><p><strong>Parkimi:</strong> 3 zona parkimi (P1, P2, P3) jashtë terminalit. <br>• 7 minutat e para: FALAS<br>• Parking afatshkurtër: ~200–400 ALL/orë<br>• Parking afatgjatë: tarifa ditore të reduktuara</p></div>
+        <div class="detail-row"><div class="dot"></div><p>Ka vende parkimi për personat me aftësi të kufizuara pranë hyrjes kryesore, të gjitha me akses karroce.</p></div>
+        <div class="detail-row"><div class="dot"></div><p><strong>Drop-off:</strong> Zona e lëshimit të pasagjerëve ndodhet drejtpërdrejt para terminalit – FALAS por koha e ndalimit është e kufizuar.</p></div>
+      </div>
+    </div>
+
+    <div class="transport-card" onclick="selectTransport(this,'taxi')">
+      <div class="icon">🚖</div>
+      <h3>Me Taksi</h3>
+      <div class="meta">📍 ~25 min · 2,000–3,000 ALL</div>
+      <div class="transport-detail">
+        <div class="detail-row"><div class="dot"></div><p>Taksitë zyrtare të aeroportit janë me tarifa fikse. Sigurohuni të pyesni çmimin PARA nisjes ose kërkoni taksimetrin.</p></div>
+        <div class="detail-row"><div class="dot"></div><p>Shërbime si <strong>Bolt</strong> dhe <strong>Uber Albania</strong> operojnë në Tiranë dhe janë zakonisht më të lira (1,200–2,500 ALL).</p></div>
+        <div class="detail-row"><div class="dot"></div><p>Pikëmarrja e taksisë është jashtë daljes së Arrivals, kati i parë (përdhes).</p></div>
+        <div class="detail-row"><div class="dot"></div><p><strong>⚠ Kujdes:</strong> Shmangni taksitë informale që ju afrohen brenda terminalit.</p></div>
+      </div>
+    </div>
+
+    <div class="transport-card" onclick="selectTransport(this,'bus')">
+      <div class="icon">🚌</div>
+      <h3>Me Autobus</h3>
+      <div class="meta">📍 30–35 min · 250 ALL</div>
+      <div class="transport-detail">
+        <div class="detail-row"><div class="dot"></div><p><strong>Rinas Express</strong> është linja zyrtare e autobusit ndërmjet aeroportit dhe qendrës së Tiranës (Sheshi Skënderbej).</p></div>
+        <div class="detail-row"><div class="dot"></div><p>Oraret: <strong>06:00 – 18:00</strong>, çdo orë rreth minutës :00. Bileta kushton <strong>250 ALL</strong> (rreth €2.5).</p></div>
+        <div class="detail-row"><div class="dot"></div><p>Stacioni i autobusit është jashtë terminalit të Arrivals. Biletat blihen direkt tek shoferoi ose te kabinat e shitjes pranë stacionit.</p></div>
+        <div class="detail-row"><div class="dot"></div><p><strong>🚆 E ardhme:</strong> Nga fillimi i 2027 pritet të hapet linja e re hekurudhore elektrike Tiranë–Durrës–Aeroport.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-title" style="margin-top:1.5rem">Harta e rrugës</div>
+  <div class="map-wrap" style="padding:0;overflow:hidden">
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12002.0!2d19.7132!3d41.4149!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13503085d96cc11d%3A0x8ef77c4ca7e43b9c!2sTirana%20International%20Airport%20N%C3%ABn%C3%AB%20Tereza!5e0!3m2!1sen!2sal!4v1700000000000"
+      width="100%" height="220" style="border:0;display:block" allowfullscreen="" loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+</div>
+
+<!-- ========== CHECK-IN ========== -->
+<div class="section" id="tab-checkin">
+  <div class="hero-card">
+    <h2>🎫 Procesi i Check-in</h2>
+    <p>Terminali ka <strong>42 sportelje check-in</strong> të rregulluara sipas linjave ajrore. Departements janë në katin e sipërm (Level 1). Ndiqni hapat më poshtë.</p>
+  </div>
+
+  <div class="sec-title">Hapat e check-in</div>
+  <div class="steps">
+    <div class="step" onclick="toggleStep(this)">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h3>Online Check-in (rekomandohet)</h3>
+        <p>Kryeni check-in online 24–48 orë para nisjes dhe ruani boarding pass-in dixhital.</p>
+        <div class="step-extra">
+          <ul>
+            <li>Çdo linjë ajrore ka sistemin e vet – vizitoni faqen zyrtare ose app-in e tyre</li>
+            <li>Wizz Air: hapet 30 ditë para, mbyllet 3 orë para nisjes</li>
+            <li>Lufthansa / Turkish: hapet 23 orë para, online check-in i disponueshëm</li>
+            <li>Ruani boarding pass në telefon (screenshot) – sigurohuni që të funksionojë offline</li>
+            <li>Zgjidhni vendin (seatin) tuaj paraprakisht</li>
+          </ul>
+          <span class="warn">⚠ Nëse nuk bëni online check-in, do t'ju duhet sporteli fizik dhe mund të paguani tarifë shtesë.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" onclick="toggleStep(this)">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h3>Check-in në sportel / automjet vetë-shërbim</h3>
+        <p>Nëse nuk keni bërë online check-in ose keni bagazhe për lëshim (drop-off).</p>
+        <div class="step-extra">
+          <ul>
+            <li>Shkoni tek sportelet e linjës ajrore tuaj (shikoni tabelat elektronike)</li>
+            <li>Aeroporti ka edhe kioska vetë-shërbim (self check-in) – shumë të shpejta</li>
+            <li>Zbuloni numrin e sportelit tuaj në tabelat elektronike të sallës</li>
+            <li>Kini gati: pasaportën/kartën ID, rezervimin, dhe informatat e bagazheve</li>
+          </ul>
+          <span class="warn">⚠ Sportelet mbyllen 40–60 min para nisjes (ndryshon sipas linjës).</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" onclick="toggleStep(this)">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h3>Drop-off i bagazhit</h3>
+        <p>Nëse keni bagazh për lëshim (checked baggage), shkoni tek sporteli i drop-off.</p>
+        <div class="step-extra">
+          <ul>
+            <li>Pesoni bagazhin tuaj paraprakisht në shtëpi për të shmangur surprizat</li>
+            <li>Mbylleni bagazhin mirë dhe hiqni kyçet e vjetra TSA/çelësat e huaj</li>
+            <li>Kini një etiketë me emrin dhe numrin tuaj të telefonit brenda valixes</li>
+            <li>Fotografoni valixen tuaj para dorëzimit si provë</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" onclick="toggleStep(this)">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <h3>Kalimi i kufirit / Pasaportat</h3>
+        <p>Pas check-in, drejtohuni tek kontrolli i pasaportave (Passport Control / Border Check).</p>
+        <div class="step-extra">
+          <ul>
+            <li>Qytetarët shqiptarë: mund të udhëtojnë me kartë ID brenda vendeve të BE-së</li>
+            <li>Pasaportë e nevojshme për UK, SHBA, dhe vende jashtë BE-së</li>
+            <li>Kontrolloni nëse destinacioni juaj kërkon vizë – aplikoni paraprakisht</li>
+            <li>Pasaporta duhet të ketë të paktën 6 muaj vlefshmëri</li>
+            <li>Ka sportelje të veçanta për EU/EEA dhe jo-EU</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert-banner">
+    <span class="ico">💡</span>
+    <span><strong>Këshillë:</strong> Mbërrini në aeroport të paktën <strong>2 orë para</strong> nisjes. Gjatë sezonit të verës (Qershor–Shtator) dhe festave, planifikoni <strong>2.5–3 orë</strong> paraprakisht.</span>
+  </div>
+</div>
+
+<!-- ========== BAGGAGE ========== -->
+<div class="section" id="tab-baggage">
+  <div class="hero-card">
+    <h2>🧳 Bagazhet – Kufiri dhe Tarifat</h2>
+    <p>Çdo linjë ajrore ka rregullat e veta. Këtu gjeni udhëzime të përgjithshme. Verifikoni gjithmonë me linjën tuaj ajrore.</p>
+  </div>
+
+  <div class="sec-title">Bagazhi i kabinës (Hand Luggage)</div>
+  <div class="baggage-table">
+    <table>
+      <thead><tr><th>Linja Ajrore</th><th>Copë</th><th>Dimensionet max</th><th>Pesha</th><th>Tarifa</th></tr></thead>
+      <tbody>
+        <tr><td>Wizz Air</td><td>1 copë e vogël</td><td>40×30×20 cm</td><td>—</td><td><span class="tag-free">FALAS</span></td></tr>
+        <tr><td>Wizz Air (me bileta flex)</td><td>+1 kabinë</td><td>55×40×23 cm · max 10 kg</td><td>10 kg</td><td><span class="tag-paid">Me pagesë</span></td></tr>
+        <tr><td>Ryanair</td><td>1 copë e vogël</td><td>40×20×25 cm</td><td>—</td><td><span class="tag-free">FALAS</span></td></tr>
+        <tr><td>Lufthansa / Swiss</td><td>1 copë</td><td>55×40×23 cm</td><td>8 kg</td><td><span class="tag-free">FALAS</span></td></tr>
+        <tr><td>Turkish Airlines</td><td>1 copë</td><td>55×40×23 cm</td><td>8 kg</td><td><span class="tag-free">FALAS</span></td></tr>
+        <tr><td>Aegean Airlines</td><td>1 copë</td><td>56×45×25 cm</td><td>8 kg</td><td><span class="tag-free">FALAS</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sec-title">Bagazhi i lëshuar (Checked Baggage)</div>
+  <div class="baggage-table">
+    <table>
+      <thead><tr><th>Tip</th><th>Pesha standarde</th><th>Kur paguhet</th><th>Shtesë pas limitit</th></tr></thead>
+      <tbody>
+        <tr><td>Ekonomik (basic)</td><td>20–23 kg</td><td><span class="tag-paid">Tarifa para biletës</span></td><td>~€10–30/kg</td></tr>
+        <tr><td>Ekonomik (flex/plus)</td><td>23 kg</td><td><span class="tag-info">Shpesh i përfshirë</span></td><td>~€10–20/kg</td></tr>
+        <tr><td>Biznes klasë</td><td>32 kg</td><td><span class="tag-free">I përfshirë</span></td><td>—</td></tr>
+        <tr><td>Bagazh ekstra (2. copë)</td><td>23 kg</td><td><span class="tag-paid">Shtesë</span></td><td>€25–60</td></tr>
+        <tr><td>Bagazh sportiv (ski, biçikleta)</td><td>Ndryshon</td><td><span class="tag-paid">Tarifa e posaçme</span></td><td>€30–80</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sec-title">Sendet e ndaluara</div>
+  <div class="tips-grid">
+    <div class="tip-card danger">
+      <div class="tip-ico">🚫</div>
+      <div><h4>Absolutisht të ndaluara (kudo)</h4><p>Armët, eksplozivët, gazi i lëngshëm, lëndët ndezëse, municionet (edhe bosh), bateritë e dëmtuara.</p></div>
+    </div>
+    <div class="tip-card danger">
+      <div class="tip-ico">⚠️</div>
+      <div><h4>Të ndaluara në kabinë</h4><p>Thika mbi 6 cm, gërshërë me tehe &gt;6 cm, sende të mprehta, lëngje mbi 100 ml secila (rregulla 3-1-1).</p></div>
+    </div>
+    <div class="tip-card warn">
+      <div class="tip-ico">💧</div>
+      <div><h4>Rregulla 3-1-1 për lëngjet</h4><p>Max 100 ml/enë · të gjitha në 1 qese plastike transparente (1 litër) · 1 qese/person · duhet nxjerrë në kontroll.</p></div>
+    </div>
+    <div class="tip-card safe">
+      <div class="tip-ico">✅</div>
+      <div><h4>Lejohen me deklarim</h4><p>Barnat me recetë (mbani recetën), ushqimet për foshnja, aparati i insulinës, lëngjet kirurgjike. Deklaroni te kontrolli!</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== SECURITY ========== -->
+<div class="section" id="tab-security">
+  <div class="hero-card">
+    <h2>🔒 Kontrolli i Sigurisë</h2>
+    <p>Pas check-in dhe kalimit të kufirit, duhet të kaloni kontrollin e sigurisë para hyrjes në zonën airside (ku janë gates-et). Ky proces zgjat <strong>5–20 minuta</strong> (varion sipas orës dhe sezonit).</p>
+  </div>
+
+  <div class="sec-title">Çfarë duhet të bëni paraprakisht</div>
+  <div class="tips-grid">
+    <div class="tip-card safe">
+      <div class="tip-ico">👟</div>
+      <div><h4>Veshja e duhur</h4><p>Mbathni këpucë të lehta për t'i hequr lehtë. Kripë metalike, rripatat dhe bizhuteritë e shumta vonojnë procesin.</p></div>
+    </div>
+    <div class="tip-card safe">
+      <div class="tip-ico">💻</div>
+      <div><h4>Elektronika gati</h4><p>Nxirrni laptopin dhe tabletën nga çanta – vendosen veçmas në kabinë. Karikuesit dhe kablot mbeten brenda.</p></div>
+    </div>
+    <div class="tip-card warn">
+      <div class="tip-ico">🧴</div>
+      <div><h4>Lëngjet – qesa transparente</h4><p>Qesa 1L me lëngje max 100ml/secila duhet nxjerrë dhe vendosur në kabinë të veçantë. Përgatiteni paraprakisht!</p></div>
+    </div>
+    <div class="tip-card warn">
+      <div class="tip-ico">📱</div>
+      <div><h4>Telefoni dhe xhepa</h4><p>Zbrazni të gjithë xhepat (telefon, çelësa, monedha, portofoli) dhe vendosini në kabinë ose çantë para kontrollit.</p></div>
+    </div>
+    <div class="tip-card safe">
+      <div class="tip-ico">🍼</div>
+      <div><h4>Ushqime foshnje & barna</h4><p>Lëngjet për foshnje dhe barnat me recetë lejohen over 100ml. Deklarojini hapur para kontrollit dhe kini dokumentacionin.</p></div>
+    </div>
+    <div class="tip-card danger">
+      <div class="tip-ico">🚫</div>
+      <div><h4>Mos u vononi</h4><p>Sportelet dhe gates mbyllen 40–60 min para nisjes. Planifikoni të jeni tek kontrolli i sigurisë të paktën 90 min para nisjes.</p></div>
+    </div>
+  </div>
+
+  <div class="sec-title">Procesi hap pas hapi</div>
+  <div class="steps">
+    <div class="step" onclick="toggleStep(this)">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h3>Paraqisni dokumentet</h3>
+        <p>Pasaporta ose karta ID + boarding pass (dixhital ose print) para hyrjes në rresht.</p>
+        <div class="step-extra">
+          <ul>
+            <li>Sigurohuni që boarding pass-i të skanojë pa probleme (ndriçim i ekranit mjaftueshëm)</li>
+            <li>Printoni boarding pass-in si backup nëse keni dyshim mbi baterinë e telefonit</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="step" onclick="toggleStep(this)">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h3>Vendosni gjërat në kabinë / rrip</h3>
+        <p>Nxirrni laptop, tablet, lëngjet, xhepat. Vendosini në kabinë plastike.</p>
+        <div class="step-extra">
+          <ul>
+            <li>Laptop veçmas</li>
+            <li>Qesa e lëngjeve veçmas</li>
+            <li>Xhepat e zbrazur: monedha, çelësa, orë, rrip</li>
+            <li>Këpucët (nëse kërkohet nga operatori)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="step" onclick="toggleStep(this)">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h3>Skaneri i trupit dhe X-Ray</h3>
+        <p>Kaloni nëpër skaner. Ndiqni udhëzimet e oficerëve. Mos u alarmoni nëse keni implante.</p>
+        <div class="step-extra">
+          <ul>
+            <li>Implante metalike ose pace-maker: njoftoni oficerin paraprakisht</li>
+            <li>Nëse bie alarmi, do të keni kontroll me dorë (normal)</li>
+            <li>Çantët X-Ray: nëse diçka është e dyshimtë, do ta hapin</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="step" onclick="toggleStep(this)">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <h3>Mblidhni gjërat tuaja</h3>
+        <p>Pas skanimit, merrni të gjitha kabinët dhe kontrolloni nëse nuk keni harruar asgjë.</p>
+        <div class="step-extra">
+          <ul>
+            <li>Merr laptopin, telefonin, çelësat, çantën</li>
+            <li>Kontrolloni qesen e lëngjeve</li>
+            <li>Hiqini gjërat vetëm pasi t'i keni marrë të gjitha nga shiriti</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== GATES / MAP ========== -->
+<div class="section" id="tab-gates">
+  <div class="hero-card">
+    <h2>🗺️ Harta e Terminalit & Gates</h2>
+    <p>Terminali është kompakt – nga hyrja kryesore te gate-i më i largët janë vetëm <strong>8 minuta</strong> në këmbë. Ka 7 gate (G1–G7) të vendosura pas kontrollit të sigurisë.</p>
+  </div>
+
+  <div class="map-wrap">
+    <h3>🏗️ Harta e Terminalit TIA</h3>
+    <!-- SVG Terminal Map -->
+    <svg class="terminal-map" viewBox="0 0 720 340" xmlns="http://www.w3.org/2000/svg">
+      <!-- Background -->
+      <rect width="720" height="340" fill="#eef2fb" rx="10"/>
+      
+      <!-- Terminal outline -->
+      <rect x="30" y="20" width="660" height="300" rx="12" fill="#dde6f8" stroke="#b0c4e8" stroke-width="2"/>
+      
+      <!-- Level label -->
+      <text x="50" y="44" font-family="Syne,sans-serif" font-size="11" fill="#6b7a99">KATI I SIPËRM – DEPARTURES</text>
+
+      <!-- ENTRANCE -->
+      <rect x="310" y="290" width="100" height="24" rx="6" fill="#1db8a8" opacity="0.9"/>
+      <text x="360" y="306" text-anchor="middle" font-family="Syne,sans-serif" font-size="10" font-weight="700" fill="white">🚶 HYRJA KRYESORE</text>
+
+      <!-- CHECK-IN HALL -->
+      <rect x="50" y="220" width="620" height="60" rx="8" fill="#c8d8f8" stroke="#90b0e0" stroke-width="1.5"/>
+      <text x="360" y="247" text-anchor="middle" font-family="Syne,sans-serif" font-size="11" font-weight="700" fill="#1a2340">SALLË CHECK-IN (42 sportelje)</text>
+      <text x="360" y="263" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#4a5a80">Linja ajrore sipas sektorëve A–F · Ekranet elektronike tregojnë numrin e sporteljes</text>
+
+      <!-- PASSPORT CONTROL -->
+      <rect x="200" y="170" width="320" height="36" rx="8" fill="#b8cef0" stroke="#80a8d8" stroke-width="1.5"/>
+      <text x="360" y="185" text-anchor="middle" font-family="Syne,sans-serif" font-size="10" font-weight="700" fill="#1a3060">🛂 KONTROLLI I PASAPORTAVE</text>
+      <text x="360" y="199" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8.5" fill="#4a6a90">EU/EEA ← | → Jo-EU · Albania jo-Schengen</text>
+
+      <!-- SECURITY -->
+      <rect x="150" y="124" width="420" height="34" rx="8" fill="#fde8c0" stroke="#c87a00" stroke-width="1.5"/>
+      <text x="360" y="139" text-anchor="middle" font-family="Syne,sans-serif" font-size="10" font-weight="700" fill="#8a4a00">🔒 KONTROLLI I SIGURISË</text>
+      <text x="360" y="153" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8.5" fill="#7a5a20">X-Ray · Skaner trupi · Heqja e lëngjeve &amp; laptopit</text>
+
+      <!-- DUTY FREE + LOUNGE -->
+      <rect x="50" y="72" width="190" height="40" rx="7" fill="#c8f0ec" stroke="#0a9e90" stroke-width="1.2"/>
+      <text x="145" y="89" text-anchor="middle" font-family="Syne,sans-serif" font-size="9.5" font-weight="700" fill="#056058">🛍️ DUTY FREE</text>
+      <text x="145" y="103" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#2a7a72">Parfume · Alkool · Suveniret</text>
+
+      <rect x="260" y="72" width="200" height="40" rx="7" fill="#e8d8f8" stroke="#8040c0" stroke-width="1.2"/>
+      <text x="360" y="89" text-anchor="middle" font-family="Syne,sans-serif" font-size="9.5" font-weight="700" fill="#5020a0">☕ RESTORANTE &amp; LOUNGE</text>
+      <text x="360" y="103" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#5a3a80">Kafja · Fast food · VIP Lounge</text>
+
+      <rect x="480" y="72" width="190" height="40" rx="7" fill="#fdd8d8" stroke="#cc2222" stroke-width="1.2"/>
+      <text x="575" y="89" text-anchor="middle" font-family="Syne,sans-serif" font-size="9.5" font-weight="700" fill="#aa1010">🚻 SHËRBIME</text>
+      <text x="575" y="103" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#882020">WC · ATM · Farmaci · Wi-Fi</text>
+
+      <!-- GATES ROW -->
+      <text x="360" y="62" text-anchor="middle" font-family="Syne,sans-serif" font-size="9" fill="#6b7a99">◄── ZONA AIRSIDE (pas kontrollit) ──►</text>
+
+      <!-- Gate boxes G1–G7 -->
+      <g id="gate-g" class="gates-row">
+        <!-- G1 -->
+        <rect id="gsvg-1" x="50" y="28" width="76" height="28" rx="6" fill="#c8d8f8" stroke="#80a8d8" stroke-width="1.5" class="gate-rect" style="cursor:pointer" onclick="highlightGate(1)"/>
+        <text x="88" y="44" text-anchor="middle" font-family="Syne,sans-serif" font-size="10" font-weight="800" fill="#1a3060" style="pointer-events:none">GATE 1</text>
+
+        <!-- G2 -->
+        <rect id="gsvg-2" x="142" y="28" width="76" height="28" rx="6" fill="#c8d8f8" stroke="#80a8d8" stroke-width="1.5" class="gate-rect" style="cursor:pointer" onclick="highlightGate(2)"/>
+        <text x="180" y="44" text-anchor="middle" font-family="Syne,sans-serif" font-size="10" font-weight="800" fill="#1a3060" style="pointer-events:none">GATE 2</text>
+
+        <!-- G3 -->
+        <rect id="gsvg-3" x="234" y="28" width="76" height="28" rx="6" fill="#c8d8f8" stroke="#80a8d8" stroke-width="1.5" class="gate-rect" style="cursor:pointer" onclick="highlightGate(3)"/>
+        <text x="272" y="44" text-anchor="middle" font-family="Syne,sans-serif" font-size="10" font-weight="800" fill="#1a3060" style="pointer-events:none">GATE 3</text>
+
+        <!-- G4 -->
+        <rect id="gsvg-4" x="326" y="28" width="76" height="28" rx="6" fill="#c8d8f8" stroke="#80a8d8" stroke-width="1.5" class="gate-rect" style="cursor:pointer" onclick="highlightGate(4)"/>
+        <text x="364" y="44" text-anchor="middle" font-family="Syne,sans-serif" font-size="10" font-weight="800" fill="#1a3060" style="pointer-events:none">GATE 4</text>
+
+        <!-- G5 -->
+        <rect id="gsvg-5" x="418" y="28" width="76" height="28" rx="6" fill="#c8d8f8" stroke="#80a8d8" stroke-width="1.5" class="gate-rect" style="cursor:pointer" onclick="highlightGate(5)"/>
+        <text x="456" y="44" text-anchor="middle" font-family="Syne,sans-serif" font-size="10" font-weight="800" fill="#1a3060" style="pointer-events:none">GATE 5</text>
+
+        <!-- G6 -->
+        <rect id="gsvg-6" x="510" y="28" width="76" height="28" rx="6" fill="#c8d8f8" stroke="#80a8d8" stroke-width="1.5" class="gate-rect" style="cursor:pointer" onclick="highlightGate(6)"/>
+        <text x="548" y="44" text-anchor="middle" font-family="Syne,sans-serif" font-size="10" font-weight="800" fill="#1a3060" style="pointer-events:none">GATE 6</text>
+
+        <!-- G7 -->
+        <rect id="gsvg-7" x="602" y="28" width="76" height="28" rx="6" fill="#c8d8f8" stroke="#80a8d8" stroke-width="1.5" class="gate-rect" style="cursor:pointer" onclick="highlightGate(7)"/>
+        <text x="640" y="44" text-anchor="middle" font-family="Syne,sans-serif" font-size="10" font-weight="800" fill="#1a3060" style="pointer-events:none">GATE 7</text>
+      </g>
+
+      <!-- Path arrow: Entry → Check-in → Passport → Security → Gates -->
+      <path d="M360 285 L360 272" stroke="#1db8a8" stroke-width="2" stroke-dasharray="4,3" marker-end="url(#arr)"/>
+      <path d="M360 217 L360 208" stroke="#1db8a8" stroke-width="2" stroke-dasharray="4,3" marker-end="url(#arr)"/>
+      <path d="M360 168 L360 160" stroke="#1db8a8" stroke-width="2" stroke-dasharray="4,3" marker-end="url(#arr)"/>
+      <path d="M360 122 L360 60" stroke="#1db8a8" stroke-width="2" stroke-dasharray="4,3" marker-end="url(#arr)"/>
+      <defs>
+        <marker id="arr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L6,3 z" fill="#1db8a8"/>
+        </marker>
+      </defs>
+
+      <!-- Compass / N label -->
+      <text x="680" y="310" font-family="Syne,sans-serif" font-size="9" fill="#6b7a99">TIA © 2026</text>
+    </svg>
+
+    <div class="gate-selector">
+      <span style="font-size:0.78rem;color:var(--muted);margin-right:4px">Zgjidhni gate-in:</span>
+      <button class="gate-btn" onclick="highlightGate(1)">Gate 1</button>
+      <button class="gate-btn" onclick="highlightGate(2)">Gate 2</button>
+      <button class="gate-btn" onclick="highlightGate(3)">Gate 3</button>
+      <button class="gate-btn" onclick="highlightGate(4)">Gate 4</button>
+      <button class="gate-btn" onclick="highlightGate(5)">Gate 5</button>
+      <button class="gate-btn" onclick="highlightGate(6)">Gate 6</button>
+      <button class="gate-btn" onclick="highlightGate(7)">Gate 7</button>
+    </div>
+
+    <div class="gate-info" id="gateInfo">—</div>
+  </div>
+
+  <div class="alert-banner">
+    <span class="ico">🗣️</span>
+    <span>Gate-i specifikë i fluturimit tuaj tregohet në <strong>boarding pass-in</strong> dhe <strong>tabelat elektronike</strong> brenda terminalit. Kontrolloni 45 min para nisjes sepse mund të ndryshojë.</span>
+  </div>
+</div>
+
+<!-- ========== FLIGHTS ========== -->
+<div class="section" id="tab-flights">
+  <div class="flights-header">
+    <div class="sec-title" style="margin:0">📟 Fluturimet Live</div>
+    <div style="display:flex;align-items:center;gap:8px">
+      <span class="last-updated" id="lastUpdated">Duke ngarkuar...</span>
+      <button class="refresh-btn" onclick="refreshFlights()">🔄 Rifresko</button>
+    </div>
+  </div>
+
+  <div class="flights-toggle" style="margin-bottom:1rem">
+    <button class="fl-tab active" onclick="switchFlightTab('dep',this)">✈️ Departures</button>
+    <button class="fl-tab" onclick="switchFlightTab('arr',this)">🛬 Arrivals</button>
+  </div>
+
+  <input type="text" class="search-flight" id="flightSearch" placeholder="🔍 Kërko sipas destinacionit, numrit të fluturimit..." oninput="filterFlights()"/>
+
+  <div id="flightsContainer">
+    <div class="flights-table">
+      <div class="fl-head">
+        <span>Fluturimi</span>
+        <span>Destinacioni</span>
+        <span>Ora</span>
+        <span>Gate</span>
+        <span>Statusi</span>
+      </div>
+      <div id="flightRows">
+        <div style="padding:2rem;text-align:center;color:var(--muted);font-size:0.85rem">⏳ Duke ngarkuar fluturimet...</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== CHECKLIST ========== -->
+<div class="section" id="tab-checklist">
+  <div class="hero-card">
+    <h2>✅ Lista ime e udhëtimit</h2>
+    <p>Klikoni mbi çdo pikë për ta shënuar si të kryer. Progresi ruhet automatikisht në shfletues.</p>
+  </div>
+
+  <div class="progress-bar-wrap">
+    <div class="progress-bar" id="progressBar" style="width:0%"></div>
+  </div>
+  <div style="font-size:0.78rem;color:var(--muted);margin-bottom:1rem" id="progressText">0 / 16 të kryera</div>
+
+  <div class="checklist" id="mainChecklist">
+    <h3>📋 Para se të largoheni nga shtëpia</h3>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box"></div><span class="check-label">Pasaporta / Karta ID (e vlefshme, min. 6 muaj)</span>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box"></div><span class="check-label">Bording pass (shkarkuar/printuar)</span>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box"></div><span class="check-label">Online check-in i kryer</span>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box"></div><span class="check-label">Rezervimi i hotelit / shoqata e udhëtimit</span>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box"></div><span class="check-label">Valixja e pesuar (brenda limitit)</span>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box"></div><span class="check-label">Lëngjet në qese transparente ≤100ml/copë</span>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box"></div><span class="check-label">Charger + adaptor ndërkombëtar</span>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box"></div><span class="check-label">Barna me recetë (me dokumentacion)</span>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box"></div><span class="check-label">Sigurim udhëtimi</span>
+    </div>
+  </div>
+
+  <div class="checklist" style="margin-top:0.8rem">
+    <h3>🏁 Në aeroport</h3>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box"></div><span class="check-label">Mbërrita 2+ orë para nisjes</span>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box"></div><span class="check-label">Lëshova bagazhin (nëse kam)</span>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box"></div><span class="check-label">Kalova kontrollin e pasaportave</span>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box"></div><span class="check-label">Laptop jashtë çantës – kalova sigurinë</span>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box"></div><span class="check-label">Zbrazura xhepat (monedha, çelësa)</span>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box"></div><span class="check-label">Kontrollova gate-in në tabelë</span>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box"></div><span class="check-label">Jam tek gate-i 20+ min para boarding</span>
+    </div>
+  </div>
+
+  <div style="margin-top:1rem;display:flex;gap:0.7rem;flex-wrap:wrap">
+    <button onclick="resetChecklist()" style="padding:0.5rem 1rem;background:transparent;border:1px solid var(--border);border-radius:8px;color:var(--muted);font-size:0.8rem;cursor:pointer;font-family:'DM Sans',sans-serif">🔄 Fillo nga fillimi</button>
+    <button onclick="checkAll()" style="padding:0.5rem 1rem;background:linear-gradient(135deg,var(--green),#0da060);border:none;border-radius:8px;color:white;font-size:0.8rem;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:600">✅ Shëno të gjitha</button>
+  </div>
+</div>
+
+</main>
+
+<script>
+// ──── CLOCK ────
+function updateClock(){
+  const now=new Date();
+  const opts={timeZone:'Europe/Tirane'};
+  document.getElementById('liveClock').textContent=now.toLocaleTimeString('sq-AL',{...opts,hour:'2-digit',minute:'2-digit'});
+  document.getElementById('liveDate').textContent=now.toLocaleDateString('sq-AL',{...opts,weekday:'long',day:'numeric',month:'long',year:'numeric'});
+}
+updateClock();setInterval(updateClock,1000);
+
+// ──── TABS ────
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-'+btn.dataset.tab).classList.add('active');
+    if(btn.dataset.tab==='flights') refreshFlights();
+  });
+});
+
+// ──── TRANSPORT ────
+function selectTransport(el,type){
+  document.querySelectorAll('.transport-card').forEach(c=>{
+    c.classList.remove('selected');
+  });
+  el.classList.add('selected');
+}
+
+// ──── STEPS ────
+function toggleStep(el){el.classList.toggle('open')}
+
+// ──── GATE HIGHLIGHT ────
+const gateData={
+  1:{name:'Gate 1',loc:'Sektori i majtë i terminalit – pozicioni i parë nga hyrja',airlines:'Shpesh: Wizz Air, Aegean, linja të vogla',walk:'~2 minuta nga kontrolli i sigurisë',tip:'Gate-i më i afërt me zonën e shërbimeve. Ideal nëse nuk doni të ecni shumë.'},
+  2:{name:'Gate 2',loc:'Sektori i majtë-qendror',airlines:'Shpesh: Turkish Airlines, Air Albania',walk:'~3 minuta',tip:'Pranë zonës Duty Free dhe kafesë kryesore.'},
+  3:{name:'Gate 3',loc:'Sektori qendror i majtë',airlines:'Shpesh: Lufthansa, Swiss, Brussels Airlines',walk:'~4 minuta',tip:'Mirë i pozicionuar – zona e uljes është e rehatshme.'},
+  4:{name:'Gate 4',loc:'Qendra e terminalit',airlines:'Fluturime të ndryshme – shikoni tabelën',walk:'~4–5 minuta',tip:'Gate qendror, akses i lehtë nga të gjitha drejtuesit.'},
+  5:{name:'Gate 5',loc:'Sektori qendror i djathtë',airlines:'Shpesh: Ryanair, easyJet',walk:'~5 minuta',tip:'Pranë restoranteve dhe VIP Lounge-it.'},
+  6:{name:'Gate 6',loc:'Sektori i djathtë',airlines:'Shpesh: Vueling, Alitalia (ITA), linja sezonale',walk:'~6 minuta',tip:'Ecni drejt të djathtës pas Duty Free.'},
+  7:{name:'Gate 7',loc:'Pozicioni i fundit i djathtë',airlines:'Fluturime charter dhe sezonale',walk:'~7–8 minuta',tip:'Gate-i më i largët. Nisuni pak herët pas kontrollit.'},
+};
+
+function highlightGate(n){
+  document.querySelectorAll('.gate-rect').forEach(r=>{
+    r.style.fill='#c8d8f8';r.style.stroke='#80a8d8';
+  });
+  document.querySelectorAll('.gate-btn').forEach(b=>b.classList.remove('active'));
+  const r=document.getElementById('gsvg-'+n);
+  if(r){r.style.fill='rgba(200,122,0,0.25)';r.style.stroke='#c87a00';}
+  document.querySelectorAll('.gate-btn')[n-1]?.classList.add('active');
+  const d=gateData[n];
+  const info=document.getElementById('gateInfo');
+  info.classList.add('show');
+  info.innerHTML=`<strong style="color:var(--accent2);font-family:Syne,sans-serif">✈ ${d.name}</strong><br>
+  📍 <strong>Vendndodhja:</strong> ${d.loc}<br>
+  🏢 <strong>Linjat ajrore:</strong> ${d.airlines}<br>
+  🚶 <strong>Kohë ecje:</strong> ${d.walk}<br>
+  💡 <strong>Këshillë:</strong> ${d.tip}`;
+}
+
+// ──── FLIGHTS ────
+let currentFlightType='dep';
+let allFlights=[];
+
+const depFlights=[
+  {no:'W45027',dest:'Milano Malpensa',country:'🇮🇹',time:'06:15',gate:'G3',status:'on-time'},
+  {no:'TK1049',dest:'Istanbul Atatürk',country:'🇹🇷',time:'07:30',gate:'G2',status:'on-time'},
+  {no:'LH1407',dest:'Frankfurt',country:'🇩🇪',time:'08:00',gate:'G3',status:'boarding'},
+  {no:'W45105',dest:'Berlin Brandenburg',country:'🇩🇪',time:'08:45',gate:'G5',status:'delayed'},
+  {no:'A3973',dest:'Athinë',country:'🇬🇷',time:'09:20',gate:'G2',status:'on-time'},
+  {no:'W45057',dest:'Torino',country:'🇮🇹',time:'10:00',gate:'G1',status:'on-time'},
+  {no:'FR8461',dest:'Londër Stansted',country:'🇬🇧',time:'10:30',gate:'G6',status:'scheduled'},
+  {no:'W45153',dest:'Barcelona',country:'🇪🇸',time:'11:15',gate:'G4',status:'scheduled'},
+  {no:'IB3761',dest:'Madrid Barajas',country:'🇪🇸',time:'12:00',gate:'G5',status:'scheduled'},
+  {no:'EK354',dest:'Dubai',country:'🇦🇪',time:'13:45',gate:'G7',status:'scheduled'},
+  {no:'OS755',dest:'Vjenë',country:'🇦🇹',time:'14:20',gate:'G3',status:'scheduled'},
+  {no:'W45201',dest:'Varshavë',country:'🇵🇱',time:'15:00',gate:'G4',status:'scheduled'},
+  {no:'W45301',dest:'Çurik',country:'🇨🇭',time:'16:10',gate:'G6',status:'scheduled'},
+  {no:'VY6110',dest:'Barcelonë (el Prat)',country:'🇪🇸',time:'17:00',gate:'G5',status:'scheduled'},
+  {no:'W45411',dest:'Londër Luton',country:'🇬🇧',time:'18:15',gate:'G7',status:'scheduled'},
+];
+const arrFlights=[
+  {no:'TK1048',dest:'Istanbul Atatürk',country:'🇹🇷',time:'06:05',gate:'G2',status:'landed'},
+  {no:'LH1406',dest:'Frankfurt',country:'🇩🇪',time:'06:50',gate:'G3',status:'landed'},
+  {no:'W45026',dest:'Milano Malpensa',country:'🇮🇹',time:'07:30',gate:'G1',status:'on-time'},
+  {no:'A3972',dest:'Athinë',country:'🇬🇷',time:'08:10',gate:'G2',status:'on-time'},
+  {no:'W45104',dest:'Berlin Brandenburg',country:'🇩🇪',time:'09:00',gate:'G5',status:'delayed'},
+  {no:'FR8460',dest:'Londër Stansted',country:'🇬🇧',time:'09:45',gate:'G6',status:'on-time'},
+  {no:'W45152',dest:'Barcelona',country:'🇪🇸',time:'10:30',gate:'G4',status:'on-time'},
+  {no:'EK353',dest:'Dubai',country:'🇦🇪',time:'11:20',gate:'G7',status:'scheduled'},
+  {no:'OS754',dest:'Vjenë',country:'🇦🇹',time:'13:00',gate:'G3',status:'scheduled'},
+  {no:'IB3760',dest:'Madrid',country:'🇪🇸',time:'11:00',gate:'G5',status:'scheduled'},
+  {no:'W45200',dest:'Varshavë',country:'🇵🇱',time:'13:30',gate:'G4',status:'scheduled'},
+  {no:'W45300',dest:'Çurik',country:'🇨🇭',time:'14:50',gate:'G6',status:'scheduled'},
+  {no:'W45056',dest:'Torino',country:'🇮🇹',time:'08:40',gate:'G1',status:'on-time'},
+];
+
+function statusLabel(s){
+  const map={
+    'on-time':'<span class="status-on-time">✓ Në kohë</span>',
+    'delayed':'<span class="status-delayed">⚠ Vonesë</span>',
+    'boarding':'<span class="status-boarding">🔔 Boarding</span>',
+    'landed':'<span class="status-landed">✈ Udhëtoi</span>',
+    'cancelled':'<span class="status-cancelled">✕ Anuluar</span>',
+    'scheduled':'<span class="status-scheduled">○ Planifikuar</span>',
+  };return map[s]||s;
+}
+
+function renderFlights(list){
+  const container=document.getElementById('flightRows');
+  if(!list.length){container.innerHTML='<div style="padding:2rem;text-align:center;color:var(--muted)">Nuk u gjetën fluturime.</div>';return;}
+  container.innerHTML=list.map(f=>`
+    <div class="fl-row">
+      <div class="fl-no">${f.no}</div>
+      <div class="fl-dest">${f.country} ${f.dest}<small>${currentFlightType==='dep'?'Destinacion':'Origjinë'}</small></div>
+      <div class="fl-time">${f.time}</div>
+      <div class="fl-gate">${f.gate}</div>
+      <div class="fl-status">${statusLabel(f.status)}</div>
+    </div>`).join('');
+}
+
+function filterFlights(){
+  const q=document.getElementById('flightSearch').value.toLowerCase();
+  const src=currentFlightType==='dep'?depFlights:arrFlights;
+  const filtered=q?src.filter(f=>f.dest.toLowerCase().includes(q)||f.no.toLowerCase().includes(q)):src;
+  renderFlights(filtered);
+}
+
+function switchFlightTab(type,btn){
+  currentFlightType=type;
+  document.querySelectorAll('.fl-tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('flightSearch').value='';
+  filterFlights();
+}
+
+function refreshFlights(){
+  document.getElementById('flightRows').innerHTML='<div style="padding:2rem;text-align:center;color:var(--muted)">⏳ Duke rifreskuar...</div>';
+  setTimeout(()=>{
+    filterFlights();
+    const now=new Date();
+    document.getElementById('lastUpdated').textContent='Rifreskuar: '+now.toLocaleTimeString('sq-AL',{timeZone:'Europe/Tirane',hour:'2-digit',minute:'2-digit'});
+  },700);
+}
+
+// init
+setTimeout(()=>{filterFlights();document.getElementById('lastUpdated').textContent='Rifreskuar: '+new Date().toLocaleTimeString('sq-AL',{timeZone:'Europe/Tirane',hour:'2-digit',minute:'2-digit'});},300);
+
+// ──── CHECKLIST ────
+function updateProgress(){
+  const items=document.querySelectorAll('.check-item');
+  const done=document.querySelectorAll('.check-item.checked').length;
+  const pct=Math.round(done/items.length*100);
+  document.getElementById('progressBar').style.width=pct+'%';
+  document.getElementById('progressText').textContent=done+' / '+items.length+' të kryera';
+  localStorage.setItem('tia_checklist',JSON.stringify([...items].map(i=>i.classList.contains('checked'))));
+}
+
+function toggleCheck(el){
+  el.classList.toggle('checked');
+  el.querySelector('.check-box').textContent=el.classList.contains('checked')?'✓':'';
+  updateProgress();
+}
+
+function resetChecklist(){
+  document.querySelectorAll('.check-item').forEach(i=>{i.classList.remove('checked');i.querySelector('.check-box').textContent='';});
+  updateProgress();
+}
+
+function checkAll(){
+  document.querySelectorAll('.check-item').forEach(i=>{i.classList.add('checked');i.querySelector('.check-box').textContent='✓';});
+  updateProgress();
+}
+
+// restore
+(()=>{
+  try{
+    const saved=JSON.parse(localStorage.getItem('tia_checklist')||'[]');
+    const items=document.querySelectorAll('.check-item');
+    saved.forEach((v,i)=>{if(v&&items[i]){items[i].classList.add('checked');items[i].querySelector('.check-box').textContent='✓';}});
+    updateProgress();
+  }catch(e){}
+})();
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!--              MOBILE VERSION                -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="mobile-root" style="flex-direction:column;width:100%;height:100vh;">
+<!-- HEADER -->
+<header class="app-header">
+  <div class="logo">
+    <div class="logo-ico">✈️</div>
+    <div class="logo-text">
+      <strong>TIA Airport</strong>
+      <span>Udhëzuesi i Pasagjerit</span>
+    </div>
+  </div>
+  <div class="htime">
+    <div class="hbig" id="clock">--:--</div>
+    <div class="hsmall" id="clkdate">--</div>
+  </div>
+</header>
+
+<!-- SCROLL AREA -->
+<div class="scroll-area" id="scrollArea">
+
+  <!-- ── TAB: TRANSPORT ── -->
+  <div class="section active" id="tab-transport">
+    <div class="hero">
+      <h2>Si të arrij në TIA? 🚗</h2>
+      <p>Aeroporti ndodhet ~17 km nga qendra e Tiranës. Zgjidhni transportin tuaj.</p>
+    </div>
+    <div class="alert">
+      <span class="ai">⏰</span>
+      <span><strong>Mbërrini 2 orë para</strong> nisjes për fluturime europiane, <strong>3 orë</strong> ndërkontinentale.</span>
+    </div>
+    <div class="sec-lbl">Mënyra e transportit</div>
+
+    <div class="tcard" onclick="toggleTcard(this)">
+      <div class="tcard-top">
+        <div class="tcard-ico">🚗</div>
+        <div class="tcard-info">
+          <h3>Me makinën tuaj</h3>
+          <div class="meta">📍 20–25 min · Parking P1/P2/P3</div>
+        </div>
+        <div class="tcard-arrow">▾</div>
+      </div>
+      <div class="tcard-body">
+        <div class="drow"><div class="dot"></div><p>Ndiqni <strong>SH2</strong> drejt veri-perëndimit, kthehuni te <strong>SH60</strong> me shenjat "Aeroport Rinas".</p></div>
+        <div class="drow"><div class="dot"></div><p><strong>Parking P1/P2/P3</strong> jashtë terminalit:<br>• 7 min e para: FALAS<br>• Afatshkurtër: ~200–400 ALL/orë<br>• Afatgjatë: tarifa ditore të reduktuara</p></div>
+        <div class="drow"><div class="dot"></div><p><strong>Drop-off:</strong> Zona para terminalit — ndaloni shkurt, lironi shpejt.</p></div>
+        <div class="drow"><div class="dot"></div><p>Ka vende parkimi për personat me aftësi të kufizuara pranë hyrjes kryesore.</p></div>
+      </div>
+    </div>
+
+    <div class="tcard" onclick="toggleTcard(this)">
+      <div class="tcard-top">
+        <div class="tcard-ico">🚖</div>
+        <div class="tcard-info">
+          <h3>Me Taksi / Bolt</h3>
+          <div class="meta">📍 ~25 min · 1,200–3,000 ALL</div>
+        </div>
+        <div class="tcard-arrow">▾</div>
+      </div>
+      <div class="tcard-body">
+        <div class="drow"><div class="dot"></div><p>Taksitë zyrtare janë me <strong>tarifa fikse</strong>. Pyesni çmimin para nisjes.</p></div>
+        <div class="drow"><div class="dot"></div><p><strong>Bolt / Uber Albania</strong> zakonisht janë 20–30% më të lira (1,200–2,500 ALL).</p></div>
+        <div class="drow"><div class="dot"></div><p>Pikëmarrja: <strong>jashtë daljes Arrivals</strong>, kati i parë (përdhes).</p></div>
+        <div class="drow"><div class="dot"></div><p>⚠ Shmangni taksitë informale brenda terminalit.</p></div>
+      </div>
+    </div>
+
+    <div class="tcard" onclick="toggleTcard(this)">
+      <div class="tcard-top">
+        <div class="tcard-ico">🚌</div>
+        <div class="tcard-info">
+          <h3>Me Autobus</h3>
+          <div class="meta">📍 30–35 min · 250 ALL</div>
+        </div>
+        <div class="tcard-arrow">▾</div>
+      </div>
+      <div class="tcard-body">
+        <div class="drow"><div class="dot"></div><p><strong>Rinas Express</strong> — linja zyrtare nga aeroporti te Sheshi Skënderbej.</p></div>
+        <div class="drow"><div class="dot"></div><p>Orare: <strong>06:00 – 18:00</strong>, çdo orë. Biletë: <strong>250 ALL</strong> (~€2.5).</p></div>
+        <div class="drow"><div class="dot"></div><p>Stacioni: jashtë Arrivals. Biletat tek shoferi ose kabina e shitjes.</p></div>
+        <div class="drow"><div class="dot"></div><p>🚆 <em>Nga 2027 pritet linja hekurudhore elektrike Tiranë–TIA.</em></p></div>
+      </div>
+    </div>
+
+    <div class="sec-lbl" style="margin-top:14px">Harta e rrugës</div>
+    <div class="gmap-box">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12002.0!2d19.7132!3d41.4149!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13503085d96cc11d%3A0x8ef77c4ca7e43b9c!2sTirana%20International%20Airport%20N%C3%ABn%C3%AB%20Tereza!5e0!3m2!1sen!2sal!4v1700000000000"
+        width="100%" height="200" style="border:0" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+
+  <!-- ── TAB: CHECK-IN ── -->
+  <div class="section" id="tab-checkin">
+    <div class="hero">
+      <h2>🎫 Check-in</h2>
+      <p>Terminali ka <strong>42 sportelje</strong>. Departures janë në katin e sipërm.</p>
+    </div>
+    <div class="sec-lbl">Hapat e check-in</div>
+
+    <div class="step" onclick="toggleStep(this)">
+      <div class="snum">1</div>
+      <div class="scont">
+        <h3>Online Check-in</h3>
+        <p>24–48 orë para nisjes. Rekomandohet shumë.</p>
+        <div class="sextra">
+          <ul>
+            <li>Vizitoni faqen ose app-in e linjës ajrore tuaj</li>
+            <li>Wizz Air: hapet 30 ditë para, mbyllet 3 orë para</li>
+            <li>Ruani boarding pass si screenshot (offline)</li>
+            <li>Zgjidhni seatin tuaj paraprakisht</li>
+          </ul>
+          <span class="warn">⚠ Pa online check-in mund të paguani tarifë shtesë në sportel.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" onclick="toggleStep(this)">
+      <div class="snum">2</div>
+      <div class="scont">
+        <h3>Sportel / Kiosk Vetë-shërbim</h3>
+        <p>Nëse nuk keni bërë online ose keni bagazh.</p>
+        <div class="sextra">
+          <ul>
+            <li>Gjeni sportelje sipas tabelave elektronike</li>
+            <li>Kioskat vetë-shërbim janë më të shpejta</li>
+            <li>Kini gati: pasaportën, rezervimin, info bagazhi</li>
+          </ul>
+          <span class="warn">⚠ Sportelet mbyllen 40–60 min para nisjes.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" onclick="toggleStep(this)">
+      <div class="snum">3</div>
+      <div class="scont">
+        <h3>Drop-off Bagazhi</h3>
+        <p>Lëshoni valixen te sporteli i drop-off.</p>
+        <div class="sextra">
+          <ul>
+            <li>Pesoni bagazhin paraprakisht në shtëpi</li>
+            <li>Mbyllni mirë valixen dhe hiqni etiketat e vjetra</li>
+            <li>Vendosni brenda emrin + nr. telefonit tuaj</li>
+            <li>Fotografoni valixen para dorëzimit si provë</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" onclick="toggleStep(this)">
+      <div class="snum">4</div>
+      <div class="scont">
+        <h3>Kontrolli i Pasaportave</h3>
+        <p>Para hyrjes në zonën airside.</p>
+        <div class="sextra">
+          <ul>
+            <li>Shqiptarët udhëtojnë me ID brenda BE-së</li>
+            <li>Pasaportë e nevojshme për UK, SHBA, jashtë BE</li>
+            <li>Min. 6 muaj vlefshmëri pasaporte</li>
+            <li>Sportelje të veçanta: EU/EEA dhe jo-EU</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert" style="margin-top:4px">
+      <span class="ai">💡</span>
+      <span>Sezon veror (Qershor–Shtator) dhe festa: planifikoni <strong>2.5–3 orë</strong> paraprakisht.</span>
+    </div>
+  </div>
+
+  <!-- ── TAB: BAGAZHET ── -->
+  <div class="section" id="tab-baggage">
+    <div class="hero">
+      <h2>🧳 Bagazhet</h2>
+      <p>Verifikoni gjithmonë me linjën tuaj ajrore. Limitet ndryshojnë.</p>
+    </div>
+
+    <div class="sec-lbl">Bagaazhi i kabinës</div>
+    <div class="btable-wrap">
+      <div class="bthead">Linja Ajrore · Hand Luggage</div>
+      <div class="btrow"><div><div class="btrow-label">Wizz Air (basic)</div><div class="btrow-sub">40×30×20 cm</div></div><span class="tag tag-free">FALAS</span></div>
+      <div class="btrow"><div><div class="btrow-label">Wizz Air (+kabinë)</div><div class="btrow-sub">55×40×23 cm · max 10 kg</div></div><span class="tag tag-paid">Me pagesë</span></div>
+      <div class="btrow"><div><div class="btrow-label">Ryanair</div><div class="btrow-sub">40×20×25 cm</div></div><span class="tag tag-free">FALAS</span></div>
+      <div class="btrow"><div><div class="btrow-label">Lufthansa / Swiss</div><div class="btrow-sub">55×40×23 cm · 8 kg</div></div><span class="tag tag-free">FALAS</span></div>
+      <div class="btrow"><div><div class="btrow-label">Turkish Airlines</div><div class="btrow-sub">55×40×23 cm · 8 kg</div></div><span class="tag tag-free">FALAS</span></div>
+    </div>
+
+    <div class="sec-lbl">Bagazhi i lëshuar</div>
+    <div class="btable-wrap">
+      <div class="bthead">Checked Baggage</div>
+      <div class="btrow"><div><div class="btrow-label">Ekonomik basic</div><div class="btrow-sub">20–23 kg</div></div><span class="tag tag-paid">Tarifa shtesë</span></div>
+      <div class="btrow"><div><div class="btrow-label">Ekonomik flex/plus</div><div class="btrow-sub">23 kg</div></div><span class="tag tag-info">Shpesh i përfshirë</span></div>
+      <div class="btrow"><div><div class="btrow-label">Biznes klasë</div><div class="btrow-sub">32 kg</div></div><span class="tag tag-free">I përfshirë</span></div>
+      <div class="btrow"><div><div class="btrow-label">Copë e 2-të</div><div class="btrow-sub">23 kg · €25–60</div></div><span class="tag tag-paid">Shtesë</span></div>
+    </div>
+
+    <div class="sec-lbl">Sende të ndaluara & rregulla</div>
+    <div class="tip-card danger">
+      <div class="tico">🚫</div>
+      <div><h4>Absolutisht të ndaluara</h4><p>Armët, eksplozivët, gazi i lëngshëm, lëndët ndezëse, municionet.</p></div>
+    </div>
+    <div class="tip-card danger">
+      <div class="tico">⚠️</div>
+      <div><h4>Të ndaluara në kabinë</h4><p>Thika mbi 6 cm, gërshërë me tehe >6 cm, sende të mprehta, lëngje mbi 100 ml.</p></div>
+    </div>
+    <div class="tip-card warn">
+      <div class="tico">💧</div>
+      <div><h4>Rregulla 3-1-1 – Lëngjet</h4><p>Max <strong>100 ml/enë</strong> · të gjitha në 1 qese plastike (1L) · 1 qese/person · nxirrni te kontrolli.</p></div>
+    </div>
+    <div class="tip-card safe">
+      <div class="tico">✅</div>
+      <div><h4>Lejohen me deklarim</h4><p>Barna me recetë (mbani recetën), ushqime foshnjash, insulinë. Deklaroni hapur!</p></div>
+    </div>
+  </div>
+
+  <!-- ── TAB: SIGURIA ── -->
+  <div class="section" id="tab-security">
+    <div class="hero">
+      <h2>🔒 Kontrolli i Sigurisë</h2>
+      <p>Pas check-in, kaloni kontrollin para zonës airside. Zgjat <strong>5–20 min</strong>.</p>
+    </div>
+
+    <div class="sec-lbl">Përgatitje paraprakisht</div>
+    <div class="tip-card safe"><div class="tico">👟</div><div><h4>Veshja e duhur</h4><p>Këpucë të lehta. Kripë metalike dhe bizhuteri të shumta vonojnë.</p></div></div>
+    <div class="tip-card safe"><div class="tico">💻</div><div><h4>Elektronika</h4><p>Laptopi dhe tableti <strong>veçmas</strong> në kabinë. Karikuesit mbeten brenda çantës.</p></div></div>
+    <div class="tip-card warn"><div class="tico">🧴</div><div><h4>Lëngjet – qesa transparente</h4><p>Qesa 1L, max 100 ml/enë, nxirret <strong>veçmas</strong> në kabinë.</p></div></div>
+    <div class="tip-card warn"><div class="tico">📱</div><div><h4>Zbrazni xhepat</h4><p>Telefon, çelësa, monedha, portofol, orë, rrip — të gjitha në çantë ose kabinë.</p></div></div>
+    <div class="tip-card safe"><div class="tico">🍼</div><div><h4>Barna & ushqime foshnje</h4><p>Lejohen over 100 ml. Deklarojini hapur + kini dokumentacionin gati.</p></div></div>
+    <div class="tip-card danger"><div class="tico">⏱️</div><div><h4>Mos vonohuni!</h4><p>Gates mbyllen 40–60 min para nisjes. Jini tek kontrolli <strong>90 min para</strong>.</p></div></div>
+
+    <div class="sec-lbl" style="margin-top:4px">Procesi hap pas hapi</div>
+    <div class="step" onclick="toggleStep(this)">
+      <div class="snum">1</div>
+      <div class="scont"><h3>Dokumentet</h3><p>Pasaporta/ID + boarding pass para hyrjes në rresht.</p>
+        <div class="sextra"><ul><li>Sigurohuni që QR kodi të skanojë (ndriçim ekrani)</li><li>Print backup nëse jeni me batteri të ulët</li></ul></div></div>
+    </div>
+    <div class="step" onclick="toggleStep(this)">
+      <div class="snum">2</div>
+      <div class="scont"><h3>Vendosni gjërat në kabinë</h3><p>Laptop veçmas, lëngjet veçmas, xhepat bosh.</p>
+        <div class="sextra"><ul><li>Laptop – kabinë e veçantë</li><li>Qesa lëngjesh – kabinë e veçantë</li><li>Xhepat: monedha, çelësa, orë, rrip</li></ul></div></div>
+    </div>
+    <div class="step" onclick="toggleStep(this)">
+      <div class="snum">3</div>
+      <div class="scont"><h3>Skaneri i trupit</h3><p>Kaloni nëpër skaner, ndiqni udhëzimet e oficerëve.</p>
+        <div class="sextra"><ul><li>Implante metalike: njoftoni oficerin paraprakisht</li><li>Alarmi = kontroll manual (normal)</li></ul></div></div>
+    </div>
+    <div class="step" onclick="toggleStep(this)">
+      <div class="snum">4</div>
+      <div class="scont"><h3>Mblidhni gjërat</h3><p>Merrni të gjitha kabinët, kontrolloni asgjë të harruar.</p>
+        <div class="sextra"><ul><li>Laptop, telefon, çelësa, çantë, qesa lëngjesh</li><li>Mos hiqni gjërat derisa t'i merrni të gjitha</li></ul></div></div>
+    </div>
+  </div>
+
+  <!-- ── TAB: GATES ── -->
+  <div class="section" id="tab-gates">
+    <div class="hero">
+      <h2>🗺️ Harta & Gates</h2>
+      <p>Terminal kompakt — nga hyrja te gate-i më i largët janë vetëm <strong>8 minuta</strong>.</p>
+    </div>
+
+    <div class="sec-lbl">Harta e terminalit</div>
+    <div class="map-box">
+      <div class="map-box-head">🏗️ Terminal TIA – Kati i Sipërm (Departures)</div>
+      <div class="map-svg-wrap">
+        <svg viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg" style="min-width:520px;width:100%">
+          <rect width="680" height="300" fill="#eef2fb" rx="10"/>
+          <rect x="20" y="14" width="640" height="272" rx="10" fill="#dde6f8" stroke="#b0c4e8" stroke-width="1.5"/>
+
+          <!-- ENTRY -->
+          <rect x="280" y="262" width="120" height="20" rx="5" fill="#0a9e90" opacity="0.85"/>
+          <text x="340" y="276" text-anchor="middle" font-family="Syne,sans-serif" font-size="9" font-weight="700" fill="white">🚶 HYRJA KRYESORE</text>
+
+          <!-- CHECK-IN -->
+          <rect x="40" y="202" width="600" height="52" rx="7" fill="#c8d8f8" stroke="#90b0e0" stroke-width="1.2"/>
+          <text x="340" y="225" text-anchor="middle" font-family="Syne,sans-serif" font-size="10" font-weight="700" fill="#1a2340">SALLË CHECK-IN (42 sportelje)</text>
+          <text x="340" y="241" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#4a5a80">Sektorët A–F · Tabelat elektronike tregojnë sporteljen</text>
+
+          <!-- PASSPORT -->
+          <rect x="180" y="156" width="320" height="34" rx="7" fill="#b8cef0" stroke="#80a8d8" stroke-width="1.2"/>
+          <text x="340" y="170" text-anchor="middle" font-family="Syne,sans-serif" font-size="9" font-weight="700" fill="#1a3060">🛂 KONTROLLI I PASAPORTAVE</text>
+          <text x="340" y="183" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#4a6a90">EU/EEA ◄ | ► Jo-EU</text>
+
+          <!-- SECURITY -->
+          <rect x="130" y="112" width="420" height="32" rx="7" fill="#fde8c0" stroke="#c87a00" stroke-width="1.5"/>
+          <text x="340" y="125" text-anchor="middle" font-family="Syne,sans-serif" font-size="9" font-weight="700" fill="#8a4a00">🔒 KONTROLLI I SIGURISË (X-Ray)</text>
+          <text x="340" y="137" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="#7a5a20">Hiqni laptopët · lëngjet · zbrazni xhepat</text>
+
+          <!-- AIRSIDE LABEL -->
+          <text x="340" y="102" text-anchor="middle" font-family="Syne,sans-serif" font-size="8" fill="#6b7a99">◄── ZONA AIRSIDE ──►</text>
+
+          <!-- FACILITIES ROW -->
+          <rect x="36" y="58" width="170" height="34" rx="6" fill="#c8f0ec" stroke="#0a9e90" stroke-width="1"/>
+          <text x="121" y="72" text-anchor="middle" font-family="Syne,sans-serif" font-size="8.5" font-weight="700" fill="#056058">🛍️ DUTY FREE</text>
+          <text x="121" y="84" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="#2a7a72">Parfume · Alkool</text>
+
+          <rect x="220" y="58" width="200" height="34" rx="6" fill="#e8d8f8" stroke="#8040c0" stroke-width="1"/>
+          <text x="320" y="72" text-anchor="middle" font-family="Syne,sans-serif" font-size="8.5" font-weight="700" fill="#5020a0">☕ RESTORANTE &amp; LOUNGE</text>
+          <text x="320" y="84" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="#5a3a80">Kafe · VIP Lounge</text>
+
+          <rect x="434" y="58" width="170" height="34" rx="6" fill="#fdd8d8" stroke="#cc2222" stroke-width="1"/>
+          <text x="519" y="72" text-anchor="middle" font-family="Syne,sans-serif" font-size="8.5" font-weight="700" fill="#aa1010">🚻 ATM · WC · WIFI</text>
+          <text x="519" y="84" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="#882020">Farmaci · Info</text>
+
+          <!-- GATES -->
+          <rect id="ms1" x="36" y="22" width="74" height="26" rx="5" fill="#c8d8f8" stroke="#80a8d8" stroke-width="1.2" style="cursor:pointer" onclick="mobileGate(1)"/>
+          <text x="73" y="38" text-anchor="middle" font-family="Syne,sans-serif" font-size="9" font-weight="800" fill="#1a3060" style="pointer-events:none">GATE 1</text>
+
+          <rect id="ms2" x="128" y="22" width="74" height="26" rx="5" fill="#c8d8f8" stroke="#80a8d8" stroke-width="1.2" style="cursor:pointer" onclick="mobileGate(2)"/>
+          <text x="165" y="38" text-anchor="middle" font-family="Syne,sans-serif" font-size="9" font-weight="800" fill="#1a3060" style="pointer-events:none">GATE 2</text>
+
+          <rect id="ms3" x="220" y="22" width="74" height="26" rx="5" fill="#c8d8f8" stroke="#80a8d8" stroke-width="1.2" style="cursor:pointer" onclick="mobileGate(3)"/>
+          <text x="257" y="38" text-anchor="middle" font-family="Syne,sans-serif" font-size="9" font-weight="800" fill="#1a3060" style="pointer-events:none">GATE 3</text>
+
+          <rect id="ms4" x="304" y="22" width="74" height="26" rx="5" fill="#c8d8f8" stroke="#80a8d8" stroke-width="1.2" style="cursor:pointer" onclick="mobileGate(4)"/>
+          <text x="341" y="38" text-anchor="middle" font-family="Syne,sans-serif" font-size="9" font-weight="800" fill="#1a3060" style="pointer-events:none">GATE 4</text>
+
+          <rect id="ms5" x="388" y="22" width="74" height="26" rx="5" fill="#c8d8f8" stroke="#80a8d8" stroke-width="1.2" style="cursor:pointer" onclick="mobileGate(5)"/>
+          <text x="425" y="38" text-anchor="middle" font-family="Syne,sans-serif" font-size="9" font-weight="800" fill="#1a3060" style="pointer-events:none">GATE 5</text>
+
+          <rect id="ms6" x="472" y="22" width="74" height="26" rx="5" fill="#c8d8f8" stroke="#80a8d8" stroke-width="1.2" style="cursor:pointer" onclick="mobileGate(6)"/>
+          <text x="509" y="38" text-anchor="middle" font-family="Syne,sans-serif" font-size="9" font-weight="800" fill="#1a3060" style="pointer-events:none">GATE 6</text>
+
+          <rect id="ms7" x="556" y="22" width="84" height="26" rx="5" fill="#c8d8f8" stroke="#80a8d8" stroke-width="1.2" style="cursor:pointer" onclick="mobileGate(7)"/>
+          <text x="598" y="38" text-anchor="middle" font-family="Syne,sans-serif" font-size="9" font-weight="800" fill="#1a3060" style="pointer-events:none">GATE 7</text>
+
+          <!-- Arrows flow -->
+          <path d="M340 258 L340 248" stroke="#0a9e90" stroke-width="1.5" stroke-dasharray="3,2" marker-end="url(#ma)"/>
+          <path d="M340 200 L340 192" stroke="#0a9e90" stroke-width="1.5" stroke-dasharray="3,2" marker-end="url(#ma)"/>
+          <path d="M340 154 L340 146" stroke="#0a9e90" stroke-width="1.5" stroke-dasharray="3,2" marker-end="url(#ma)"/>
+          <path d="M340 110 L340 52" stroke="#0a9e90" stroke-width="1.5" stroke-dasharray="3,2" marker-end="url(#ma)"/>
+          <defs>
+            <marker id="ma" markerWidth="5" markerHeight="5" refX="2.5" refY="2.5" orient="auto">
+              <path d="M0,0 L0,5 L5,2.5 z" fill="#0a9e90"/>
+            </marker>
+          </defs>
+          <text x="650" y="286" font-family="Syne,sans-serif" font-size="7.5" fill="#6b7a99">TIA © 2026</text>
+        </svg>
+      </div>
+      <div class="gate-pills" id="gatePills">
+        <button class="gpill" onclick="mobileGate(1)">Gate 1</button>
+        <button class="gpill" onclick="mobileGate(2)">Gate 2</button>
+        <button class="gpill" onclick="mobileGate(3)">Gate 3</button>
+        <button class="gpill" onclick="mobileGate(4)">Gate 4</button>
+        <button class="gpill" onclick="mobileGate(5)">Gate 5</button>
+        <button class="gpill" onclick="mobileGate(6)">Gate 6</button>
+        <button class="gpill" onclick="mobileGate(7)">Gate 7</button>
+      </div>
+      <div class="gate-detail" id="gateDetail"></div>
+    </div>
+
+    <div class="alert">
+      <span class="ai">🗣️</span>
+      <span>Gate-i juaj tregohet në <strong>boarding pass</strong> dhe <strong>tabelat elektronike</strong>. Kontrolloni 45 min para nisjes — mund të ndryshojë!</span>
+    </div>
+  </div>
+
+  <!-- ── TAB: FLUTURIMET ── -->
+  <div class="section" id="tab-flights">
+    <div class="fl-switcher">
+      <button class="fl-sw-btn active" id="swDep" onclick="switchFl('dep')">✈️ Departures</button>
+      <button class="fl-sw-btn" id="swArr" onclick="switchFl('arr')">🛬 Arrivals</button>
+    </div>
+    <input type="text" class="fl-search" id="flSearch" placeholder="🔍 Kërko destinacion, nr. fluturimi..." oninput="filterFl()"/>
+    <div class="fl-meta">
+      <span class="fl-updated" id="flUpdated">Duke ngarkuar...</span>
+      <button class="fl-refresh" onclick="refreshFl()">🔄 Rifresko</button>
+    </div>
+    <div id="flList"></div>
+  </div>
+
+  <!-- ── TAB: CHECKLIST ── -->
+  <div class="section" id="tab-checklist">
+    <div class="hero">
+      <h2>✅ Lista ime</h2>
+      <p>Shënoni çdo pikë. Progresi ruhet automatikisht.</p>
+    </div>
+
+    <div class="prog-wrap">
+      <div class="prog-bar-bg"><div class="prog-bar-fg" id="progBar" style="width:0%"></div></div>
+      <div class="prog-lbl" id="progLbl">0 / 16 të kryera</div>
+    </div>
+
+    <div class="cl-group">
+      <div class="cl-group-head">📋 Para se të largoheni nga shtëpia</div>
+      <div class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span class="cl-lbl">Pasaporta / ID (vlefshme, min. 6 muaj)</span></div>
+      <div class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span class="cl-lbl">Boarding pass (shkarkuar / printuar)</span></div>
+      <div class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span class="cl-lbl">Online check-in i kryer</span></div>
+      <div class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span class="cl-lbl">Rezervimi i hotelit / programi i udhëtimit</span></div>
+      <div class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span class="cl-lbl">Valixja e pesuar (brenda limitit)</span></div>
+      <div class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span class="cl-lbl">Lëngjet në qese transparente ≤100ml/copë</span></div>
+      <div class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span class="cl-lbl">Charger + adaptor ndërkombëtar</span></div>
+      <div class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span class="cl-lbl">Barna me recetë (me dokumentacion)</span></div>
+      <div class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span class="cl-lbl">Sigurim udhëtimi</span></div>
+    </div>
+
+    <div class="cl-group">
+      <div class="cl-group-head">🏁 Në aeroport</div>
+      <div class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span class="cl-lbl">Mbërrita 2+ orë para nisjes</span></div>
+      <div class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span class="cl-lbl">Lëshova bagazhin (nëse kam)</span></div>
+      <div class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span class="cl-lbl">Kalova kontrollin e pasaportave</span></div>
+      <div class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span class="cl-lbl">Laptop jashtë çantës — kalova sigurinë</span></div>
+      <div class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span class="cl-lbl">Zbrazura xhepat (monedha, çelësa)</span></div>
+      <div class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span class="cl-lbl">Kontrollova gate-in në tabelë</span></div>
+      <div class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span class="cl-lbl">Jam tek gate-i 20+ min para boarding</span></div>
+    </div>
+
+    <div class="cl-actions">
+      <button class="cl-btn" onclick="resetCl()">🔄 Fillo nga fillimi</button>
+      <button class="cl-btn primary" onclick="checkAllCl()">✅ Shëno të gjitha</button>
+    </div>
+  </div>
+
+</div><!-- end scroll-area -->
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
+  <button class="nav-item active" data-tab="transport" onclick="switchTab(this)">
+    <span class="nav-ico">🚗</span>
+    <span class="nav-lbl">Transport</span>
+  </button>
+  <button class="nav-item" data-tab="checkin" onclick="switchTab(this)">
+    <span class="nav-ico">🎫</span>
+    <span class="nav-lbl">Check-in</span>
+  </button>
+  <button class="nav-item" data-tab="baggage" onclick="switchTab(this)">
+    <span class="nav-ico">🧳</span>
+    <span class="nav-lbl">Bagazhi</span>
+  </button>
+  <button class="nav-item" data-tab="security" onclick="switchTab(this)">
+    <span class="nav-ico">🔒</span>
+    <span class="nav-lbl">Siguria</span>
+  </button>
+  <button class="nav-item" data-tab="gates" onclick="switchTab(this)">
+    <span class="nav-ico">🗺️</span>
+    <span class="nav-lbl">Harta</span>
+  </button>
+  <button class="nav-item" data-tab="flights" onclick="switchTab(this)">
+    <span class="nav-ico">📟</span>
+    <span class="nav-lbl">Fluturime</span>
+  </button>
+  <button class="nav-item" data-tab="checklist" onclick="switchTab(this)">
+    <span class="nav-ico">✅</span>
+    <span class="nav-lbl">Lista</span>
+  </button>
+</nav>
+
+<script>
+// ── CLOCK ──
+function tick(){
+  const now=new Date();
+  document.getElementById('clock').textContent=now.toLocaleTimeString('sq-AL',{timeZone:'Europe/Tirane',hour:'2-digit',minute:'2-digit'});
+  document.getElementById('clkdate').textContent=now.toLocaleDateString('sq-AL',{timeZone:'Europe/Tirane',weekday:'short',day:'numeric',month:'short'});
+}
+tick();setInterval(tick,1000);
+
+// ── TAB SWITCH ──
+function switchTab(btn){
+  document.querySelectorAll('.nav-item').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  btn.classList.add('active');
+  const t=btn.dataset.tab;
+  document.getElementById('tab-'+t).classList.add('active');
+  document.getElementById('scrollArea').scrollTop=0;
+  if(t==='flights')refreshFl();
+}
+
+// ── TRANSPORT CARDS ──
+function toggleTcard(el){
+  const isOpen=el.classList.contains('open');
+  document.querySelectorAll('.tcard').forEach(c=>c.classList.remove('open'));
+  if(!isOpen)el.classList.add('open');
+}
+
+// ── STEPS ──
+function toggleStep(el){el.classList.toggle('open')}
+
+// ── GATE MAP ──
+const gdata={
+  1:{name:'Gate 1',loc:'Sektori i majtë — pozicioni i parë nga hyrja',airlines:'Wizz Air, Aegean, linja të vogla',walk:'~2 min nga kontrolli'},
+  2:{name:'Gate 2',loc:'Sektori i majtë-qendror',airlines:'Turkish Airlines, Air Albania',walk:'~3 min'},
+  3:{name:'Gate 3',loc:'Sektori qendror i majtë',airlines:'Lufthansa, Swiss, Brussels',walk:'~4 min'},
+  4:{name:'Gate 4',loc:'Qendra e terminalit',airlines:'Fluturime të ndryshme',walk:'~4–5 min'},
+  5:{name:'Gate 5',loc:'Sektori qendror i djathtë',airlines:'Ryanair, easyJet',walk:'~5 min'},
+  6:{name:'Gate 6',loc:'Sektori i djathtë',airlines:'Vueling, ITA, linja sezonale',walk:'~6 min'},
+  7:{name:'Gate 7',loc:'Pozicioni i fundit djathtas',airlines:'Fluturime charter & sezonale',walk:'~7–8 min — nisuni herët!'},
+};
+function mobileGate(n){
+  [1,2,3,4,5,6,7].forEach(i=>{
+    const r=document.getElementById('ms'+i);
+    if(r){r.style.fill='#c8d8f8';r.style.stroke='#80a8d8';}
+  });
+  document.querySelectorAll('.gpill').forEach(p=>p.classList.remove('active'));
+  const r=document.getElementById('ms'+n);
+  if(r){r.style.fill='rgba(200,122,0,0.3)';r.style.stroke='#c87a00';}
+  document.querySelectorAll('.gpill')[n-1]?.classList.add('active');
+  const d=gdata[n];
+  const box=document.getElementById('gateDetail');
+  box.classList.add('show');
+  box.innerHTML=`<strong style="font-family:Syne,sans-serif;color:var(--accent2)">✈ ${d.name}</strong><br>
+📍 ${d.loc}<br>🏢 ${d.airlines}<br>🚶 ${d.walk}`;
+}
+
+// ── FLIGHTS ──
+let flType='dep';
+const DEP=[
+  {no:'W45027',dest:'Milano Malpensa',flag:'🇮🇹',time:'06:15',gate:'G3',status:'on-time'},
+  {no:'TK1049',dest:'Istanbul',flag:'🇹🇷',time:'07:30',gate:'G2',status:'on-time'},
+  {no:'LH1407',dest:'Frankfurt',flag:'🇩🇪',time:'08:00',gate:'G3',status:'boarding'},
+  {no:'W45105',dest:'Berlin Brandenburg',flag:'🇩🇪',time:'08:45',gate:'G5',status:'delayed'},
+  {no:'A3973',dest:'Athinë',flag:'🇬🇷',time:'09:20',gate:'G2',status:'on-time'},
+  {no:'W45057',dest:'Torino',flag:'🇮🇹',time:'10:00',gate:'G1',status:'on-time'},
+  {no:'FR8461',dest:'Londër Stansted',flag:'🇬🇧',time:'10:30',gate:'G6',status:'scheduled'},
+  {no:'W45153',dest:'Barcelona',flag:'🇪🇸',time:'11:15',gate:'G4',status:'scheduled'},
+  {no:'EK354',dest:'Dubai',flag:'🇦🇪',time:'13:45',gate:'G7',status:'scheduled'},
+  {no:'OS755',dest:'Vjenë',flag:'🇦🇹',time:'14:20',gate:'G3',status:'scheduled'},
+  {no:'W45201',dest:'Varshavë',flag:'🇵🇱',time:'15:00',gate:'G4',status:'scheduled'},
+  {no:'W45411',dest:'Londër Luton',flag:'🇬🇧',time:'18:15',gate:'G7',status:'scheduled'},
+];
+const ARR=[
+  {no:'TK1048',dest:'Istanbul',flag:'🇹🇷',time:'06:05',gate:'G2',status:'landed'},
+  {no:'LH1406',dest:'Frankfurt',flag:'🇩🇪',time:'06:50',gate:'G3',status:'landed'},
+  {no:'W45026',dest:'Milano Malpensa',flag:'🇮🇹',time:'07:30',gate:'G1',status:'on-time'},
+  {no:'A3972',dest:'Athinë',flag:'🇬🇷',time:'08:10',gate:'G2',status:'on-time'},
+  {no:'W45104',dest:'Berlin Brandenburg',flag:'🇩🇪',time:'09:00',gate:'G5',status:'delayed'},
+  {no:'FR8460',dest:'Londër Stansted',flag:'🇬🇧',time:'09:45',gate:'G6',status:'on-time'},
+  {no:'W45152',dest:'Barcelona',flag:'🇪🇸',time:'10:30',gate:'G4',status:'on-time'},
+  {no:'EK353',dest:'Dubai',flag:'🇦🇪',time:'11:20',gate:'G7',status:'scheduled'},
+  {no:'OS754',dest:'Vjenë',flag:'🇦🇹',time:'13:00',gate:'G3',status:'scheduled'},
+  {no:'W45056',dest:'Torino',flag:'🇮🇹',time:'08:40',gate:'G1',status:'on-time'},
+];
+
+const SL={'on-time':'s-ontime','delayed':'s-delayed','boarding':'s-boarding','landed':'s-landed','scheduled':'s-scheduled','cancelled':'s-cancelled'};
+const SN={'on-time':'✓ Në kohë','delayed':'⚠ Vonesë','boarding':'🔔 Boarding','landed':'✈ Udhëtoi','scheduled':'○ Planifikuar','cancelled':'✕ Anuluar'};
+
+function renderFl(list){
+  const el=document.getElementById('flList');
+  if(!list.length){el.innerHTML='<div class="empty">Nuk u gjetën fluturime.</div>';return;}
+  el.innerHTML=list.map(f=>`
+    <div class="fl-card">
+      <div class="fl-airline">${f.no}</div>
+      <div class="fl-info">
+        <div class="fl-dest-name">${f.flag} ${f.dest}</div>
+        <div class="fl-dest-sub">${flType==='dep'?'Destinacion':'Origjinë'}</div>
+        <span class="fl-status-badge ${SL[f.status]||''}">${SN[f.status]||f.status}</span>
+      </div>
+      <div class="fl-right">
+        <span class="fl-time-big">${f.time}</span>
+        <span class="fl-gate-lbl">${f.gate}</span>
+      </div>
+    </div>`).join('');
+}
+function filterFl(){
+  const q=document.getElementById('flSearch').value.toLowerCase();
+  const src=flType==='dep'?DEP:ARR;
+  renderFl(q?src.filter(f=>f.dest.toLowerCase().includes(q)||f.no.toLowerCase().includes(q)):src);
+}
+function switchFl(t){
+  flType=t;
+  document.getElementById('swDep').classList.toggle('active',t==='dep');
+  document.getElementById('swArr').classList.toggle('active',t==='arr');
+  document.getElementById('flSearch').value='';
+  filterFl();
+}
+function refreshFl(){
+  document.getElementById('flList').innerHTML='<div class="empty">⏳ Duke rifreskuar...</div>';
+  setTimeout(()=>{
+    filterFl();
+    document.getElementById('flUpdated').textContent='Rifreskuar: '+new Date().toLocaleTimeString('sq-AL',{timeZone:'Europe/Tirane',hour:'2-digit',minute:'2-digit'});
+  },600);
+}
+setTimeout(()=>{filterFl();document.getElementById('flUpdated').textContent='Rifreskuar: '+new Date().toLocaleTimeString('sq-AL',{timeZone:'Europe/Tirane',hour:'2-digit',minute:'2-digit'});},200);
+
+// ── CHECKLIST ──
+function updateProg(){
+  const all=document.querySelectorAll('.cl-item');
+  const done=document.querySelectorAll('.cl-item.checked').length;
+  const pct=Math.round(done/all.length*100);
+  document.getElementById('progBar').style.width=pct+'%';
+  document.getElementById('progLbl').textContent=done+' / '+all.length+' të kryera';
+  try{localStorage.setItem('tia_m_cl',JSON.stringify([...all].map(i=>i.classList.contains('checked'))));}catch(e){}
+}
+function toggleCl(el){
+  el.classList.toggle('checked');
+  el.querySelector('.cl-box').textContent=el.classList.contains('checked')?'✓':'';
+  updateProg();
+}
+function resetCl(){
+  document.querySelectorAll('.cl-item').forEach(i=>{i.classList.remove('checked');i.querySelector('.cl-box').textContent='';});
+  updateProg();
+}
+function checkAllCl(){
+  document.querySelectorAll('.cl-item').forEach(i=>{i.classList.add('checked');i.querySelector('.cl-box').textContent='✓';});
+  updateProg();
+}
+(()=>{
+  try{
+    const s=JSON.parse(localStorage.getItem('tia_m_cl')||'[]');
+    const items=document.querySelectorAll('.cl-item');
+    s.forEach((v,i)=>{if(v&&items[i]){items[i].classList.add('checked');items[i].querySelector('.cl-box').textContent='✓';}});
+    updateProg();
+  }catch(e){}
+})();
+</div>
+
+<script>
+// ── DETECT & APPLY LAYOUT ──
+function applyLayout(){
+  const isMobile = window.innerWidth < 768 || /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+  document.documentElement.className = isMobile ? 'mb' : 'dt';
+}
+applyLayout();
+window.addEventListener('resize', applyLayout);
+
+// ══ DESKTOP JS ══
+(function(){
+if(!document.querySelector('.desktop-root')) return;
+// ──── CLOCK ────
+function updateClock(){
+  const now=new Date();
+  const opts={timeZone:'Europe/Tirane'};
+  document.getElementById('liveClock').textContent=now.toLocaleTimeString('sq-AL',{...opts,hour:'2-digit',minute:'2-digit'});
+  document.getElementById('liveDate').textContent=now.toLocaleDateString('sq-AL',{...opts,weekday:'long',day:'numeric',month:'long',year:'numeric'});
+}
+updateClock();setInterval(updateClock,1000);
+
+// ──── TABS ────
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-'+btn.dataset.tab).classList.add('active');
+    if(btn.dataset.tab==='flights') refreshFlights();
+  });
+});
+
+// ──── TRANSPORT ────
+function selectTransport(el,type){
+  document.querySelectorAll('.transport-card').forEach(c=>{
+    c.classList.remove('selected');
+  });
+  el.classList.add('selected');
+}
+
+// ──── STEPS ────
+function toggleStep(el){el.classList.toggle('open')}
+
+// ──── GATE HIGHLIGHT ────
+const gateData={
+  1:{name:'Gate 1',loc:'Sektori i majtë i terminalit – pozicioni i parë nga hyrja',airlines:'Shpesh: Wizz Air, Aegean, linja të vogla',walk:'~2 minuta nga kontrolli i sigurisë',tip:'Gate-i më i afërt me zonën e shërbimeve. Ideal nëse nuk doni të ecni shumë.'},
+  2:{name:'Gate 2',loc:'Sektori i majtë-qendror',airlines:'Shpesh: Turkish Airlines, Air Albania',walk:'~3 minuta',tip:'Pranë zonës Duty Free dhe kafesë kryesore.'},
+  3:{name:'Gate 3',loc:'Sektori qendror i majtë',airlines:'Shpesh: Lufthansa, Swiss, Brussels Airlines',walk:'~4 minuta',tip:'Mirë i pozicionuar – zona e uljes është e rehatshme.'},
+  4:{name:'Gate 4',loc:'Qendra e terminalit',airlines:'Fluturime të ndryshme – shikoni tabelën',walk:'~4–5 minuta',tip:'Gate qendror, akses i lehtë nga të gjitha drejtuesit.'},
+  5:{name:'Gate 5',loc:'Sektori qendror i djathtë',airlines:'Shpesh: Ryanair, easyJet',walk:'~5 minuta',tip:'Pranë restoranteve dhe VIP Lounge-it.'},
+  6:{name:'Gate 6',loc:'Sektori i djathtë',airlines:'Shpesh: Vueling, Alitalia (ITA), linja sezonale',walk:'~6 minuta',tip:'Ecni drejt të djathtës pas Duty Free.'},
+  7:{name:'Gate 7',loc:'Pozicioni i fundit i djathtë',airlines:'Fluturime charter dhe sezonale',walk:'~7–8 minuta',tip:'Gate-i më i largët. Nisuni pak herët pas kontrollit.'},
+};
+
+function highlightGate(n){
+  document.querySelectorAll('.gate-rect').forEach(r=>{
+    r.style.fill='#c8d8f8';r.style.stroke='#80a8d8';
+  });
+  document.querySelectorAll('.gate-btn').forEach(b=>b.classList.remove('active'));
+  const r=document.getElementById('gsvg-'+n);
+  if(r){r.style.fill='rgba(200,122,0,0.25)';r.style.stroke='#c87a00';}
+  document.querySelectorAll('.gate-btn')[n-1]?.classList.add('active');
+  const d=gateData[n];
+  const info=document.getElementById('gateInfo');
+  info.classList.add('show');
+  info.innerHTML=`<strong style="color:var(--accent2);font-family:Syne,sans-serif">✈ ${d.name}</strong><br>
+  📍 <strong>Vendndodhja:</strong> ${d.loc}<br>
+  🏢 <strong>Linjat ajrore:</strong> ${d.airlines}<br>
+  🚶 <strong>Kohë ecje:</strong> ${d.walk}<br>
+  💡 <strong>Këshillë:</strong> ${d.tip}`;
+}
+
+// ──── FLIGHTS ────
+let currentFlightType='dep';
+let allFlights=[];
+
+const depFlights=[
+  {no:'W45027',dest:'Milano Malpensa',country:'🇮🇹',time:'06:15',gate:'G3',status:'on-time'},
+  {no:'TK1049',dest:'Istanbul Atatürk',country:'🇹🇷',time:'07:30',gate:'G2',status:'on-time'},
+  {no:'LH1407',dest:'Frankfurt',country:'🇩🇪',time:'08:00',gate:'G3',status:'boarding'},
+  {no:'W45105',dest:'Berlin Brandenburg',country:'🇩🇪',time:'08:45',gate:'G5',status:'delayed'},
+  {no:'A3973',dest:'Athinë',country:'🇬🇷',time:'09:20',gate:'G2',status:'on-time'},
+  {no:'W45057',dest:'Torino',country:'🇮🇹',time:'10:00',gate:'G1',status:'on-time'},
+  {no:'FR8461',dest:'Londër Stansted',country:'🇬🇧',time:'10:30',gate:'G6',status:'scheduled'},
+  {no:'W45153',dest:'Barcelona',country:'🇪🇸',time:'11:15',gate:'G4',status:'scheduled'},
+  {no:'IB3761',dest:'Madrid Barajas',country:'🇪🇸',time:'12:00',gate:'G5',status:'scheduled'},
+  {no:'EK354',dest:'Dubai',country:'🇦🇪',time:'13:45',gate:'G7',status:'scheduled'},
+  {no:'OS755',dest:'Vjenë',country:'🇦🇹',time:'14:20',gate:'G3',status:'scheduled'},
+  {no:'W45201',dest:'Varshavë',country:'🇵🇱',time:'15:00',gate:'G4',status:'scheduled'},
+  {no:'W45301',dest:'Çurik',country:'🇨🇭',time:'16:10',gate:'G6',status:'scheduled'},
+  {no:'VY6110',dest:'Barcelonë (el Prat)',country:'🇪🇸',time:'17:00',gate:'G5',status:'scheduled'},
+  {no:'W45411',dest:'Londër Luton',country:'🇬🇧',time:'18:15',gate:'G7',status:'scheduled'},
+];
+const arrFlights=[
+  {no:'TK1048',dest:'Istanbul Atatürk',country:'🇹🇷',time:'06:05',gate:'G2',status:'landed'},
+  {no:'LH1406',dest:'Frankfurt',country:'🇩🇪',time:'06:50',gate:'G3',status:'landed'},
+  {no:'W45026',dest:'Milano Malpensa',country:'🇮🇹',time:'07:30',gate:'G1',status:'on-time'},
+  {no:'A3972',dest:'Athinë',country:'🇬🇷',time:'08:10',gate:'G2',status:'on-time'},
+  {no:'W45104',dest:'Berlin Brandenburg',country:'🇩🇪',time:'09:00',gate:'G5',status:'delayed'},
+  {no:'FR8460',dest:'Londër Stansted',country:'🇬🇧',time:'09:45',gate:'G6',status:'on-time'},
+  {no:'W45152',dest:'Barcelona',country:'🇪🇸',time:'10:30',gate:'G4',status:'on-time'},
+  {no:'EK353',dest:'Dubai',country:'🇦🇪',time:'11:20',gate:'G7',status:'scheduled'},
+  {no:'OS754',dest:'Vjenë',country:'🇦🇹',time:'13:00',gate:'G3',status:'scheduled'},
+  {no:'IB3760',dest:'Madrid',country:'🇪🇸',time:'11:00',gate:'G5',status:'scheduled'},
+  {no:'W45200',dest:'Varshavë',country:'🇵🇱',time:'13:30',gate:'G4',status:'scheduled'},
+  {no:'W45300',dest:'Çurik',country:'🇨🇭',time:'14:50',gate:'G6',status:'scheduled'},
+  {no:'W45056',dest:'Torino',country:'🇮🇹',time:'08:40',gate:'G1',status:'on-time'},
+];
+
+function statusLabel(s){
+  const map={
+    'on-time':'<span class="status-on-time">✓ Në kohë</span>',
+    'delayed':'<span class="status-delayed">⚠ Vonesë</span>',
+    'boarding':'<span class="status-boarding">🔔 Boarding</span>',
+    'landed':'<span class="status-landed">✈ Udhëtoi</span>',
+    'cancelled':'<span class="status-cancelled">✕ Anuluar</span>',
+    'scheduled':'<span class="status-scheduled">○ Planifikuar</span>',
+  };return map[s]||s;
+}
+
+function renderFlights(list){
+  const container=document.getElementById('flightRows');
+  if(!list.length){container.innerHTML='<div style="padding:2rem;text-align:center;color:var(--muted)">Nuk u gjetën fluturime.</div>';return;}
+  container.innerHTML=list.map(f=>`
+    <div class="fl-row">
+      <div class="fl-no">${f.no}</div>
+      <div class="fl-dest">${f.country} ${f.dest}<small>${currentFlightType==='dep'?'Destinacion':'Origjinë'}</small></div>
+      <div class="fl-time">${f.time}</div>
+      <div class="fl-gate">${f.gate}</div>
+      <div class="fl-status">${statusLabel(f.status)}</div>
+    </div>`).join('');
+}
+
+function filterFlights(){
+  const q=document.getElementById('flightSearch').value.toLowerCase();
+  const src=currentFlightType==='dep'?depFlights:arrFlights;
+  const filtered=q?src.filter(f=>f.dest.toLowerCase().includes(q)||f.no.toLowerCase().includes(q)):src;
+  renderFlights(filtered);
+}
+
+function switchFlightTab(type,btn){
+  currentFlightType=type;
+  document.querySelectorAll('.fl-tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('flightSearch').value='';
+  filterFlights();
+}
+
+function refreshFlights(){
+  document.getElementById('flightRows').innerHTML='<div style="padding:2rem;text-align:center;color:var(--muted)">⏳ Duke rifreskuar...</div>';
+  setTimeout(()=>{
+    filterFlights();
+    const now=new Date();
+    document.getElementById('lastUpdated').textContent='Rifreskuar: '+now.toLocaleTimeString('sq-AL',{timeZone:'Europe/Tirane',hour:'2-digit',minute:'2-digit'});
+  },700);
+}
+
+// init
+setTimeout(()=>{filterFlights();document.getElementById('lastUpdated').textContent='Rifreskuar: '+new Date().toLocaleTimeString('sq-AL',{timeZone:'Europe/Tirane',hour:'2-digit',minute:'2-digit'});},300);
+
+// ──── CHECKLIST ────
+function updateProgress(){
+  const items=document.querySelectorAll('.check-item');
+  const done=document.querySelectorAll('.check-item.checked').length;
+  const pct=Math.round(done/items.length*100);
+  document.getElementById('progressBar').style.width=pct+'%';
+  document.getElementById('progressText').textContent=done+' / '+items.length+' të kryera';
+  localStorage.setItem('tia_checklist',JSON.stringify([...items].map(i=>i.classList.contains('checked'))));
+}
+
+function toggleCheck(el){
+  el.classList.toggle('checked');
+  el.querySelector('.check-box').textContent=el.classList.contains('checked')?'✓':'';
+  updateProgress();
+}
+
+function resetChecklist(){
+  document.querySelectorAll('.check-item').forEach(i=>{i.classList.remove('checked');i.querySelector('.check-box').textContent='';});
+  updateProgress();
+}
+
+function checkAll(){
+  document.querySelectorAll('.check-item').forEach(i=>{i.classList.add('checked');i.querySelector('.check-box').textContent='✓';});
+  updateProgress();
+}
+
+// restore
+(()=>{
+  try{
+    const saved=JSON.parse(localStorage.getItem('tia_checklist')||'[]');
+    const items=document.querySelectorAll('.check-item');
+    saved.forEach((v,i)=>{if(v&&items[i]){items[i].classList.add('checked');items[i].querySelector('.check-box').textContent='✓';}});
+    updateProgress();
+  }catch(e){}
+})();
+})();
+
+// ══ MOBILE JS ══
+(function(){
+if(!document.querySelector('.mobile-root')) return;
+// ── CLOCK ──
+function tick(){
+  const now=new Date();
+  document.getElementById('clock').textContent=now.toLocaleTimeString('sq-AL',{timeZone:'Europe/Tirane',hour:'2-digit',minute:'2-digit'});
+  document.getElementById('clkdate').textContent=now.toLocaleDateString('sq-AL',{timeZone:'Europe/Tirane',weekday:'short',day:'numeric',month:'short'});
+}
+tick();setInterval(tick,1000);
+
+// ── TAB SWITCH ──
+function switchTab(btn){
+  document.querySelectorAll('.nav-item').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  btn.classList.add('active');
+  const t=btn.dataset.tab;
+  document.getElementById('tab-'+t).classList.add('active');
+  document.getElementById('scrollArea').scrollTop=0;
+  if(t==='flights')refreshFl();
+}
+
+// ── TRANSPORT CARDS ──
+function toggleTcard(el){
+  const isOpen=el.classList.contains('open');
+  document.querySelectorAll('.tcard').forEach(c=>c.classList.remove('open'));
+  if(!isOpen)el.classList.add('open');
+}
+
+// ── STEPS ──
+function toggleStep(el){el.classList.toggle('open')}
+
+// ── GATE MAP ──
+const gdata={
+  1:{name:'Gate 1',loc:'Sektori i majtë — pozicioni i parë nga hyrja',airlines:'Wizz Air, Aegean, linja të vogla',walk:'~2 min nga kontrolli'},
+  2:{name:'Gate 2',loc:'Sektori i majtë-qendror',airlines:'Turkish Airlines, Air Albania',walk:'~3 min'},
+  3:{name:'Gate 3',loc:'Sektori qendror i majtë',airlines:'Lufthansa, Swiss, Brussels',walk:'~4 min'},
+  4:{name:'Gate 4',loc:'Qendra e terminalit',airlines:'Fluturime të ndryshme',walk:'~4–5 min'},
+  5:{name:'Gate 5',loc:'Sektori qendror i djathtë',airlines:'Ryanair, easyJet',walk:'~5 min'},
+  6:{name:'Gate 6',loc:'Sektori i djathtë',airlines:'Vueling, ITA, linja sezonale',walk:'~6 min'},
+  7:{name:'Gate 7',loc:'Pozicioni i fundit djathtas',airlines:'Fluturime charter & sezonale',walk:'~7–8 min — nisuni herët!'},
+};
+function mobileGate(n){
+  [1,2,3,4,5,6,7].forEach(i=>{
+    const r=document.getElementById('ms'+i);
+    if(r){r.style.fill='#c8d8f8';r.style.stroke='#80a8d8';}
+  });
+  document.querySelectorAll('.gpill').forEach(p=>p.classList.remove('active'));
+  const r=document.getElementById('ms'+n);
+  if(r){r.style.fill='rgba(200,122,0,0.3)';r.style.stroke='#c87a00';}
+  document.querySelectorAll('.gpill')[n-1]?.classList.add('active');
+  const d=gdata[n];
+  const box=document.getElementById('gateDetail');
+  box.classList.add('show');
+  box.innerHTML=`<strong style="font-family:Syne,sans-serif;color:var(--accent2)">✈ ${d.name}</strong><br>
+📍 ${d.loc}<br>🏢 ${d.airlines}<br>🚶 ${d.walk}`;
+}
+
+// ── FLIGHTS ──
+let flType='dep';
+const DEP=[
+  {no:'W45027',dest:'Milano Malpensa',flag:'🇮🇹',time:'06:15',gate:'G3',status:'on-time'},
+  {no:'TK1049',dest:'Istanbul',flag:'🇹🇷',time:'07:30',gate:'G2',status:'on-time'},
+  {no:'LH1407',dest:'Frankfurt',flag:'🇩🇪',time:'08:00',gate:'G3',status:'boarding'},
+  {no:'W45105',dest:'Berlin Brandenburg',flag:'🇩🇪',time:'08:45',gate:'G5',status:'delayed'},
+  {no:'A3973',dest:'Athinë',flag:'🇬🇷',time:'09:20',gate:'G2',status:'on-time'},
+  {no:'W45057',dest:'Torino',flag:'🇮🇹',time:'10:00',gate:'G1',status:'on-time'},
+  {no:'FR8461',dest:'Londër Stansted',flag:'🇬🇧',time:'10:30',gate:'G6',status:'scheduled'},
+  {no:'W45153',dest:'Barcelona',flag:'🇪🇸',time:'11:15',gate:'G4',status:'scheduled'},
+  {no:'EK354',dest:'Dubai',flag:'🇦🇪',time:'13:45',gate:'G7',status:'scheduled'},
+  {no:'OS755',dest:'Vjenë',flag:'🇦🇹',time:'14:20',gate:'G3',status:'scheduled'},
+  {no:'W45201',dest:'Varshavë',flag:'🇵🇱',time:'15:00',gate:'G4',status:'scheduled'},
+  {no:'W45411',dest:'Londër Luton',flag:'🇬🇧',time:'18:15',gate:'G7',status:'scheduled'},
+];
+const ARR=[
+  {no:'TK1048',dest:'Istanbul',flag:'🇹🇷',time:'06:05',gate:'G2',status:'landed'},
+  {no:'LH1406',dest:'Frankfurt',flag:'🇩🇪',time:'06:50',gate:'G3',status:'landed'},
+  {no:'W45026',dest:'Milano Malpensa',flag:'🇮🇹',time:'07:30',gate:'G1',status:'on-time'},
+  {no:'A3972',dest:'Athinë',flag:'🇬🇷',time:'08:10',gate:'G2',status:'on-time'},
+  {no:'W45104',dest:'Berlin Brandenburg',flag:'🇩🇪',time:'09:00',gate:'G5',status:'delayed'},
+  {no:'FR8460',dest:'Londër Stansted',flag:'🇬🇧',time:'09:45',gate:'G6',status:'on-time'},
+  {no:'W45152',dest:'Barcelona',flag:'🇪🇸',time:'10:30',gate:'G4',status:'on-time'},
+  {no:'EK353',dest:'Dubai',flag:'🇦🇪',time:'11:20',gate:'G7',status:'scheduled'},
+  {no:'OS754',dest:'Vjenë',flag:'🇦🇹',time:'13:00',gate:'G3',status:'scheduled'},
+  {no:'W45056',dest:'Torino',flag:'🇮🇹',time:'08:40',gate:'G1',status:'on-time'},
+];
+
+const SL={'on-time':'s-ontime','delayed':'s-delayed','boarding':'s-boarding','landed':'s-landed','scheduled':'s-scheduled','cancelled':'s-cancelled'};
+const SN={'on-time':'✓ Në kohë','delayed':'⚠ Vonesë','boarding':'🔔 Boarding','landed':'✈ Udhëtoi','scheduled':'○ Planifikuar','cancelled':'✕ Anuluar'};
+
+function renderFl(list){
+  const el=document.getElementById('flList');
+  if(!list.length){el.innerHTML='<div class="empty">Nuk u gjetën fluturime.</div>';return;}
+  el.innerHTML=list.map(f=>`
+    <div class="fl-card">
+      <div class="fl-airline">${f.no}</div>
+      <div class="fl-info">
+        <div class="fl-dest-name">${f.flag} ${f.dest}</div>
+        <div class="fl-dest-sub">${flType==='dep'?'Destinacion':'Origjinë'}</div>
+        <span class="fl-status-badge ${SL[f.status]||''}">${SN[f.status]||f.status}</span>
+      </div>
+      <div class="fl-right">
+        <span class="fl-time-big">${f.time}</span>
+        <span class="fl-gate-lbl">${f.gate}</span>
+      </div>
+    </div>`).join('');
+}
+function filterFl(){
+  const q=document.getElementById('flSearch').value.toLowerCase();
+  const src=flType==='dep'?DEP:ARR;
+  renderFl(q?src.filter(f=>f.dest.toLowerCase().includes(q)||f.no.toLowerCase().includes(q)):src);
+}
+function switchFl(t){
+  flType=t;
+  document.getElementById('swDep').classList.toggle('active',t==='dep');
+  document.getElementById('swArr').classList.toggle('active',t==='arr');
+  document.getElementById('flSearch').value='';
+  filterFl();
+}
+function refreshFl(){
+  document.getElementById('flList').innerHTML='<div class="empty">⏳ Duke rifreskuar...</div>';
+  setTimeout(()=>{
+    filterFl();
+    document.getElementById('flUpdated').textContent='Rifreskuar: '+new Date().toLocaleTimeString('sq-AL',{timeZone:'Europe/Tirane',hour:'2-digit',minute:'2-digit'});
+  },600);
+}
+setTimeout(()=>{filterFl();document.getElementById('flUpdated').textContent='Rifreskuar: '+new Date().toLocaleTimeString('sq-AL',{timeZone:'Europe/Tirane',hour:'2-digit',minute:'2-digit'});},200);
+
+// ── CHECKLIST ──
+function updateProg(){
+  const all=document.querySelectorAll('.cl-item');
+  const done=document.querySelectorAll('.cl-item.checked').length;
+  const pct=Math.round(done/all.length*100);
+  document.getElementById('progBar').style.width=pct+'%';
+  document.getElementById('progLbl').textContent=done+' / '+all.length+' të kryera';
+  try{localStorage.setItem('tia_m_cl',JSON.stringify([...all].map(i=>i.classList.contains('checked'))));}catch(e){}
+}
+function toggleCl(el){
+  el.classList.toggle('checked');
+  el.querySelector('.cl-box').textContent=el.classList.contains('checked')?'✓':'';
+  updateProg();
+}
+function resetCl(){
+  document.querySelectorAll('.cl-item').forEach(i=>{i.classList.remove('checked');i.querySelector('.cl-box').textContent='';});
+  updateProg();
+}
+function checkAllCl(){
+  document.querySelectorAll('.cl-item').forEach(i=>{i.classList.add('checked');i.querySelector('.cl-box').textContent='✓';});
+  updateProg();
+}
+(()=>{
+  try{
+    const s=JSON.parse(localStorage.getItem('tia_m_cl')||'[]');
+    const items=document.querySelectorAll('.cl-item');
+    s.forEach((v,i)=>{if(v&&items[i]){items[i].classList.add('checked');items[i].querySelector('.cl-box').textContent='✓';}});
+    updateProg();
+  }catch(e){}
+})();
+})();
+</script>
+</body>
+</html>
