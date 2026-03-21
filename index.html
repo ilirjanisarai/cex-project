@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="theme-color" content="#1a2e50"/>
-<title>TIA – Udhëzuesi i Aeroportit</title>
+<title>TIA – Udhëzuesi i Aeroportit / Airport Guide</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
 :root{
@@ -25,8 +25,15 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .logo-ico{width:36px;height:36px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
 .logo-text strong{font-family:'Syne',sans-serif;font-size:.95rem;font-weight:800;color:#fff;display:block;line-height:1.1}
 .logo-text span{font-size:.62rem;color:rgba(255,255,255,.5)}
+.header-right{display:flex;align-items:center;gap:10px}
 .hclock-big{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:700;color:#f4c842;display:block;text-align:right;line-height:1}
 .hclock-date{font-size:.6rem;color:rgba(255,255,255,.45);text-align:right}
+
+/* LANG SWITCH */
+.lang-switch{display:flex;gap:3px;background:rgba(255,255,255,.1);border-radius:7px;padding:3px}
+.lang-btn{padding:3px 9px;border:none;border-radius:5px;background:transparent;color:rgba(255,255,255,.6);font-family:'DM Sans',sans-serif;font-size:.72rem;font-weight:600;cursor:pointer;transition:all .2s}
+.lang-btn.active{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff}
+
 .nav-tabs{display:flex;gap:2px;padding:.4rem 0;overflow-x:auto;scrollbar-width:none}
 .nav-tabs::-webkit-scrollbar{display:none}
 .tab-btn{flex-shrink:0;display:flex;align-items:center;gap:5px;padding:.38rem .8rem;border:none;border-radius:7px;background:transparent;color:rgba(255,255,255,.55);font-family:'DM Sans',sans-serif;font-size:.77rem;font-weight:500;cursor:pointer;transition:all .2s;white-space:nowrap}
@@ -35,8 +42,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 
 /* MAIN */
 main{max-width:1000px;margin:0 auto;padding:1.2rem 1rem 5rem}
-
-/* SECTIONS */
 .section{display:none}
 .section.active{display:block;animation:fadeUp .25s ease}
 @keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
@@ -74,6 +79,16 @@ main{max-width:1000px;margin:0 auto;padding:1.2rem 1rem 5rem}
 .drow{display:flex;gap:8px;margin-bottom:7px;align-items:flex-start}
 .drow .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:5px}
 .drow p{font-size:.77rem;color:var(--muted);line-height:1.55}
+
+/* MAP LINK BUTTON */
+.map-link{display:inline-flex;align-items:center;gap:5px;margin-top:8px;padding:5px 12px;background:rgba(10,158,144,.1);border:1px solid rgba(10,158,144,.25);border-radius:20px;color:var(--teal);font-size:.72rem;font-weight:600;text-decoration:none;transition:all .2s}
+.map-link:hover{background:rgba(10,158,144,.18)}
+
+/* TAXI COMPANIES */
+.taxi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:7px;margin-top:8px}
+.taxi-co{background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:8px 10px}
+.taxi-co strong{font-family:'Syne',sans-serif;font-size:.77rem;font-weight:700;display:block;margin-bottom:2px}
+.taxi-co span{font-size:.7rem;color:var(--muted)}
 
 /* STEPS */
 .step{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:.95rem 1rem;margin-bottom:8px;cursor:pointer;transition:all .2s;display:flex;gap:10px}
@@ -150,7 +165,6 @@ main{max-width:1000px;margin:0 auto;padding:1.2rem 1rem 5rem}
 .s-bo{background:rgba(10,158,144,.12);color:var(--teal)}
 .s-la{background:rgba(107,122,153,.1);color:var(--muted)}
 .s-sc{background:rgba(200,122,0,.1);color:var(--accent)}
-/* Mobile flight cards */
 .fl-card{background:var(--card);border-bottom:1px solid var(--border);padding:10px 13px;display:flex;align-items:center;gap:10px}
 .fl-card:last-child{border-bottom:none}
 .fl-card-no{font-family:'Syne',sans-serif;font-size:.77rem;font-weight:800;width:56px;flex-shrink:0}
@@ -179,11 +193,9 @@ main{max-width:1000px;margin:0 auto;padding:1.2rem 1rem 5rem}
 .cl-btn{flex:1;padding:8px;border-radius:9px;border:1.5px solid var(--border);background:var(--card);color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.75rem;font-weight:600;text-align:center;transition:all .2s}
 .cl-btn:hover{background:var(--card2)}
 .cl-btn.primary{background:linear-gradient(135deg,var(--green),#0a8a45);color:#fff;border-color:transparent}
-
-/* EMPTY */
 .empty{padding:2rem;text-align:center;color:var(--muted);font-size:.81rem}
 
-/* BOTTOM NAV — only on mobile */
+/* BOTTOM NAV */
 .bottom-nav{display:none}
 @media(max-width:640px){
   .nav-tabs{display:none}
@@ -198,6 +210,11 @@ main{max-width:1000px;margin:0 auto;padding:1.2rem 1rem 5rem}
 .bnav-lbl{font-size:.54rem;font-weight:500;color:var(--muted);transition:color .15s;white-space:nowrap}
 .bnav-item.active .bnav-lbl{color:var(--accent);font-weight:700}
 
+/* LANGUAGE HIDE/SHOW */
+[data-sq],[data-en]{transition:opacity .15s}
+html[data-lang="en"] [data-sq]{display:none}
+html[data-lang="sq"] [data-en]{display:none}
+
 ::-webkit-scrollbar{width:3px;height:3px}
 ::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
 </style>
@@ -210,155 +227,346 @@ main{max-width:1000px;margin:0 auto;padding:1.2rem 1rem 5rem}
       <div class="logo-ico">✈️</div>
       <div class="logo-text">
         <strong>TIA – Tirana Airport</strong>
-        <span>Udhëzuesi Interaktiv i Pasagjerit</span>
+        <span data-sq>Udhëzuesi Interaktiv i Pasagjerit</span>
+        <span data-en>Interactive Passenger Guide</span>
       </div>
     </div>
-    <div>
-      <span class="hclock-big" id="clk">--:--</span>
-      <span class="hclock-date" id="clkd">--</span>
+    <div class="header-right">
+      <div class="lang-switch">
+        <button class="lang-btn active" id="btnSq">🇦🇱 SQ</button>
+        <button class="lang-btn" id="btnEn">🇬🇧 EN</button>
+      </div>
+      <div>
+        <span class="hclock-big" id="clk">--:--</span>
+        <span class="hclock-date" id="clkd">--</span>
+      </div>
     </div>
   </div>
   <nav class="nav-tabs">
-    <button class="tab-btn active" data-tab="transport">🚗 Si të arrij</button>
-    <button class="tab-btn" data-tab="checkin">🎫 Check-in</button>
-    <button class="tab-btn" data-tab="baggage">🧳 Bagazhet</button>
-    <button class="tab-btn" data-tab="security">🔒 Siguria</button>
-    <button class="tab-btn" data-tab="gates">🗺️ Harta</button>
-    <button class="tab-btn" data-tab="flights">📟 Fluturimet</button>
-    <button class="tab-btn" data-tab="checklist">✅ Lista</button>
+    <button class="tab-btn active" data-tab="transport"><span data-sq>🚗 Si të arrij</span><span data-en>🚗 Getting There</span></button>
+    <button class="tab-btn" data-tab="checkin"><span data-sq>🎫 Check-in</span><span data-en>🎫 Check-in</span></button>
+    <button class="tab-btn" data-tab="baggage"><span data-sq>🧳 Bagazhet</span><span data-en>🧳 Baggage</span></button>
+    <button class="tab-btn" data-tab="security"><span data-sq>🔒 Siguria</span><span data-en>🔒 Security</span></button>
+    <button class="tab-btn" data-tab="gates"><span data-sq>🗺️ Harta</span><span data-en>🗺️ Map</span></button>
+    <button class="tab-btn" data-tab="flights"><span data-sq>📟 Fluturimet</span><span data-en>📟 Flights</span></button>
+    <button class="tab-btn" data-tab="checklist"><span data-sq>✅ Lista</span><span data-en>✅ Checklist</span></button>
   </nav>
 </header>
 
 <main>
 
-<!-- TRANSPORT -->
+<!-- ══ TRANSPORT ══ -->
 <div class="section active" id="tab-transport">
-  <div class="hero"><h2>Si të arrij në TIA? 🚗</h2><p>Aeroporti Ndërkombëtar Nënë Tereza ndodhet ~17 km nga qendra e Tiranës. Zgjidhni transportin tuaj.</p></div>
-  <div class="alert"><span class="ai">⏰</span><span><strong>Mbërrini 2 orë para</strong> nisjes për fluturime europiane dhe <strong>3 orë</strong> ndërkontinentale.</span></div>
-  <div class="sec-lbl">Zgjidhni mënyrën e transportit</div>
-  <div class="grid-auto">
-    <div class="tcard" id="tc-car">
-      <div class="tcard-top"><div class="tcard-ico">🚗</div><div class="tcard-info"><h3>Me makinën tuaj</h3><div class="meta">📍 20–25 min · Parking P1/P2/P3</div></div><span class="tcard-arrow">▾</span></div>
-      <div class="tcard-body">
-        <div class="drow"><div class="dot"></div><p>Ndiqni <strong>SH2</strong> drejt veri-perëndimit, kthehuni te <strong>SH60</strong> me shenjat "Aeroport Rinas".</p></div>
-        <div class="drow"><div class="dot"></div><p><strong>Parking P1/P2/P3:</strong> 7 min e para FALAS · Afatshkurtër ~200–400 ALL/orë · Afatgjatë tarifa ditore të reduktuara.</p></div>
-        <div class="drow"><div class="dot"></div><p><strong>Drop-off:</strong> Zona para terminalit — ndaloni shkurt. Ka vende parkimi të dedikuara për persona me aftësi të kufizuara.</p></div>
-      </div>
-    </div>
-    <div class="tcard" id="tc-taxi">
-      <div class="tcard-top"><div class="tcard-ico">🚖</div><div class="tcard-info"><h3>Me Taksi / Bolt</h3><div class="meta">📍 ~25 min · 1,200–3,000 ALL</div></div><span class="tcard-arrow">▾</span></div>
-      <div class="tcard-body">
-        <div class="drow"><div class="dot"></div><p>Taksitë zyrtare janë me <strong>tarifa fikse</strong>. Pyesni çmimin para nisjes.</p></div>
-        <div class="drow"><div class="dot"></div><p><strong>Bolt / Uber Albania</strong> zakonisht 20–30% më të lira (1,200–2,500 ALL). Pikëmarrja: jashtë Arrivals (kati i parë).</p></div>
-        <div class="drow"><div class="dot"></div><p>⚠ Shmangni taksitë informale brenda terminalit.</p></div>
-      </div>
-    </div>
-    <div class="tcard" id="tc-bus">
-      <div class="tcard-top"><div class="tcard-ico">🚌</div><div class="tcard-info"><h3>Me Autobus</h3><div class="meta">📍 30–35 min · 250 ALL</div></div><span class="tcard-arrow">▾</span></div>
-      <div class="tcard-body">
-        <div class="drow"><div class="dot"></div><p><strong>Rinas Express</strong> — linja zyrtare aeroport ↔ Sheshi Skënderbej (Tiranë).</p></div>
-        <div class="drow"><div class="dot"></div><p>Orare: <strong>06:00–18:00</strong>, çdo orë. Biletë <strong>250 ALL</strong> (~€2.5). Stacioni: jashtë Arrivals.</p></div>
-        <div class="drow"><div class="dot"></div><p>🚆 <em>Nga fillimi i 2027 pritet linja hekurudhore elektrike Tiranë–TIA.</em></p></div>
-      </div>
-    </div>
+  <div class="hero">
+    <h2 data-sq>Si të arrij në TIA? 🚗</h2>
+    <h2 data-en>How to get to TIA? 🚗</h2>
+    <p data-sq>Aeroporti Ndërkombëtar Nënë Tereza ndodhet ~17 km nga qendra e Tiranës. Zgjidhni transportin tuaj.</p>
+    <p data-en>Tirana International Airport Nënë Tereza is located ~17 km from Tirana city centre. Choose your transport below.</p>
   </div>
-  <div class="sec-lbl">Harta e rrugës</div>
+  <div class="alert">
+    <span class="ai">⏰</span>
+    <span data-sq><strong>Mbërrini 2 orë para</strong> nisjes për fluturime europiane dhe <strong>3 orë</strong> ndërkontinentale.</span>
+    <span data-en><strong>Arrive 2 hours before</strong> departure for European flights and <strong>3 hours</strong> for intercontinental.</span>
+  </div>
+  <div class="sec-lbl" data-sq>Zgjidhni mënyrën e transportit</div>
+  <div class="sec-lbl" data-en>Choose your transport</div>
+  <div class="grid-auto">
+
+    <!-- BUS CARD -->
+    <div class="tcard" id="tc-bus">
+      <div class="tcard-top">
+        <div class="tcard-ico">🚌</div>
+        <div class="tcard-info">
+          <h3 data-sq>Me Autobus – Linja LUNA</h3>
+          <h3 data-en>By Bus – LUNA Line</h3>
+          <div class="meta" data-sq>📍 30–35 min · <strong>€4 / person</strong></div>
+          <div class="meta" data-en>📍 30–35 min · <strong>€4 / person</strong></div>
+        </div>
+        <span class="tcard-arrow">▾</span>
+      </div>
+      <div class="tcard-body">
+        <!-- DEPARTURES from Tirana -->
+        <div style="margin-bottom:10px">
+          <div style="font-family:'Syne',sans-serif;font-size:.75rem;font-weight:800;color:var(--accent2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px" data-sq>🏙️ Nga Tirana → Aeroport</div>
+          <div style="font-family:'Syne',sans-serif;font-size:.75rem;font-weight:800;color:var(--accent2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px" data-en>🏙️ From Tirana → Airport</div>
+          <div class="drow"><div class="dot"></div><p data-sq>Stacioni: <strong>Sheshi Skënderbej, Tiranë</strong> — kryqëzimi pranë qendrës. Autobusët nisin çdo <strong>orë</strong>.</p></div>
+          <div class="drow"><div class="dot"></div><p data-en>Station: <strong>Skanderbeg Square, Tirana</strong> — near the city centre. Buses depart every <strong>hour</strong>.</p></div>
+          <a class="map-link" href="https://maps.app.goo.gl/KnFnYsQMxsmrDtr2A" target="_blank" rel="noopener">📍 <span data-sq>Hap hartën e stacionit</span><span data-en>Open station map</span></a>
+        </div>
+        <!-- ARRIVALS at Airport -->
+        <div style="margin-bottom:10px;padding-top:8px;border-top:1px solid var(--border)">
+          <div style="font-family:'Syne',sans-serif;font-size:.75rem;font-weight:800;color:var(--accent2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px" data-sq>✈️ Nga Aeroporti → Tiranë</div>
+          <div style="font-family:'Syne',sans-serif;font-size:.75rem;font-weight:800;color:var(--accent2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px" data-en>✈️ From Airport → Tirana</div>
+          <div class="drow"><div class="dot"></div><p data-sq>Stacioni i autobusit ndodhet <strong>jashtë terminalit të Arrivals</strong>. Nga këtu merr autobusin direkt për në Sheshi Skënderbej.</p></div>
+          <div class="drow"><div class="dot"></div><p data-en>The bus stop is located <strong>outside the Arrivals terminal</strong>. From here take the bus directly to Skanderbeg Square.</p></div>
+          <a class="map-link" href="https://maps.app.goo.gl/JWHs8zgZYJyFxeJ29" target="_blank" rel="noopener">📍 <span data-sq>Hap hartën e stacionit</span><span data-en>Open bus stop map</span></a>
+        </div>
+        <div style="padding-top:8px;border-top:1px solid var(--border)">
+          <div class="drow"><div class="dot"></div><p data-sq>Çmimi: <strong>€4 / person</strong> (rreth 440 ALL). Biletat blihen direkt tek shoferi.</p></div>
+          <div class="drow"><div class="dot"></div><p data-en>Price: <strong>€4 / person</strong> (approx. 440 ALL). Tickets purchased directly from the driver.</p></div>
+          <div class="drow"><div class="dot"></div><p data-sq>🚆 <em>Nga 2027 pritet linja hekurudhore elektrike Tiranë–TIA.</em></p></div>
+          <div class="drow"><div class="dot"></div><p data-en>🚆 <em>A new electric railway Tirana–TIA is expected to open in early 2027.</em></p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAXI CARD -->
+    <div class="tcard" id="tc-taxi">
+      <div class="tcard-top">
+        <div class="tcard-ico">🚖</div>
+        <div class="tcard-info">
+          <h3 data-sq>Me Taksi</h3>
+          <h3 data-en>By Taxi</h3>
+          <div class="meta" data-sq>📍 ~25 min · <strong>€15–€30</strong></div>
+          <div class="meta" data-en>📍 ~25 min · <strong>€15–€30</strong></div>
+        </div>
+        <span class="tcard-arrow">▾</span>
+      </div>
+      <div class="tcard-body">
+        <div class="drow"><div class="dot"></div><p data-sq>Parking i taksive dhe makinave personale ndodhet drejtpërdrejt para terminalit kryesor.</p></div>
+        <div class="drow"><div class="dot"></div><p data-en>The taxi and private car parking area is located directly in front of the main terminal.</p></div>
+        <a class="map-link" href="https://maps.app.goo.gl/ZHsahUi2ha6sxYgR6" target="_blank" rel="noopener">📍 <span data-sq>Hap hartën e parkingut</span><span data-en>Open parking map</span></a>
+        <div class="drow" style="margin-top:8px"><div class="dot"></div><p data-sq>Taksitë zyrtare të aeroportit janë <strong>të verdha</strong> me logon <em>Auto Holiday Albania (AHA)</em>. Rezervime online: <strong>tiataxi.al</strong></p></div>
+        <div class="drow"><div class="dot"></div><p data-en>Official airport taxis are <strong>yellow</strong> with the <em>Auto Holiday Albania (AHA)</em> logo. Online booking: <strong>tiataxi.al</strong></p></div>
+        <div class="drow"><div class="dot"></div><p data-sq>⚠ Shmangni taksitë informale. Vetëm taksitë me <strong>targa të verdha</strong> janë të licencuara nga Bashkia e Tiranës.</p></div>
+        <div class="drow"><div class="dot"></div><p data-en>⚠ Avoid unlicensed taxis. Only taxis with <strong>yellow plates</strong> are licensed by Tirana Municipality.</p></div>
+        <div style="margin-top:8px">
+          <div style="font-family:'Syne',sans-serif;font-size:.72rem;font-weight:800;color:var(--accent2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px" data-sq>Kompani taksish të besueshme</div>
+          <div style="font-family:'Syne',sans-serif;font-size:.72rem;font-weight:800;color:var(--accent2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px" data-en>Trusted taxi companies</div>
+          <div class="taxi-grid">
+            <div class="taxi-co"><strong>AHA – TIA Taxi</strong><span>tiataxi.al · 24/7</span></div>
+            <div class="taxi-co"><strong>Blue Taxi</strong><span>bluetaxi.al · 069 444 4444</span></div>
+            <div class="taxi-co"><strong>MerrTaxi</strong><span>merrtaxi.com · 0800 5555</span></div>
+            <div class="taxi-co"><strong>VrapOn</strong><span>vrapon.al · App</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CAR CARD -->
+    <div class="tcard" id="tc-car">
+      <div class="tcard-top">
+        <div class="tcard-ico">🚗</div>
+        <div class="tcard-info">
+          <h3 data-sq>Me makinën tuaj</h3>
+          <h3 data-en>By private car</h3>
+          <div class="meta" data-sq>📍 20–25 min · Parking P1/P2/P3</div>
+          <div class="meta" data-en>📍 20–25 min · Parking P1/P2/P3</div>
+        </div>
+        <span class="tcard-arrow">▾</span>
+      </div>
+      <div class="tcard-body">
+        <div class="drow"><div class="dot"></div><p data-sq>Ndiqni <strong>SH2</strong> drejt veri-perëndimit, kthehuni te <strong>SH60</strong> me shenjat "Aeroport Rinas".</p></div>
+        <div class="drow"><div class="dot"></div><p data-en>Follow <strong>SH2</strong> highway northwest, then turn onto <strong>SH60</strong> following signs for "Aeroport Rinas".</p></div>
+        <a class="map-link" href="https://maps.app.goo.gl/ZHsahUi2ha6sxYgR6" target="_blank" rel="noopener">📍 <span data-sq>Hap hartën e parkingut</span><span data-en>Open parking map</span></a>
+        <div class="drow" style="margin-top:8px"><div class="dot"></div><p data-sq><strong>Parking P1/P2/P3:</strong> 7 min e para FALAS · Afatshkurtër ~200–400 ALL/orë · Afatgjatë tarifa ditore të reduktuara.</p></div>
+        <div class="drow"><div class="dot"></div><p data-en><strong>Parking P1/P2/P3:</strong> First 7 minutes FREE · Short-term ~200–400 ALL/hr · Long-term reduced daily rates.</p></div>
+        <div class="drow"><div class="dot"></div><p data-sq><strong>Drop-off:</strong> Zona para terminalit — ndaloni shkurt. Ka vende dedikuara për persona me aftësi të kufizuara.</p></div>
+        <div class="drow"><div class="dot"></div><p data-en><strong>Drop-off:</strong> Zone in front of terminal — brief stops only. Dedicated disabled parking spaces available near the entrance.</p></div>
+      </div>
+    </div>
+
+  </div>
+  <div class="sec-lbl" data-sq>Harta e rrugës</div>
+  <div class="sec-lbl" data-en>Route map</div>
   <div class="map-box" style="overflow:hidden">
     <iframe class="gmap-iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12002.0!2d19.7132!3d41.4149!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13503085d96cc11d%3A0x8ef77c4ca7e43b9c!2sTirana%20International%20Airport%20N%C3%ABn%C3%AB%20Tereza!5e0!3m2!1sen!2sal!4v1700000000000" height="220" style="border:0" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
   </div>
 </div>
 
-<!-- CHECK-IN -->
+<!-- ══ CHECK-IN ══ -->
 <div class="section" id="tab-checkin">
-  <div class="hero"><h2>🎫 Procesi i Check-in</h2><p>Terminali ka <strong>42 sportelje</strong> të rregulluara sipas linjave ajrore. Departures janë në katin e sipërm (Level 1).</p></div>
-  <div class="sec-lbl">Hapat e check-in — klikoni për detaje</div>
-  <div class="step"><div class="snum">1</div><div class="scont"><h3>Online Check-in (rekomandohet)</h3><p>Kryeni 24–48 orë para nisjes dhe ruani boarding pass-in dixhital.</p><div class="sextra"><ul><li>Vizitoni faqen ose app-in e linjës ajrore tuaj</li><li>Wizz Air: hapet 30 ditë para, mbyllet 3 orë para</li><li>Lufthansa/Turkish: hapet 23 orë para nisjes</li><li>Ruani boarding pass si screenshot — funksionon edhe offline</li><li>Zgjidhni seatin tuaj paraprakisht</li></ul><span class="swarn">⚠ Pa online check-in mund të paguani tarifë shtesë në sportel.</span></div></div></div>
-  <div class="step"><div class="snum">2</div><div class="scont"><h3>Sportel / Kiosk Vetë-shërbim</h3><p>Nëse nuk keni bërë online check-in ose keni bagazh për dorëzim.</p><div class="sextra"><ul><li>Gjeni sportelje sipas tabelave elektronike në sallë</li><li>Kioskat vetë-shërbim (self check-in) janë shumë të shpejta</li><li>Kini gati: pasaportën, rezervimin, informatat e bagazheve</li></ul><span class="swarn">⚠ Sportelet mbyllen 40–60 min para nisjes.</span></div></div></div>
-  <div class="step"><div class="snum">3</div><div class="scont"><h3>Drop-off Bagazhi</h3><p>Lëshoni valixen te sporteli i drop-off para kalimit të kontrollit.</p><div class="sextra"><ul><li>Pesoni bagazhin paraprakisht në shtëpi</li><li>Mbyllni mirë valixen dhe hiqni etiketat e vjetra</li><li>Vendosni brenda emrin + numrin e telefonit tuaj</li><li>Fotografoni valixen para dorëzimit si provë</li></ul></div></div></div>
-  <div class="step"><div class="snum">4</div><div class="scont"><h3>Kontrolli i Pasaportave</h3><p>Pas check-in, drejtohuni tek Border Control para zonës airside.</p><div class="sextra"><ul><li>Shqiptarët udhëtojnë me kartë ID brenda vendeve BE</li><li>Pasaportë e nevojshme për UK, SHBA dhe jashtë BE</li><li>Minimum 6 muaj vlefshmëri pasaporte</li><li>Sportelje të veçanta: EU/EEA dhe jo-EU</li></ul></div></div></div>
-  <div class="alert" style="margin-top:4px"><span class="ai">💡</span><span>Sezon veror (Qershor–Shtator) dhe festa: planifikoni <strong>2.5–3 orë</strong> paraprakisht.</span></div>
+  <div class="hero">
+    <h2 data-sq>🎫 Procesi i Check-in</h2>
+    <h2 data-en>🎫 Check-in Process</h2>
+    <p data-sq>Terminali ka <strong>42 sportelje</strong> të rregulluara sipas linjave ajrore. Departures janë në katin e sipërm (Level 1).</p>
+    <p data-en>The terminal has <strong>42 check-in counters</strong> organised by airline. Departures are on the upper floor (Level 1).</p>
+  </div>
+  <div class="sec-lbl" data-sq>Hapat e check-in — klikoni për detaje</div>
+  <div class="sec-lbl" data-en>Check-in steps — click for details</div>
+
+  <div class="step">
+    <div class="snum">1</div>
+    <div class="scont">
+      <h3 data-sq>Online Check-in (rekomandohet)</h3>
+      <h3 data-en>Online Check-in (recommended)</h3>
+      <p data-sq>Kryeni 24–48 orë para nisjes dhe ruani boarding pass-in dixhital.</p>
+      <p data-en>Complete 24–48 hours before departure and save your digital boarding pass.</p>
+      <div class="sextra">
+        <ul>
+          <li data-sq>Vizitoni faqen ose app-in e linjës ajrore tuaj</li><li data-en>Visit your airline's website or app</li>
+          <li data-sq>Wizz Air: hapet 30 ditë para, mbyllet 3 orë para nisjes</li><li data-en>Wizz Air: opens 30 days before, closes 3 hours before departure</li>
+          <li data-sq>Lufthansa/Turkish: hapet 23 orë para nisjes</li><li data-en>Lufthansa/Turkish: opens 23 hours before departure</li>
+          <li data-sq>Ruani boarding pass si screenshot — funksionon edhe offline</li><li data-en>Save boarding pass as screenshot — works offline too</li>
+          <li data-sq>Zgjidhni seatin tuaj paraprakisht</li><li data-en>Select your seat in advance</li>
+        </ul>
+        <span class="swarn" data-sq>⚠ Pa online check-in mund të paguani tarifë shtesë në sportel.</span>
+        <span class="swarn" data-en>⚠ Without online check-in you may pay an extra fee at the counter.</span>
+      </div>
+    </div>
+  </div>
+  <div class="step">
+    <div class="snum">2</div>
+    <div class="scont">
+      <h3 data-sq>Sportel / Kiosk Vetë-shërbim</h3>
+      <h3 data-en>Counter / Self-service Kiosk</h3>
+      <p data-sq>Nëse nuk keni bërë online check-in ose keni bagazh.</p>
+      <p data-en>If you haven't done online check-in or have baggage to drop.</p>
+      <div class="sextra">
+        <ul>
+          <li data-sq>Gjeni sportelje sipas tabelave elektronike në sallë</li><li data-en>Find your counter using the electronic displays in the hall</li>
+          <li data-sq>Kioskat vetë-shërbim (self check-in) janë shumë të shpejta</li><li data-en>Self check-in kiosks are very fast</li>
+          <li data-sq>Kini gati: pasaportën, rezervimin, informatat e bagazheve</li><li data-en>Have ready: passport, booking reference, baggage info</li>
+        </ul>
+        <span class="swarn" data-sq>⚠ Sportelet mbyllen 40–60 min para nisjes.</span>
+        <span class="swarn" data-en>⚠ Counters close 40–60 min before departure.</span>
+      </div>
+    </div>
+  </div>
+  <div class="step">
+    <div class="snum">3</div>
+    <div class="scont">
+      <h3 data-sq>Drop-off Bagazhi</h3>
+      <h3 data-en>Baggage Drop-off</h3>
+      <p data-sq>Lëshoni valixen te sporteli i drop-off para kalimit të kontrollit.</p>
+      <p data-en>Drop your luggage at the drop-off counter before going through passport control.</p>
+      <div class="sextra">
+        <ul>
+          <li data-sq>Pesoni bagazhin paraprakisht në shtëpi</li><li data-en>Weigh your luggage at home beforehand</li>
+          <li data-sq>Mbyllni mirë valixen dhe hiqni etiketat e vjetra</li><li data-en>Lock your suitcase and remove old labels</li>
+          <li data-sq>Vendosni brenda emrin + numrin e telefonit tuaj</li><li data-en>Place your name + phone number inside</li>
+          <li data-sq>Fotografoni valixen para dorëzimit si provë</li><li data-en>Photograph your bag before handing it over as proof</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="step">
+    <div class="snum">4</div>
+    <div class="scont">
+      <h3 data-sq>Kontrolli i Pasaportave</h3>
+      <h3 data-en>Passport Control</h3>
+      <p data-sq>Pas check-in, drejtohuni tek Border Control para zonës airside.</p>
+      <p data-en>After check-in, proceed to Border Control before the airside zone.</p>
+      <div class="sextra">
+        <ul>
+          <li data-sq>Shqiptarët udhëtojnë me kartë ID brenda vendeve BE</li><li data-en>Albanian citizens can travel with ID card within EU countries</li>
+          <li data-sq>Pasaportë e nevojshme për UK, SHBA dhe jashtë BE</li><li data-en>Passport required for UK, USA and countries outside the EU</li>
+          <li data-sq>Minimum 6 muaj vlefshmëri pasaporte</li><li data-en>Minimum 6 months passport validity required</li>
+          <li data-sq>Sportelje të veçanta: EU/EEA dhe jo-EU</li><li data-en>Separate lanes: EU/EEA and non-EU</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="alert" style="margin-top:4px">
+    <span class="ai">💡</span>
+    <span data-sq>Sezon veror (Qershor–Shtator) dhe festa: planifikoni <strong>2.5–3 orë</strong> paraprakisht.</span>
+    <span data-en>Summer season (June–September) and holidays: allow <strong>2.5–3 hours</strong> in advance.</span>
+  </div>
 </div>
 
-<!-- BAGGAGE -->
+<!-- ══ BAGGAGE ══ -->
 <div class="section" id="tab-baggage">
-  <div class="hero"><h2>🧳 Bagazhet – Kufiri dhe Tarifat</h2><p>Çdo linjë ajrore ka rregullat e veta. Verifikoni gjithmonë me linjën tuaj ajrore.</p></div>
-  <div class="sec-lbl">Bagazhi i kabinës (Hand Luggage)</div>
-  <div class="btable">
-    <div class="bthead">Linja Ajrore · Kabina</div>
-    <div class="btrow"><div class="btrow-l"><strong>Wizz Air (basic)</strong><small>40×30×20 cm</small></div><span class="tag tag-free">FALAS</span></div>
-    <div class="btrow"><div class="btrow-l"><strong>Wizz Air (+kabinë)</strong><small>55×40×23 cm · max 10 kg</small></div><span class="tag tag-paid">Me pagesë</span></div>
-    <div class="btrow"><div class="btrow-l"><strong>Ryanair</strong><small>40×20×25 cm</small></div><span class="tag tag-free">FALAS</span></div>
-    <div class="btrow"><div class="btrow-l"><strong>Lufthansa / Swiss</strong><small>55×40×23 cm · 8 kg</small></div><span class="tag tag-free">FALAS</span></div>
-    <div class="btrow"><div class="btrow-l"><strong>Turkish Airlines</strong><small>55×40×23 cm · 8 kg</small></div><span class="tag tag-free">FALAS</span></div>
-    <div class="btrow"><div class="btrow-l"><strong>Aegean Airlines</strong><small>56×45×25 cm · 8 kg</small></div><span class="tag tag-free">FALAS</span></div>
+  <div class="hero">
+    <h2 data-sq>🧳 Bagazhet – Kufiri dhe Tarifat</h2>
+    <h2 data-en>🧳 Baggage – Limits & Fees</h2>
+    <p data-sq>Çdo linjë ajrore ka rregullat e veta. Verifikoni gjithmonë me linjën tuaj ajrore.</p>
+    <p data-en>Each airline has its own rules. Always verify with your airline before travelling.</p>
   </div>
-  <div class="sec-lbl">Bagazhi i lëshuar (Checked Baggage)</div>
+  <div class="sec-lbl" data-sq>Bagazhi i kabinës (Hand Luggage)</div>
+  <div class="sec-lbl" data-en>Cabin Baggage (Hand Luggage)</div>
   <div class="btable">
-    <div class="bthead">Tip · Pesha · Tarifa</div>
-    <div class="btrow"><div class="btrow-l"><strong>Ekonomik basic</strong><small>20–23 kg</small></div><span class="tag tag-paid">Tarifa shtesë</span></div>
-    <div class="btrow"><div class="btrow-l"><strong>Ekonomik flex/plus</strong><small>23 kg</small></div><span class="tag tag-info">Shpesh i përfshirë</span></div>
-    <div class="btrow"><div class="btrow-l"><strong>Biznes klasë</strong><small>32 kg</small></div><span class="tag tag-free">I përfshirë</span></div>
-    <div class="btrow"><div class="btrow-l"><strong>Copë e 2-të</strong><small>23 kg · €25–60</small></div><span class="tag tag-paid">Shtesë</span></div>
-    <div class="btrow"><div class="btrow-l"><strong>Bagazh sportiv</strong><small>ski, biçikletë · €30–80</small></div><span class="tag tag-paid">Tarifa e posaçme</span></div>
+    <div class="bthead" data-sq>Linja Ajrore · Kabina</div>
+    <div class="bthead" data-en>Airline · Cabin</div>
+    <div class="btrow"><div class="btrow-l"><strong>Wizz Air (basic)</strong><small>40×30×20 cm</small></div><span class="tag tag-free" data-sq>FALAS</span><span class="tag tag-free" data-en>FREE</span></div>
+    <div class="btrow"><div class="btrow-l"><strong>Wizz Air (+kabinë)</strong><small>55×40×23 cm · max 10 kg</small></div><span class="tag tag-paid" data-sq>Me pagesë</span><span class="tag tag-paid" data-en>Paid</span></div>
+    <div class="btrow"><div class="btrow-l"><strong>Ryanair</strong><small>40×20×25 cm</small></div><span class="tag tag-free" data-sq>FALAS</span><span class="tag tag-free" data-en>FREE</span></div>
+    <div class="btrow"><div class="btrow-l"><strong>Lufthansa / Swiss</strong><small>55×40×23 cm · 8 kg</small></div><span class="tag tag-free" data-sq>FALAS</span><span class="tag tag-free" data-en>FREE</span></div>
+    <div class="btrow"><div class="btrow-l"><strong>Turkish Airlines</strong><small>55×40×23 cm · 8 kg</small></div><span class="tag tag-free" data-sq>FALAS</span><span class="tag tag-free" data-en>FREE</span></div>
+    <div class="btrow"><div class="btrow-l"><strong>Aegean Airlines</strong><small>56×45×25 cm · 8 kg</small></div><span class="tag tag-free" data-sq>FALAS</span><span class="tag tag-free" data-en>FREE</span></div>
   </div>
-  <div class="sec-lbl">Sende të ndaluara & rregulla</div>
+  <div class="sec-lbl" data-sq>Bagazhi i lëshuar (Checked Baggage)</div>
+  <div class="sec-lbl" data-en>Checked Baggage</div>
+  <div class="btable">
+    <div class="bthead" data-sq>Tip · Pesha · Tarifa</div>
+    <div class="bthead" data-en>Type · Weight · Fee</div>
+    <div class="btrow"><div class="btrow-l"><strong data-sq>Ekonomik basic</strong><strong data-en>Economy basic</strong><small>20–23 kg</small></div><span class="tag tag-paid" data-sq>Tarifa shtesë</span><span class="tag tag-paid" data-en>Extra fee</span></div>
+    <div class="btrow"><div class="btrow-l"><strong data-sq>Ekonomik flex/plus</strong><strong data-en>Economy flex/plus</strong><small>23 kg</small></div><span class="tag tag-info" data-sq>Shpesh i përfshirë</span><span class="tag tag-info" data-en>Often included</span></div>
+    <div class="btrow"><div class="btrow-l"><strong data-sq>Biznes klasë</strong><strong data-en>Business class</strong><small>32 kg</small></div><span class="tag tag-free" data-sq>I përfshirë</span><span class="tag tag-free" data-en>Included</span></div>
+    <div class="btrow"><div class="btrow-l"><strong data-sq>Copë e 2-të</strong><strong data-en>2nd piece</strong><small>23 kg · €25–60</small></div><span class="tag tag-paid" data-sq>Shtesë</span><span class="tag tag-paid" data-en>Extra</span></div>
+    <div class="btrow"><div class="btrow-l"><strong data-sq>Bagazh sportiv</strong><strong data-en>Sports equipment</strong><small data-sq>ski, biçikletë · €30–80</small><small data-en>ski, bicycle · €30–80</small></div><span class="tag tag-paid" data-sq>Tarifa e posaçme</span><span class="tag tag-paid" data-en>Special fee</span></div>
+  </div>
+  <div class="sec-lbl" data-sq>Sende të ndaluara & rregulla</div>
+  <div class="sec-lbl" data-en>Prohibited items & rules</div>
   <div class="tips-grid">
-    <div class="tip-card danger"><div class="tico">🚫</div><div><h4>Absolutisht të ndaluara</h4><p>Armët, eksplozivët, gazi i lëngshëm, lëndët ndezëse, municionet (edhe bosh).</p></div></div>
-    <div class="tip-card danger"><div class="tico">⚠️</div><div><h4>Të ndaluara në kabinë</h4><p>Thika mbi 6 cm, gërshërë me tehe >6 cm, sende të mprehta, lëngje mbi 100 ml.</p></div></div>
-    <div class="tip-card warn"><div class="tico">💧</div><div><h4>Rregulla 3-1-1 Lëngjet</h4><p>Max <strong>100 ml/enë</strong> · në 1 qese plastike 1L · 1 qese/person · nxirrni te kontrolli.</p></div></div>
-    <div class="tip-card safe"><div class="tico">✅</div><div><h4>Lejohen me deklarim</h4><p>Barna me recetë (mbani recetën), ushqime foshnjash, insulinë. Deklaroni hapur!</p></div></div>
+    <div class="tip-card danger"><div class="tico">🚫</div><div><h4 data-sq>Absolutisht të ndaluara</h4><h4 data-en>Strictly prohibited</h4><p data-sq>Armët, eksplozivët, gazi i lëngshëm, lëndët ndezëse, municionet (edhe bosh).</p><p data-en>Weapons, explosives, liquefied gas, flammables, ammunition (even empty casings).</p></div></div>
+    <div class="tip-card danger"><div class="tico">⚠️</div><div><h4 data-sq>Të ndaluara në kabinë</h4><h4 data-en>Prohibited in cabin</h4><p data-sq>Thika mbi 6 cm, gërshërë me tehe >6 cm, sende të mprehta, lëngje mbi 100 ml.</p><p data-en>Knives over 6 cm, scissors with blades >6 cm, sharp objects, liquids over 100 ml.</p></div></div>
+    <div class="tip-card warn"><div class="tico">💧</div><div><h4>Rregulla 3-1-1</h4><p data-sq>Max <strong>100 ml/enë</strong> · në 1 qese plastike 1L · 1 qese/person · nxirrni te kontrolli.</p><p data-en>Max <strong>100 ml/container</strong> · in 1 clear plastic bag (1L) · 1 bag/person · remove at security.</p></div></div>
+    <div class="tip-card safe"><div class="tico">✅</div><div><h4 data-sq>Lejohen me deklarim</h4><h4 data-en>Allowed with declaration</h4><p data-sq>Barna me recetë (mbani recetën), ushqime foshnjash, insulinë. Deklaroni hapur!</p><p data-en>Prescription medicines (keep prescription), baby food, insulin. Declare openly!</p></div></div>
   </div>
 </div>
 
-<!-- SECURITY -->
+<!-- ══ SECURITY ══ -->
 <div class="section" id="tab-security">
-  <div class="hero"><h2>🔒 Kontrolli i Sigurisë</h2><p>Pas check-in dhe pasaportave, kaloni kontrollin para zones airside. Zgjat <strong>5–20 minuta</strong>.</p></div>
-  <div class="sec-lbl">Përgatitje paraprakisht</div>
-  <div class="tips-grid">
-    <div class="tip-card safe"><div class="tico">👟</div><div><h4>Veshja e duhur</h4><p>Këpucë të lehta. Bizhuteri dhe rripa metalikë vonojnë procesin.</p></div></div>
-    <div class="tip-card safe"><div class="tico">💻</div><div><h4>Elektronika gati</h4><p>Laptop dhe tablet <strong>veçmas</strong> në kabinë. Karikuesit mbeten brenda çantës.</p></div></div>
-    <div class="tip-card warn"><div class="tico">🧴</div><div><h4>Lëngjet – qesa transparente</h4><p>Qesa 1L, max 100 ml/enë, nxirret <strong>veçmas</strong> në kabinë plastike.</p></div></div>
-    <div class="tip-card warn"><div class="tico">📱</div><div><h4>Zbrazni xhepat</h4><p>Telefon, çelësa, monedha, portofol, orë — të gjitha në çantë ose kabinë.</p></div></div>
-    <div class="tip-card safe"><div class="tico">🍼</div><div><h4>Barna & ushqime foshnje</h4><p>Lejohen mbi 100 ml. Deklarojini hapur + kini dokumentacionin gati.</p></div></div>
-    <div class="tip-card danger"><div class="tico">⏱️</div><div><h4>Mos vonohuni!</h4><p>Gates mbyllen 40–60 min para nisjes. Jini tek kontrolli <strong>90 min para</strong>.</p></div></div>
+  <div class="hero">
+    <h2 data-sq>🔒 Kontrolli i Sigurisë</h2>
+    <h2 data-en>🔒 Security Check</h2>
+    <p data-sq>Pas check-in dhe pasaportave, kaloni kontrollin para zonës airside. Zgjat <strong>5–20 minuta</strong>.</p>
+    <p data-en>After check-in and passport control, pass through security before the airside zone. Takes <strong>5–20 minutes</strong>.</p>
   </div>
-  <div class="sec-lbl">Procesi hap pas hapi — klikoni për detaje</div>
-  <div class="step"><div class="snum">1</div><div class="scont"><h3>Paraqisni dokumentet</h3><p>Pasaporta/ID + boarding pass para hyrjes në rresht.</p><div class="sextra"><ul><li>Sigurohuni që QR kodi të skanojë (ndriçim ekrani)</li><li>Print backup nëse baterina është e ulët</li></ul></div></div></div>
-  <div class="step"><div class="snum">2</div><div class="scont"><h3>Vendosni gjërat në kabinë</h3><p>Laptop veçmas, lëngjet veçmas, xhepat bosh.</p><div class="sextra"><ul><li>Laptop — kabinë e veçantë</li><li>Qesa lëngjesh — kabinë e veçantë</li><li>Xhepat: monedha, çelësa, orë, rrip</li></ul></div></div></div>
-  <div class="step"><div class="snum">3</div><div class="scont"><h3>Skaneri i trupit</h3><p>Kaloni nëpër skaner, ndiqni udhëzimet e oficerëve.</p><div class="sextra"><ul><li>Implante metalike: njoftoni oficerin paraprakisht</li><li>Alarmi = kontroll manual (normal)</li></ul></div></div></div>
-  <div class="step"><div class="snum">4</div><div class="scont"><h3>Mblidhni gjërat tuaja</h3><p>Merrni të gjitha kabinët — kontrolloni asgjë të harruar.</p><div class="sextra"><ul><li>Laptop, telefon, çelësa, qesa lëngjesh</li><li>Mos largohuni derisa t'i keni marrë të gjitha</li></ul></div></div></div>
+  <div class="sec-lbl" data-sq>Përgatitje paraprakisht</div>
+  <div class="sec-lbl" data-en>Prepare in advance</div>
+  <div class="tips-grid">
+    <div class="tip-card safe"><div class="tico">👟</div><div><h4 data-sq>Veshja e duhur</h4><h4 data-en>Appropriate clothing</h4><p data-sq>Këpucë të lehta. Bizhuteri dhe rripa metalikë vonojnë procesin.</p><p data-en>Wear easy-to-remove shoes. Metal jewellery and belts slow down the process.</p></div></div>
+    <div class="tip-card safe"><div class="tico">💻</div><div><h4 data-sq>Elektronika gati</h4><h4 data-en>Electronics ready</h4><p data-sq>Laptop dhe tablet <strong>veçmas</strong> në kabinë. Karikuesit mbeten brenda çantës.</p><p data-en>Laptop and tablet <strong>separately</strong> in a tray. Chargers stay inside the bag.</p></div></div>
+    <div class="tip-card warn"><div class="tico">🧴</div><div><h4 data-sq>Lëngjet – qesa transparente</h4><h4 data-en>Liquids – clear bag</h4><p data-sq>Qesa 1L, max 100 ml/enë, nxirret <strong>veçmas</strong> në kabinë plastike.</p><p data-en>1L clear bag, max 100 ml/container, must be placed <strong>separately</strong> in a tray.</p></div></div>
+    <div class="tip-card warn"><div class="tico">📱</div><div><h4 data-sq>Zbrazni xhepat</h4><h4 data-en>Empty your pockets</h4><p data-sq>Telefon, çelësa, monedha, portofol, orë — të gjitha në çantë ose kabinë.</p><p data-en>Phone, keys, coins, wallet, watch — all in your bag or tray.</p></div></div>
+    <div class="tip-card safe"><div class="tico">🍼</div><div><h4 data-sq>Barna & ushqime foshnje</h4><h4 data-en>Medicine & baby food</h4><p data-sq>Lejohen mbi 100 ml. Deklarojini hapur + kini dokumentacionin gati.</p><p data-en>Allowed over 100 ml. Declare openly + have documentation ready.</p></div></div>
+    <div class="tip-card danger"><div class="tico">⏱️</div><div><h4 data-sq>Mos vonohuni!</h4><h4 data-en>Don't be late!</h4><p data-sq>Gates mbyllen 40–60 min para nisjes. Jini tek kontrolli <strong>90 min para</strong>.</p><p data-en>Gates close 40–60 min before departure. Be at security <strong>90 min before</strong>.</p></div></div>
+  </div>
+  <div class="sec-lbl" data-sq>Procesi hap pas hapi — klikoni për detaje</div>
+  <div class="sec-lbl" data-en>Step-by-step process — click for details</div>
+  <div class="step"><div class="snum">1</div><div class="scont"><h3 data-sq>Paraqisni dokumentet</h3><h3 data-en>Present your documents</h3><p data-sq>Pasaporta/ID + boarding pass para hyrjes në rresht.</p><p data-en>Passport/ID + boarding pass before joining the queue.</p><div class="sextra"><ul><li data-sq>Sigurohuni që QR kodi të skanojë (ndriçim ekrani)</li><li data-en>Make sure the QR code scans (screen brightness)</li><li data-sq>Print backup nëse baterina është e ulët</li><li data-en>Print backup if your battery is low</li></ul></div></div></div>
+  <div class="step"><div class="snum">2</div><div class="scont"><h3 data-sq>Vendosni gjërat në kabinë</h3><h3 data-en>Place items in tray</h3><p data-sq>Laptop veçmas, lëngjet veçmas, xhepat bosh.</p><p data-en>Laptop separately, liquids separately, pockets empty.</p><div class="sextra"><ul><li data-sq>Laptop — kabinë e veçantë</li><li data-en>Laptop — separate tray</li><li data-sq>Qesa lëngjesh — kabinë e veçantë</li><li data-en>Liquids bag — separate tray</li><li data-sq>Xhepat: monedha, çelësa, orë, rrip</li><li data-en>Pockets: coins, keys, watch, belt</li></ul></div></div></div>
+  <div class="step"><div class="snum">3</div><div class="scont"><h3 data-sq>Skaneri i trupit</h3><h3 data-en>Body scanner</h3><p data-sq>Kaloni nëpër skaner, ndiqni udhëzimet e oficerëve.</p><p data-en>Pass through the scanner, follow officers' instructions.</p><div class="sextra"><ul><li data-sq>Implante metalike: njoftoni oficerin paraprakisht</li><li data-en>Metal implants: inform the officer beforehand</li><li data-sq>Alarmi = kontroll manual (normal)</li><li data-en>Alarm = manual pat-down (normal)</li></ul></div></div></div>
+  <div class="step"><div class="snum">4</div><div class="scont"><h3 data-sq>Mblidhni gjërat tuaja</h3><h3 data-en>Collect your belongings</h3><p data-sq>Merrni të gjitha kabinët — kontrolloni asgjë të harruar.</p><p data-en>Collect all trays — check nothing has been left behind.</p><div class="sextra"><ul><li data-sq>Laptop, telefon, çelësa, qesa lëngjesh</li><li data-en>Laptop, phone, keys, liquids bag</li><li data-sq>Mos largohuni derisa t'i keni marrë të gjitha</li><li data-en>Don't walk away until you have everything</li></ul></div></div></div>
 </div>
 
-<!-- GATES -->
+<!-- ══ GATES ══ -->
 <div class="section" id="tab-gates">
-  <div class="hero"><h2>🗺️ Harta e Terminalit & Gates</h2><p>Terminal kompakt — nga hyrja te gate-i më i largët janë vetëm <strong>8 minuta</strong> në këmbë. Ka <strong>7 gate</strong> (G1–G7).</p></div>
+  <div class="hero">
+    <h2 data-sq>🗺️ Harta e Terminalit & Gates</h2>
+    <h2 data-en>🗺️ Terminal Map & Gates</h2>
+    <p data-sq>Terminal kompakt — nga hyrja te gate-i më i largët janë vetëm <strong>8 minuta</strong> në këmbë. Ka <strong>7 gate</strong> (G1–G7).</p>
+    <p data-en>Compact terminal — from the entrance to the furthest gate is only <strong>8 minutes</strong> on foot. There are <strong>7 gates</strong> (G1–G7).</p>
+  </div>
   <div class="map-box">
-    <div class="map-box-head">🏗️ Terminal TIA – Kati i Sipërm (Departures)</div>
+    <div class="map-box-head" data-sq>🏗️ Terminal TIA – Kati i Sipërm (Departures)</div>
+    <div class="map-box-head" data-en>🏗️ TIA Terminal – Upper Floor (Departures)</div>
     <div class="svg-scroll">
       <svg viewBox="0 0 700 310" xmlns="http://www.w3.org/2000/svg" style="min-width:500px;width:100%;display:block">
         <rect width="700" height="310" fill="#eef2fb" rx="10"/>
         <rect x="18" y="12" width="664" height="286" rx="10" fill="#dde6f8" stroke="#b0c4e8" stroke-width="1.5"/>
         <rect x="286" y="274" width="128" height="20" rx="5" fill="#0a9e90" opacity=".9"/>
-        <text x="350" y="288" text-anchor="middle" font-family="Syne,sans-serif" font-size="9" font-weight="700" fill="white">🚶 HYRJA KRYESORE</text>
+        <text x="350" y="288" text-anchor="middle" font-family="Syne,sans-serif" font-size="9" font-weight="700" fill="white">🚶 HYRJA / ENTRANCE</text>
         <rect x="36" y="212" width="628" height="52" rx="7" fill="#c8d8f8" stroke="#90b0e0" stroke-width="1.2"/>
-        <text x="350" y="234" text-anchor="middle" font-family="Syne,sans-serif" font-size="10" font-weight="700" fill="#1a2340">SALLË CHECK-IN (42 sportelje)</text>
-        <text x="350" y="249" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#4a5a80">Sektorët A–F · Ekranet elektronike tregojnë sporteljen</text>
+        <text x="350" y="234" text-anchor="middle" font-family="Syne,sans-serif" font-size="10" font-weight="700" fill="#1a2340">CHECK-IN HALL (42 sportelje / counters)</text>
+        <text x="350" y="249" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#4a5a80">Sektorët A–F · Electronic displays show counter number</text>
         <rect x="176" y="164" width="348" height="36" rx="7" fill="#b8cef0" stroke="#80a8d8" stroke-width="1.2"/>
-        <text x="350" y="178" text-anchor="middle" font-family="Syne,sans-serif" font-size="9.5" font-weight="700" fill="#1a3060">🛂 KONTROLLI I PASAPORTAVE</text>
-        <text x="350" y="192" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#4a6a90">EU/EEA ◄ | ► Jo-EU · Albania jo-Schengen</text>
+        <text x="350" y="178" text-anchor="middle" font-family="Syne,sans-serif" font-size="9.5" font-weight="700" fill="#1a3060">🛂 PASSPORT CONTROL / KONTROLLI KUFIRIT</text>
+        <text x="350" y="192" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#4a6a90">EU/EEA ◄ | ► Non-EU · Albania non-Schengen</text>
         <rect x="122" y="118" width="456" height="34" rx="7" fill="#fde8c0" stroke="#c87a00" stroke-width="1.5"/>
-        <text x="350" y="132" text-anchor="middle" font-family="Syne,sans-serif" font-size="9.5" font-weight="700" fill="#8a4a00">🔒 KONTROLLI I SIGURISË (X-Ray)</text>
-        <text x="350" y="146" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="#7a5a20">Hiqni laptopët · lëngjet · zbrazni xhepat</text>
-        <text x="350" y="108" text-anchor="middle" font-family="Syne,sans-serif" font-size="8" fill="#6b7a99">◄── ZONA AIRSIDE (pas kontrollit) ──►</text>
+        <text x="350" y="132" text-anchor="middle" font-family="Syne,sans-serif" font-size="9.5" font-weight="700" fill="#8a4a00">🔒 SECURITY CHECK / KONTROLLI SIGURISË</text>
+        <text x="350" y="146" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="#7a5a20">Remove laptops · liquids · empty pockets</text>
+        <text x="350" y="108" text-anchor="middle" font-family="Syne,sans-serif" font-size="8" fill="#6b7a99">◄── AIRSIDE ZONE (after security / pas kontrollit) ──►</text>
         <rect x="34" y="64" width="168" height="36" rx="6" fill="#c8f0ec" stroke="#0a9e90" stroke-width="1"/>
         <text x="118" y="78" text-anchor="middle" font-family="Syne,sans-serif" font-size="8.5" font-weight="700" fill="#056058">🛍️ DUTY FREE</text>
-        <text x="118" y="91" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="#2a7a72">Parfume · Alkool</text>
+        <text x="118" y="91" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="#2a7a72">Parfume · Alkool / Alcohol</text>
         <rect x="216" y="64" width="268" height="36" rx="6" fill="#e8d8f8" stroke="#8040c0" stroke-width="1"/>
-        <text x="350" y="78" text-anchor="middle" font-family="Syne,sans-serif" font-size="8.5" font-weight="700" fill="#5020a0">☕ RESTORANTE &amp; VIP LOUNGE</text>
-        <text x="350" y="91" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="#5a3a80">Kafe · Fast food · Lounge</text>
+        <text x="350" y="78" text-anchor="middle" font-family="Syne,sans-serif" font-size="8.5" font-weight="700" fill="#5020a0">☕ RESTAURANTS &amp; VIP LOUNGE</text>
+        <text x="350" y="91" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="#5a3a80">Café · Fast food · Lounge</text>
         <rect x="498" y="64" width="168" height="36" rx="6" fill="#fdd8d8" stroke="#cc2222" stroke-width="1"/>
         <text x="582" y="78" text-anchor="middle" font-family="Syne,sans-serif" font-size="8.5" font-weight="700" fill="#aa1010">🚻 ATM · WC · WIFI</text>
-        <text x="582" y="91" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="#882020">Farmaci · Info</text>
+        <text x="582" y="91" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="#882020">Pharmacy · Info desk</text>
         <rect id="g1" x="34" y="24" width="76" height="28" rx="5" fill="#c8d8f8" stroke="#80a8d8" stroke-width="1.2" style="cursor:pointer"/>
         <text x="72" y="41" text-anchor="middle" font-family="Syne,sans-serif" font-size="9" font-weight="800" fill="#1a3060" style="pointer-events:none">GATE 1</text>
         <rect id="g2" x="130" y="24" width="76" height="28" rx="5" fill="#c8d8f8" stroke="#80a8d8" stroke-width="1.2" style="cursor:pointer"/>
@@ -392,56 +600,73 @@ main{max-width:1000px;margin:0 auto;padding:1.2rem 1rem 5rem}
     </div>
     <div class="gate-detail" id="gateDetail"></div>
   </div>
-  <div class="alert"><span class="ai">🗣️</span><span>Gate-i tuaj tregohet në <strong>boarding pass</strong> dhe <strong>tabelat elektronike</strong>. Kontrolloni 45 min para nisjes — mund të ndryshojë!</span></div>
+  <div class="alert">
+    <span class="ai">🗣️</span>
+    <span data-sq>Gate-i tuaj tregohet në <strong>boarding pass</strong> dhe <strong>tabelat elektronike</strong>. Kontrolloni 45 min para nisjes — mund të ndryshojë!</span>
+    <span data-en>Your gate is shown on your <strong>boarding pass</strong> and <strong>electronic displays</strong>. Check 45 min before departure — it may change!</span>
+  </div>
 </div>
 
-<!-- FLIGHTS -->
+<!-- ══ FLIGHTS ══ -->
 <div class="section" id="tab-flights">
   <div class="fl-header">
     <div class="fl-switcher">
-      <button class="fl-sw active" id="swDep">✈️ Departures</button>
-      <button class="fl-sw" id="swArr">🛬 Arrivals</button>
+      <button class="fl-sw active" id="swDep"><span data-sq>✈️ Departures</span><span data-en>✈️ Departures</span></button>
+      <button class="fl-sw" id="swArr"><span data-sq>🛬 Arrivals</span><span data-en>🛬 Arrivals</span></button>
     </div>
     <div class="fl-meta">
-      <span class="fl-updated" id="flUpd">Duke ngarkuar...</span>
-      <button class="fl-refresh" id="btnRefresh">🔄 Rifresko</button>
+      <span class="fl-updated" id="flUpd"></span>
+      <button class="fl-refresh" id="btnRefresh">🔄 <span data-sq>Rifresko</span><span data-en>Refresh</span></button>
     </div>
   </div>
-  <input type="text" class="fl-search" id="flSearch" placeholder="🔍 Kërko destinacion ose numër fluturimi..."/>
-  <div class="fl-thead"><span>Fluturimi</span><span>Destinacioni</span><span>Ora</span><span>Gate</span><span>Statusi</span></div>
+  <input type="text" class="fl-search" id="flSearch"/>
+  <div class="fl-thead">
+    <span data-sq>Fluturimi</span><span data-en>Flight</span>
+    <span data-sq>Destinacioni</span><span data-en>Destination</span>
+    <span data-sq>Ora</span><span data-en>Time</span>
+    <span>Gate</span>
+    <span data-sq>Statusi</span><span data-en>Status</span>
+  </div>
   <div class="fl-table" id="flTable"></div>
 </div>
 
-<!-- CHECKLIST -->
+<!-- ══ CHECKLIST ══ -->
 <div class="section" id="tab-checklist">
-  <div class="hero"><h2>✅ Lista ime e udhëtimit</h2><p>Klikoni mbi çdo pikë për ta shënuar. Progresi ruhet automatikisht.</p></div>
+  <div class="hero">
+    <h2 data-sq>✅ Lista ime e udhëtimit</h2>
+    <h2 data-en>✅ My Travel Checklist</h2>
+    <p data-sq>Klikoni mbi çdo pikë për ta shënuar. Progresi ruhet automatikisht.</p>
+    <p data-en>Click each item to mark it complete. Progress is saved automatically.</p>
+  </div>
   <div class="prog-bg"><div class="prog-fg" id="progFg" style="width:0%"></div></div>
-  <div class="prog-lbl" id="progLbl">0 / 16 të kryera</div>
+  <div class="prog-lbl" id="progLbl"></div>
   <div class="cl-group">
-    <div class="cl-group-head">📋 Para se të largoheni nga shtëpia</div>
-    <div class="cl-item"><div class="cl-box"></div><span class="cl-lbl">Pasaporta / Karta ID (vlefshme, min. 6 muaj)</span></div>
-    <div class="cl-item"><div class="cl-box"></div><span class="cl-lbl">Boarding pass (shkarkuar / printuar)</span></div>
-    <div class="cl-item"><div class="cl-box"></div><span class="cl-lbl">Online check-in i kryer</span></div>
-    <div class="cl-item"><div class="cl-box"></div><span class="cl-lbl">Rezervimi i hotelit / programi i udhëtimit</span></div>
-    <div class="cl-item"><div class="cl-box"></div><span class="cl-lbl">Valixja e pesuar (brenda limitit)</span></div>
-    <div class="cl-item"><div class="cl-box"></div><span class="cl-lbl">Lëngjet në qese transparente ≤100 ml/copë</span></div>
-    <div class="cl-item"><div class="cl-box"></div><span class="cl-lbl">Charger + adaptor ndërkombëtar</span></div>
-    <div class="cl-item"><div class="cl-box"></div><span class="cl-lbl">Barna me recetë (me dokumentacion)</span></div>
-    <div class="cl-item"><div class="cl-box"></div><span class="cl-lbl">Sigurim udhëtimi</span></div>
+    <div class="cl-group-head" data-sq>📋 Para se të largoheni nga shtëpia</div>
+    <div class="cl-group-head" data-en>📋 Before leaving home</div>
+    <div class="cl-item"><div class="cl-box"></div><span class="cl-lbl" data-sq>Pasaporta / Karta ID (vlefshme, min. 6 muaj)</span><span class="cl-lbl" data-en>Passport / ID Card (valid, min. 6 months)</span></div>
+    <div class="cl-item"><div class="cl-box"></div><span class="cl-lbl" data-sq>Boarding pass (shkarkuar / printuar)</span><span class="cl-lbl" data-en>Boarding pass (downloaded / printed)</span></div>
+    <div class="cl-item"><div class="cl-box"></div><span class="cl-lbl" data-sq>Online check-in i kryer</span><span class="cl-lbl" data-en>Online check-in completed</span></div>
+    <div class="cl-item"><div class="cl-box"></div><span class="cl-lbl" data-sq>Rezervimi i hotelit / programi i udhëtimit</span><span class="cl-lbl" data-en>Hotel booking / travel itinerary</span></div>
+    <div class="cl-item"><div class="cl-box"></div><span class="cl-lbl" data-sq>Valixja e pesuar (brenda limitit)</span><span class="cl-lbl" data-en>Luggage weighed (within limit)</span></div>
+    <div class="cl-item"><div class="cl-box"></div><span class="cl-lbl" data-sq>Lëngjet në qese transparente ≤100 ml/copë</span><span class="cl-lbl" data-en>Liquids in clear bag ≤100 ml/item</span></div>
+    <div class="cl-item"><div class="cl-box"></div><span class="cl-lbl" data-sq>Charger + adaptor ndërkombëtar</span><span class="cl-lbl" data-en>Charger + international adapter</span></div>
+    <div class="cl-item"><div class="cl-box"></div><span class="cl-lbl" data-sq>Barna me recetë (me dokumentacion)</span><span class="cl-lbl" data-en>Prescription medicines (with documentation)</span></div>
+    <div class="cl-item"><div class="cl-box"></div><span class="cl-lbl" data-sq>Sigurim udhëtimi</span><span class="cl-lbl" data-en>Travel insurance</span></div>
   </div>
   <div class="cl-group">
-    <div class="cl-group-head">🏁 Në aeroport</div>
-    <div class="cl-item"><div class="cl-box"></div><span class="cl-lbl">Mbërrita 2+ orë para nisjes</span></div>
-    <div class="cl-item"><div class="cl-box"></div><span class="cl-lbl">Lëshova bagazhin (nëse kam)</span></div>
-    <div class="cl-item"><div class="cl-box"></div><span class="cl-lbl">Kalova kontrollin e pasaportave</span></div>
-    <div class="cl-item"><div class="cl-box"></div><span class="cl-lbl">Laptop jashtë çantës — kalova sigurinë</span></div>
-    <div class="cl-item"><div class="cl-box"></div><span class="cl-lbl">Zbrazura xhepat (monedha, çelësa)</span></div>
-    <div class="cl-item"><div class="cl-box"></div><span class="cl-lbl">Kontrollova gate-in në tabelë</span></div>
-    <div class="cl-item"><div class="cl-box"></div><span class="cl-lbl">Jam tek gate-i 20+ min para boarding</span></div>
+    <div class="cl-group-head" data-sq>🏁 Në aeroport</div>
+    <div class="cl-group-head" data-en>🏁 At the airport</div>
+    <div class="cl-item"><div class="cl-box"></div><span class="cl-lbl" data-sq>Mbërrita 2+ orë para nisjes</span><span class="cl-lbl" data-en>Arrived 2+ hours before departure</span></div>
+    <div class="cl-item"><div class="cl-box"></div><span class="cl-lbl" data-sq>Lëshova bagazhin (nëse kam)</span><span class="cl-lbl" data-en>Dropped off baggage (if any)</span></div>
+    <div class="cl-item"><div class="cl-box"></div><span class="cl-lbl" data-sq>Kalova kontrollin e pasaportave</span><span class="cl-lbl" data-en>Passed passport control</span></div>
+    <div class="cl-item"><div class="cl-box"></div><span class="cl-lbl" data-sq>Laptop jashtë çantës — kalova sigurinë</span><span class="cl-lbl" data-en>Laptop out of bag — passed security</span></div>
+    <div class="cl-item"><div class="cl-box"></div><span class="cl-lbl" data-sq>Zbrazura xhepat (monedha, çelësa)</span><span class="cl-lbl" data-en>Emptied pockets (coins, keys)</span></div>
+    <div class="cl-item"><div class="cl-box"></div><span class="cl-lbl" data-sq>Kontrollova gate-in në tabelë</span><span class="cl-lbl" data-en>Checked gate on display board</span></div>
+    <div class="cl-item"><div class="cl-box"></div><span class="cl-lbl" data-sq>Jam tek gate-i 20+ min para boarding</span><span class="cl-lbl" data-en>At the gate 20+ min before boarding</span></div>
   </div>
   <div class="cl-actions">
-    <button class="cl-btn" id="btnReset">🔄 Fillo nga fillimi</button>
-    <button class="cl-btn primary" id="btnAll">✅ Shëno të gjitha</button>
+    <button class="cl-btn" id="btnReset"><span data-sq>🔄 Fillo nga fillimi</span><span data-en>🔄 Reset all</span></button>
+    <button class="cl-btn primary" id="btnAll"><span data-sq>✅ Shëno të gjitha</span><span data-en>✅ Check all</span></button>
   </div>
 </div>
 
@@ -449,16 +674,18 @@ main{max-width:1000px;margin:0 auto;padding:1.2rem 1rem 5rem}
 
 <!-- BOTTOM NAV -->
 <nav class="bottom-nav">
-  <button class="bnav-item active" data-tab="transport"><span class="bnav-ico">🚗</span><span class="bnav-lbl">Transport</span></button>
+  <button class="bnav-item active" data-tab="transport"><span class="bnav-ico">🚗</span><span class="bnav-lbl" data-sq>Transport</span><span class="bnav-lbl" data-en>Transport</span></button>
   <button class="bnav-item" data-tab="checkin"><span class="bnav-ico">🎫</span><span class="bnav-lbl">Check-in</span></button>
-  <button class="bnav-item" data-tab="baggage"><span class="bnav-ico">🧳</span><span class="bnav-lbl">Bagazhi</span></button>
-  <button class="bnav-item" data-tab="security"><span class="bnav-ico">🔒</span><span class="bnav-lbl">Siguria</span></button>
-  <button class="bnav-item" data-tab="gates"><span class="bnav-ico">🗺️</span><span class="bnav-lbl">Harta</span></button>
-  <button class="bnav-item" data-tab="flights"><span class="bnav-ico">📟</span><span class="bnav-lbl">Fluturime</span></button>
-  <button class="bnav-item" data-tab="checklist"><span class="bnav-ico">✅</span><span class="bnav-lbl">Lista</span></button>
+  <button class="bnav-item" data-tab="baggage"><span class="bnav-ico">🧳</span><span class="bnav-lbl" data-sq>Bagazhi</span><span class="bnav-lbl" data-en>Baggage</span></button>
+  <button class="bnav-item" data-tab="security"><span class="bnav-ico">🔒</span><span class="bnav-lbl" data-sq>Siguria</span><span class="bnav-lbl" data-en>Security</span></button>
+  <button class="bnav-item" data-tab="gates"><span class="bnav-ico">🗺️</span><span class="bnav-lbl" data-sq>Harta</span><span class="bnav-lbl" data-en>Map</span></button>
+  <button class="bnav-item" data-tab="flights"><span class="bnav-ico">📟</span><span class="bnav-lbl" data-sq>Fluturime</span><span class="bnav-lbl" data-en>Flights</span></button>
+  <button class="bnav-item" data-tab="checklist"><span class="bnav-ico">✅</span><span class="bnav-lbl" data-sq>Lista</span><span class="bnav-lbl" data-en>Checklist</span></button>
 </nav>
 
 <script>
+var currentLang = 'sq';
+
 // ── CLOCK ──
 (function tickClock(){
   var n=new Date(),tz={timeZone:'Europe/Tirane'};
@@ -466,6 +693,20 @@ main{max-width:1000px;margin:0 auto;padding:1.2rem 1rem 5rem}
   document.getElementById('clkd').textContent=n.toLocaleDateString('sq-AL',Object.assign({},tz,{weekday:'short',day:'numeric',month:'short'}));
   setTimeout(tickClock,1000);
 })();
+
+// ── LANGUAGE ──
+function setLang(lang){
+  currentLang = lang;
+  document.documentElement.setAttribute('data-lang', lang);
+  document.getElementById('btnSq').classList.toggle('active', lang==='sq');
+  document.getElementById('btnEn').classList.toggle('active', lang==='en');
+  updateFlightPlaceholder();
+  updateProgressLabel();
+  updateFlightUpdLabel();
+}
+document.getElementById('btnSq').addEventListener('click', function(){ setLang('sq'); });
+document.getElementById('btnEn').addEventListener('click', function(){ setLang('en'); });
+setLang('sq');
 
 // ── TABS ──
 function openTab(id){
@@ -497,13 +738,13 @@ document.querySelectorAll('.step').forEach(function(s){
 
 // ── GATES ──
 var GATES={
-  1:{n:'Gate 1',loc:'Sektori i majtë — pozicioni i parë nga hyrja',air:'Wizz Air, Aegean, linja të vogla',walk:'~2 min nga kontrolli'},
-  2:{n:'Gate 2',loc:'Sektori i majtë-qendror',air:'Turkish Airlines, Air Albania',walk:'~3 min'},
-  3:{n:'Gate 3',loc:'Sektori qendror i majtë',air:'Lufthansa, Swiss, Brussels Airlines',walk:'~4 min'},
-  4:{n:'Gate 4',loc:'Qendra e terminalit',air:'Fluturime të ndryshme — shikoni tabelën',walk:'~4–5 min'},
-  5:{n:'Gate 5',loc:'Sektori qendror i djathtë',air:'Ryanair, easyJet',walk:'~5 min'},
-  6:{n:'Gate 6',loc:'Sektori i djathtë',air:'Vueling, ITA Airways, linja sezonale',walk:'~6 min'},
-  7:{n:'Gate 7',loc:'Pozicioni i fundit djathtas',air:'Fluturime charter dhe sezonale',walk:'~7–8 min — nisuni pak herët!'}
+  1:{sq:{n:'Gate 1',loc:'Sektori i majtë — pozicioni i parë nga hyrja',air:'Wizz Air, Aegean, linja të vogla',walk:'~2 min nga kontrolli'},en:{n:'Gate 1',loc:'Left sector — first position from the entrance',air:'Wizz Air, Aegean, small carriers',walk:'~2 min from security'}},
+  2:{sq:{n:'Gate 2',loc:'Sektori i majtë-qendror',air:'Turkish Airlines, Air Albania',walk:'~3 min'},en:{n:'Gate 2',loc:'Left-centre sector',air:'Turkish Airlines, Air Albania',walk:'~3 min'}},
+  3:{sq:{n:'Gate 3',loc:'Sektori qendror i majtë',air:'Lufthansa, Swiss, Brussels Airlines',walk:'~4 min'},en:{n:'Gate 3',loc:'Centre-left sector',air:'Lufthansa, Swiss, Brussels Airlines',walk:'~4 min'}},
+  4:{sq:{n:'Gate 4',loc:'Qendra e terminalit',air:'Fluturime të ndryshme — shikoni tabelën',walk:'~4–5 min'},en:{n:'Gate 4',loc:'Terminal centre',air:'Various flights — check display board',walk:'~4–5 min'}},
+  5:{sq:{n:'Gate 5',loc:'Sektori qendror i djathtë',air:'Ryanair, easyJet',walk:'~5 min'},en:{n:'Gate 5',loc:'Centre-right sector',air:'Ryanair, easyJet',walk:'~5 min'}},
+  6:{sq:{n:'Gate 6',loc:'Sektori i djathtë',air:'Vueling, ITA Airways, linja sezonale',walk:'~6 min'},en:{n:'Gate 6',loc:'Right sector',air:'Vueling, ITA Airways, seasonal routes',walk:'~6 min'}},
+  7:{sq:{n:'Gate 7',loc:'Pozicioni i fundit djathtas',air:'Fluturime charter dhe sezonale',walk:'~7–8 min — nisuni pak herët!'},en:{n:'Gate 7',loc:'Last position on the right',air:'Charter and seasonal flights',walk:'~7–8 min — leave a bit earlier!'}}
 };
 function selectGate(n){
   for(var i=1;i<=7;i++){var r=document.getElementById('g'+i);if(r){r.style.fill='#c8d8f8';r.style.stroke='#80a8d8';}}
@@ -512,9 +753,13 @@ function selectGate(n){
   document.querySelectorAll('.gpill').forEach(function(p){p.classList.remove('active');});
   var ap=document.querySelector('.gpill[data-gate="'+n+'"]');
   if(ap) ap.classList.add('active');
-  var d=GATES[n], box=document.getElementById('gateDetail');
+  var d=GATES[n][currentLang];
+  var box=document.getElementById('gateDetail');
   box.classList.add('show');
-  box.innerHTML='<strong style="font-family:Syne,sans-serif;color:var(--accent2)">✈ '+d.n+'</strong><br>📍 <b>Vendndodhja:</b> '+d.loc+'<br>🏢 <b>Linjat ajrore:</b> '+d.air+'<br>🚶 <b>Kohë ecje:</b> '+d.walk;
+  box.innerHTML='<strong style="font-family:Syne,sans-serif;color:var(--accent2)">✈ '+d.n+'</strong><br>'
+    +'📍 <b>'+(currentLang==='sq'?'Vendndodhja':'Location')+':</b> '+d.loc+'<br>'
+    +'🏢 <b>'+(currentLang==='sq'?'Linjat ajrore':'Airlines')+':</b> '+d.air+'<br>'
+    +'🚶 <b>'+(currentLang==='sq'?'Kohë ecje':'Walking time')+':</b> '+d.walk;
 }
 for(var gi=1;gi<=7;gi++){
   (function(n){var r=document.getElementById('g'+n);if(r) r.addEventListener('click',function(){selectGate(n);});})(gi);
@@ -530,58 +775,71 @@ var FL_DEP=[
   {no:'TK1049',dest:'Istanbul',fl:'🇹🇷',time:'07:30',gate:'G2',st:'ok'},
   {no:'LH1407',dest:'Frankfurt',fl:'🇩🇪',time:'08:00',gate:'G3',st:'bo'},
   {no:'W45105',dest:'Berlin Brandenburg',fl:'🇩🇪',time:'08:45',gate:'G5',st:'dl'},
-  {no:'A3973',dest:'Athinë',fl:'🇬🇷',time:'09:20',gate:'G2',st:'ok'},
+  {no:'A3973',dest:'Athinë / Athens',fl:'🇬🇷',time:'09:20',gate:'G2',st:'ok'},
   {no:'W45057',dest:'Torino',fl:'🇮🇹',time:'10:00',gate:'G1',st:'ok'},
-  {no:'FR8461',dest:'Londër Stansted',fl:'🇬🇧',time:'10:30',gate:'G6',st:'sc'},
+  {no:'FR8461',dest:'Londër Stansted / London',fl:'🇬🇧',time:'10:30',gate:'G6',st:'sc'},
   {no:'W45153',dest:'Barcelona',fl:'🇪🇸',time:'11:15',gate:'G4',st:'sc'},
   {no:'IB3761',dest:'Madrid',fl:'🇪🇸',time:'12:00',gate:'G5',st:'sc'},
   {no:'EK354',dest:'Dubai',fl:'🇦🇪',time:'13:45',gate:'G7',st:'sc'},
-  {no:'OS755',dest:'Vjenë',fl:'🇦🇹',time:'14:20',gate:'G3',st:'sc'},
-  {no:'W45201',dest:'Varshavë',fl:'🇵🇱',time:'15:00',gate:'G4',st:'sc'},
-  {no:'W45411',dest:'Londër Luton',fl:'🇬🇧',time:'18:15',gate:'G7',st:'sc'}
+  {no:'OS755',dest:'Vjenë / Vienna',fl:'🇦🇹',time:'14:20',gate:'G3',st:'sc'},
+  {no:'W45201',dest:'Varshavë / Warsaw',fl:'🇵🇱',time:'15:00',gate:'G4',st:'sc'},
+  {no:'W45411',dest:'Londër Luton / London',fl:'🇬🇧',time:'18:15',gate:'G7',st:'sc'}
 ];
 var FL_ARR=[
   {no:'TK1048',dest:'Istanbul',fl:'🇹🇷',time:'06:05',gate:'G2',st:'la'},
   {no:'LH1406',dest:'Frankfurt',fl:'🇩🇪',time:'06:50',gate:'G3',st:'la'},
   {no:'W45026',dest:'Milano Malpensa',fl:'🇮🇹',time:'07:30',gate:'G1',st:'ok'},
-  {no:'A3972',dest:'Athinë',fl:'🇬🇷',time:'08:10',gate:'G2',st:'ok'},
+  {no:'A3972',dest:'Athinë / Athens',fl:'🇬🇷',time:'08:10',gate:'G2',st:'ok'},
   {no:'W45104',dest:'Berlin Brandenburg',fl:'🇩🇪',time:'09:00',gate:'G5',st:'dl'},
-  {no:'FR8460',dest:'Londër Stansted',fl:'🇬🇧',time:'09:45',gate:'G6',st:'ok'},
+  {no:'FR8460',dest:'Londër Stansted / London',fl:'🇬🇧',time:'09:45',gate:'G6',st:'ok'},
   {no:'W45152',dest:'Barcelona',fl:'🇪🇸',time:'10:30',gate:'G4',st:'ok'},
   {no:'EK353',dest:'Dubai',fl:'🇦🇪',time:'11:20',gate:'G7',st:'sc'},
-  {no:'OS754',dest:'Vjenë',fl:'🇦🇹',time:'13:00',gate:'G3',st:'sc'},
+  {no:'OS754',dest:'Vjenë / Vienna',fl:'🇦🇹',time:'13:00',gate:'G3',st:'sc'},
   {no:'W45056',dest:'Torino',fl:'🇮🇹',time:'08:40',gate:'G1',st:'ok'}
 ];
-var ST_L={ok:'✓ Në kohë',dl:'⚠ Vonesë',bo:'🔔 Boarding',la:'✈ Udhëtoi',sc:'○ Planifikuar'};
+var ST_SQ={ok:'✓ Në kohë',dl:'⚠ Vonesë',bo:'🔔 Boarding',la:'✈ Udhëtoi',sc:'○ Planifikuar'};
+var ST_EN={ok:'✓ On time',dl:'⚠ Delayed',bo:'🔔 Boarding',la:'✈ Landed',sc:'○ Scheduled'};
 var ST_C={ok:'s-ok',dl:'s-dl',bo:'s-bo',la:'s-la',sc:'s-sc'};
+
+function getSTLabel(st){ return currentLang==='sq'? ST_SQ[st] : ST_EN[st]; }
+
+function updateFlightPlaceholder(){
+  var inp=document.getElementById('flSearch');
+  if(inp) inp.placeholder=currentLang==='sq'?'🔍 Kërko destinacion ose numër fluturimi...':'🔍 Search destination or flight number...';
+}
+function updateFlightUpdLabel(){
+  var el=document.getElementById('flUpd');
+  if(!el||!el.textContent) return;
+  // just update the prefix
+}
 
 function renderFlights(){
   var q=(document.getElementById('flSearch').value||'').toLowerCase();
   var src=flType==='dep'?FL_DEP:FL_ARR;
   var list=q?src.filter(function(f){return f.dest.toLowerCase().indexOf(q)>=0||f.no.toLowerCase().indexOf(q)>=0;}):src;
-  var dir=flType==='dep'?'Destinacion':'Origjinë';
+  var dir=flType==='dep'?(currentLang==='sq'?'Destinacion':'Destination'):(currentLang==='sq'?'Origjinë':'Origin');
   var box=document.getElementById('flTable');
-  if(!list.length){box.innerHTML='<div class="empty">Nuk u gjetën fluturime.</div>';return;}
+  if(!list.length){box.innerHTML='<div class="empty">'+(currentLang==='sq'?'Nuk u gjetën fluturime.':'No flights found.')+'</div>';return;}
   box.innerHTML=list.map(function(f){
+    var badge='<span class="fl-badge '+ST_C[f.st]+'">'+getSTLabel(f.st)+'</span>';
     return '<div class="fl-row">'
       +'<div class="fl-no">'+f.no+'</div>'
       +'<div class="fl-dest">'+f.fl+' '+f.dest+'<small>'+dir+'</small></div>'
       +'<div class="fl-time">'+f.time+'</div>'
       +'<div class="fl-gate">'+f.gate+'</div>'
-      +'<div><span class="fl-badge '+ST_C[f.st]+'">'+ST_L[f.st]+'</span></div>'
+      +'<div>'+badge+'</div>'
       +'</div>'
       +'<div class="fl-card">'
       +'<div class="fl-card-no">'+f.no+'</div>'
-      +'<div class="fl-card-info">'
-      +'<div class="fl-card-dest">'+f.fl+' '+f.dest+'</div>'
-      +'<div class="fl-card-sub">'+dir+' · '+f.gate+'</div>'
-      +'<span class="fl-badge '+ST_C[f.st]+'">'+ST_L[f.st]+'</span>'
-      +'</div>'
+      +'<div class="fl-card-info"><div class="fl-card-dest">'+f.fl+' '+f.dest+'</div>'
+      +'<div class="fl-card-sub">'+dir+' · '+f.gate+'</div>'+badge+'</div>'
       +'<div class="fl-card-right"><span class="fl-card-time">'+f.time+'</span></div>'
       +'</div>';
   }).join('');
+  var now=new Date();
+  var t=now.toLocaleTimeString('sq-AL',{timeZone:'Europe/Tirane',hour:'2-digit',minute:'2-digit'});
   var upd=document.getElementById('flUpd');
-  if(upd) upd.textContent='Rifreskuar: '+new Date().toLocaleTimeString('sq-AL',{timeZone:'Europe/Tirane',hour:'2-digit',minute:'2-digit'});
+  if(upd) upd.textContent=(currentLang==='sq'?'Rifreskuar: ':'Updated: ')+t;
 }
 document.getElementById('swDep').addEventListener('click',function(){
   flType='dep';
@@ -599,18 +857,21 @@ document.getElementById('swArr').addEventListener('click',function(){
 });
 document.getElementById('flSearch').addEventListener('input',renderFlights);
 document.getElementById('btnRefresh').addEventListener('click',function(){
-  document.getElementById('flTable').innerHTML='<div class="empty">⏳ Duke rifreskuar...</div>';
+  document.getElementById('flTable').innerHTML='<div class="empty">⏳</div>';
   setTimeout(renderFlights,600);
 });
-renderFlights();
 
 // ── CHECKLIST ──
-function updateProg(){
+function updateProgressLabel(){
   var all=document.querySelectorAll('.cl-item');
   var done=document.querySelectorAll('.cl-item.checked').length;
   var pct=Math.round(done/all.length*100);
   document.getElementById('progFg').style.width=pct+'%';
-  document.getElementById('progLbl').textContent=done+' / '+all.length+' të kryera';
+  document.getElementById('progLbl').textContent=done+' / '+all.length+(currentLang==='sq'?' të kryera':' completed');
+}
+function updateProg(){
+  updateProgressLabel();
+  var all=document.querySelectorAll('.cl-item');
   try{localStorage.setItem('tia_cl',JSON.stringify(Array.prototype.slice.call(all).map(function(i){return i.classList.contains('checked');})));}catch(e){}
 }
 document.querySelectorAll('.cl-item').forEach(function(item){
@@ -633,9 +894,13 @@ document.getElementById('btnAll').addEventListener('click',function(){
     var saved=JSON.parse(localStorage.getItem('tia_cl')||'[]');
     var items=document.querySelectorAll('.cl-item');
     saved.forEach(function(v,i){if(v&&items[i]){items[i].classList.add('checked');items[i].querySelector('.cl-box').textContent='✓';}});
-    updateProg();
   }catch(e){}
+  updateProgressLabel();
 })();
+
+// init
+updateFlightPlaceholder();
+renderFlights();
 </script>
 </body>
 </html>
