@@ -139,42 +139,40 @@ main{max-width:1000px;margin:0 auto;padding:1.2rem 1rem 5rem}
 .gate-detail.show{display:block}
 .gmap-iframe{display:block;width:100%}
 
-/* FLIGHTS */
-.fl-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:8px}
-.fl-switcher{display:flex;gap:5px}
-.fl-sw{padding:6px 13px;border-radius:8px;border:1.5px solid var(--border);background:var(--card);color:var(--muted);font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:600;cursor:pointer;transition:all .2s}
-.fl-sw.active{background:var(--accent);color:#fff;border-color:var(--accent)}
-.fl-meta{display:flex;align-items:center;gap:7px}
-.fl-updated{font-size:.68rem;color:var(--muted)}
-.fl-refresh{display:flex;align-items:center;gap:4px;padding:5px 10px;background:var(--teal);border:none;border-radius:7px;color:#fff;font-size:.71rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif}
-.fl-search{width:100%;padding:8px 12px;margin-bottom:8px;background:var(--card);border:1px solid var(--border);border-radius:9px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:.81rem;outline:none}
-.fl-search:focus{border-color:var(--accent)}
-.fl-thead{display:grid;grid-template-columns:72px 1fr 80px 60px 82px;padding:7px 13px;background:var(--card2);font-size:.67rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);border:1px solid var(--border);border-radius:10px 10px 0 0;border-bottom:none}
-.fl-table{background:var(--card);border:1px solid var(--border);border-radius:0 0 10px 10px;overflow:hidden}
-.fl-row{display:grid;grid-template-columns:72px 1fr 80px 60px 82px;padding:9px 13px;border-bottom:1px solid var(--border);align-items:center;transition:background .15s}
-.fl-row:last-child{border-bottom:none}
-.fl-row:hover{background:var(--card2)}
-.fl-no{font-family:'Syne',sans-serif;font-size:.79rem;font-weight:800;color:var(--text)}
-.fl-dest{font-size:.79rem;color:var(--text)}
-.fl-dest small{display:block;font-size:.67rem;color:var(--muted)}
-.fl-time{font-family:'Syne',sans-serif;font-size:.83rem;font-weight:700;color:var(--accent2)}
-.fl-gate{font-size:.75rem;color:var(--teal);font-weight:600}
-.fl-badge{padding:2px 7px;border-radius:20px;font-size:.64rem;font-weight:700;white-space:nowrap}
-.s-ok{background:rgba(14,158,85,.12);color:var(--green)}
-.s-dl{background:rgba(204,34,34,.12);color:var(--red)}
-.s-bo{background:rgba(10,158,144,.12);color:var(--teal)}
-.s-la{background:rgba(107,122,153,.1);color:var(--muted)}
-.s-sc{background:rgba(200,122,0,.1);color:var(--accent)}
-.fl-card{background:var(--card);border-bottom:1px solid var(--border);padding:10px 13px;display:flex;align-items:center;gap:10px}
-.fl-card:last-child{border-bottom:none}
-.fl-card-no{font-family:'Syne',sans-serif;font-size:.77rem;font-weight:800;width:56px;flex-shrink:0}
-.fl-card-info{flex:1;min-width:0}
-.fl-card-dest{font-size:.79rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.fl-card-sub{font-size:.66rem;color:var(--muted);margin-top:1px}
-.fl-card-right{text-align:right;flex-shrink:0}
-.fl-card-time{font-family:'Syne',sans-serif;font-size:.88rem;font-weight:700;color:var(--accent2);display:block}
-@media(max-width:570px){.fl-thead,.fl-row{display:none}.fl-card{display:flex}}
-@media(min-width:571px){.fl-card{display:none}}
+/* FLIGHTS – LIVE BUTTONS */
+.fl-live-btn{
+  display:flex;align-items:center;gap:14px;
+  background:linear-gradient(135deg,#1a2e50,#1e3a6a);
+  border-radius:var(--radius);padding:1.2rem 1.3rem;
+  text-decoration:none;color:#fff;
+  transition:all .22s;border:1.5px solid transparent;
+  position:relative;overflow:hidden;
+}
+.fl-live-btn::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(200,122,0,.15),transparent);
+  opacity:0;transition:opacity .2s;
+}
+.fl-live-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(26,46,80,.2);border-color:var(--accent)}
+.fl-live-btn:hover::before{opacity:1}
+.fl-live-btn-arr{background:linear-gradient(135deg,#0a4a44,#0a6e64)}
+.fl-live-btn-arr:hover{border-color:var(--teal)}
+.fl-live-ico{font-size:2.2rem;flex-shrink:0;line-height:1}
+.fl-live-body{flex:1;min-width:0}
+.fl-live-title{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:800;color:#fff;line-height:1.1;margin-bottom:4px}
+.fl-live-sub{font-size:.74rem;color:rgba(255,255,255,.65);line-height:1.4}
+.fl-live-arrow{font-size:1.3rem;color:rgba(255,255,255,.5);flex-shrink:0;transition:transform .2s}
+.fl-live-btn:hover .fl-live-arrow{transform:translate(2px,-2px);color:#fff}
+
+/* ALTERNATIVE SOURCE BUTTONS */
+.fl-alt-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:7px 14px;background:var(--card);
+  border:1.5px solid var(--border);border-radius:20px;
+  color:var(--muted);font-size:.76rem;font-weight:600;
+  text-decoration:none;transition:all .2s;
+}
+.fl-alt-btn:hover{background:var(--card2);border-color:var(--accent);color:var(--accent)}
 
 /* CHECKLIST */
 .prog-bg{height:5px;background:var(--card2);border-radius:4px;overflow:hidden;margin-bottom:4px}
@@ -210,10 +208,122 @@ main{max-width:1000px;margin:0 auto;padding:1.2rem 1rem 5rem}
 .bnav-lbl{font-size:.54rem;font-weight:500;color:var(--muted);transition:color .15s;white-space:nowrap}
 .bnav-item.active .bnav-lbl{color:var(--accent);font-weight:700}
 
+/* MORE MENU ITEMS */
+.more-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:10px 6px;border:none;background:transparent;cursor:pointer;border-radius:12px;transition:background .15s;width:100%}
+.more-item:hover,.more-item:active{background:var(--card2)}
+.more-ico{font-size:1.5rem;line-height:1}
+.more-lbl{font-size:.62rem;font-weight:600;color:var(--muted);white-space:nowrap}
+.more-item.active-more .more-lbl{color:var(--accent);font-weight:800}
+.more-item.active-more .more-ico{transform:scale(1.1)}
+
 /* LANGUAGE HIDE/SHOW */
 [data-sq],[data-en]{transition:opacity .15s}
 html[data-lang="en"] [data-sq]{display:none}
 html[data-lang="sq"] [data-en]{display:none}
+
+/* ── PLANNER ── */
+.planner-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.2rem;margin-bottom:1rem}
+.planner-row{margin-bottom:1rem}
+.planner-row:last-child{margin-bottom:0}
+.planner-label{display:block;font-family:'Syne',sans-serif;font-size:.72rem;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.planner-input{width:100%;padding:8px 12px;border:1.5px solid var(--border);border-radius:9px;font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);background:var(--card2);outline:none;transition:border-color .2s}
+.planner-input:focus{border-color:var(--accent)}
+.planner-tabs{display:flex;gap:6px}
+.ptab{flex:1;padding:8px 6px;border:1.5px solid var(--border);border-radius:9px;background:var(--card2);color:var(--muted);font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:600;cursor:pointer;transition:all .2s;text-align:center}
+.ptab.active{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border-color:transparent}
+.planner-result{background:linear-gradient(135deg,#1a2e50,#1e3a6a);border-radius:var(--radius);padding:1.3rem;color:#fff;margin-bottom:1rem}
+.planner-result-main{text-align:center;margin-bottom:1rem}
+.pr-label{font-size:.75rem;color:rgba(255,255,255,.6);margin-bottom:4px}
+.pr-time{font-family:'Syne',sans-serif;font-size:2.4rem;font-weight:800;color:#f4c842;line-height:1;margin-bottom:4px}
+.pr-sub{font-size:.75rem;color:rgba(255,255,255,.55)}
+.pr-breakdown{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+@media(max-width:480px){.pr-breakdown{grid-template-columns:1fr}}
+.prb-item{background:rgba(255,255,255,.08);border-radius:8px;padding:8px 10px;display:flex;justify-content:space-between;align-items:center}
+.prb-label{font-size:.72rem;color:rgba(255,255,255,.65)}
+.prb-val{font-family:'Syne',sans-serif;font-size:.78rem;font-weight:700;color:#fff}
+
+/* ── WEATHER ── */
+.wx-now{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:1rem}
+.wx-loading{display:flex;align-items:center;justify-content:center;gap:8px;padding:2rem;color:var(--muted);font-size:.82rem}
+.wx-spin{animation:spin 1.5s linear infinite;font-size:1.2rem;display:inline-block}
+@keyframes spin{to{transform:rotate(360deg)}}
+.wx-main{padding:1.2rem}
+.wx-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:10px}
+.wx-temp-big{font-family:'Syne',sans-serif;font-size:3rem;font-weight:800;color:var(--text);line-height:1}
+.wx-temp-big span{font-size:1.1rem;font-weight:400;color:var(--muted)}
+.wx-icon{font-size:3.5rem;line-height:1}
+.wx-desc{font-family:'Syne',sans-serif;font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:2px;text-transform:capitalize}
+.wx-loc{font-size:.72rem;color:var(--muted)}
+.wx-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:8px;border-top:1px solid var(--border);padding-top:1rem}
+.wx-stat{background:var(--card2);border-radius:8px;padding:8px;text-align:center}
+.wx-stat-ico{font-size:1.1rem;margin-bottom:2px}
+.wx-stat-val{font-family:'Syne',sans-serif;font-size:.82rem;font-weight:700;color:var(--text);display:block}
+.wx-stat-lbl{font-size:.62rem;color:var(--muted)}
+.wx-forecast{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:1rem}
+@media(max-width:480px){.wx-forecast{grid-template-columns:repeat(5,1fr);gap:5px}}
+.wx-day{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:8px 6px;text-align:center}
+.wx-day-name{font-family:'Syne',sans-serif;font-size:.65rem;font-weight:800;color:var(--muted);text-transform:uppercase;margin-bottom:4px}
+.wx-day-ico{font-size:1.4rem;margin-bottom:4px;display:block}
+.wx-day-hi{font-family:'Syne',sans-serif;font-size:.82rem;font-weight:800;color:var(--text)}
+.wx-day-lo{font-size:.72rem;color:var(--muted)}
+.wx-day-rain{font-size:.62rem;color:var(--teal);margin-top:2px;display:block}
+.wx-alert{background:rgba(204,34,34,.08);border:1px solid rgba(204,34,34,.2);border-radius:8px;padding:8px 10px;margin-bottom:8px;font-size:.75rem;color:var(--red)}
+
+/* ── HOTELS ── */
+.hotels-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:10px;margin-bottom:1rem}
+@media(max-width:560px){.hotels-grid{grid-template-columns:1fr}}
+.hotel-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;display:flex;flex-direction:column;gap:6px;transition:box-shadow .2s}
+.hotel-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.08)}
+.hotel-top{display:flex;justify-content:space-between;align-items:center}
+.hotel-badge{padding:2px 9px;border-radius:20px;font-size:.68rem;font-weight:700}
+.badge-best{background:rgba(14,158,85,.12);color:var(--green)}
+.badge-good{background:rgba(10,158,144,.12);color:var(--teal)}
+.badge-ok{background:rgba(200,122,0,.12);color:var(--accent)}
+.hotel-dist{font-size:.68rem;color:var(--muted);background:var(--card2);padding:2px 8px;border-radius:20px}
+.hotel-name{font-family:'Syne',sans-serif;font-size:.92rem;font-weight:800;color:var(--text)}
+.hotel-addr{font-size:.72rem;color:var(--muted)}
+.hotel-desc{font-size:.76rem;color:var(--muted);line-height:1.55}
+.hotel-features{display:flex;flex-wrap:wrap;gap:5px;margin-top:2px}
+.hf{background:var(--card2);border:1px solid var(--border);border-radius:20px;padding:2px 8px;font-size:.67rem;color:var(--muted)}
+.hotel-actions{display:flex;gap:6px;margin-top:4px}
+.hotel-btn{flex:1;padding:7px;border-radius:8px;text-decoration:none;font-family:'DM Sans',sans-serif;font-size:.73rem;font-weight:700;text-align:center;transition:all .2s}
+.hotel-btn-call{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff}
+.hotel-btn-map{background:var(--card2);border:1px solid var(--border);color:var(--muted)}
+.hotel-btn-map:hover{border-color:var(--teal);color:var(--teal)}
+
+/* ── PRM ── */
+.prm-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;margin-bottom:8px;display:flex;gap:12px;align-items:flex-start}
+.prm-ico{font-size:1.6rem;flex-shrink:0}
+.prm-body h3{font-family:'Syne',sans-serif;font-size:.86rem;font-weight:700;margin-bottom:3px}
+.prm-body p{font-size:.77rem;color:var(--muted);line-height:1.55}
+.prm-body a{color:var(--accent);text-decoration:none;font-weight:600}
+
+/* ── FAQ ── */
+.faq-item{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:6px;cursor:pointer;transition:border-color .2s;overflow:hidden}
+.faq-item.open{border-color:var(--accent)}
+.faq-q{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;gap:10px}
+.faq-q-text{font-family:'Syne',sans-serif;font-size:.84rem;font-weight:700;flex:1;line-height:1.4}
+.faq-chevron{font-size:.8rem;color:var(--muted);transition:transform .25s;flex-shrink:0}
+.faq-item.open .faq-chevron{transform:rotate(180deg);color:var(--accent)}
+.faq-a{display:none;padding:0 14px 12px;font-size:.78rem;color:var(--muted);line-height:1.65;border-top:1px solid var(--border)}
+.faq-item.open .faq-a{display:block}
+
+/* ── CONTACTS ── */
+.contact-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:10px}
+.contact-row{display:flex;align-items:center;gap:12px;padding:11px 14px;border-bottom:1px solid var(--border);transition:background .15s}
+.contact-row:last-child{border-bottom:none}
+.contact-row:hover{background:var(--card2)}
+.contact-ico{font-size:1.25rem;flex-shrink:0;width:30px;text-align:center}
+.contact-body{flex:1;min-width:0}
+.contact-name{font-family:'Syne',sans-serif;font-size:.82rem;font-weight:700}
+.contact-detail{font-size:.71rem;color:var(--muted);margin-top:1px}
+.contact-action{flex-shrink:0}
+.cbtn{display:inline-block;padding:4px 11px;border-radius:20px;font-size:.71rem;font-weight:600;text-decoration:none;border:1.5px solid var(--border);color:var(--muted);transition:all .2s;white-space:nowrap}
+.cbtn:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.cbtn.green{border-color:var(--green);color:var(--green)}
+.cbtn.green:hover{background:var(--green);color:#fff}
+.cbtn.blue{border-color:var(--teal);color:var(--teal)}
+.cbtn.blue:hover{background:var(--teal);color:#fff}
 
 ::-webkit-scrollbar{width:3px;height:3px}
 ::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
@@ -249,6 +359,12 @@ html[data-lang="sq"] [data-en]{display:none}
     <button class="tab-btn" data-tab="security"><span data-sq>🔒 Siguria</span><span data-en>🔒 Security</span></button>
     <button class="tab-btn" data-tab="gates"><span data-sq>🗺️ Harta</span><span data-en>🗺️ Map</span></button>
     <button class="tab-btn" data-tab="flights"><span data-sq>📟 Fluturimet</span><span data-en>📟 Flights</span></button>
+    <button class="tab-btn" data-tab="planner"><span data-sq>⏰ Kalkulator</span><span data-en>⏰ Planner</span></button>
+    <button class="tab-btn" data-tab="weather"><span data-sq>🌤️ Moti</span><span data-en>🌤️ Weather</span></button>
+    <button class="tab-btn" data-tab="hotels"><span data-sq>🏨 Hotele</span><span data-en>🏨 Hotels</span></button>
+    <button class="tab-btn" data-tab="prm"><span data-sq>♿ PRM</span><span data-en>♿ PRM</span></button>
+    <button class="tab-btn" data-tab="faq"><span data-sq>❓ FAQ</span><span data-en>❓ FAQ</span></button>
+    <button class="tab-btn" data-tab="contacts"><span data-sq>📞 Kontakte</span><span data-en>📞 Contacts</span></button>
     <button class="tab-btn" data-tab="checklist"><span data-sq>✅ Lista</span><span data-en>✅ Checklist</span></button>
   </nav>
 </header>
@@ -609,25 +725,440 @@ html[data-lang="sq"] [data-en]{display:none}
 
 <!-- ══ FLIGHTS ══ -->
 <div class="section" id="tab-flights">
-  <div class="fl-header">
-    <div class="fl-switcher">
-      <button class="fl-sw active" id="swDep"><span data-sq>✈️ Departures</span><span data-en>✈️ Departures</span></button>
-      <button class="fl-sw" id="swArr"><span data-sq>🛬 Arrivals</span><span data-en>🛬 Arrivals</span></button>
+
+  <div class="hero">
+    <h2 data-sq>📟 Fluturimet Live – TIA</h2>
+    <h2 data-en>📟 Live Flights – TIA</h2>
+    <p data-sq>Klikoni butonat më poshtë për të parë nisjet dhe mbërritjet në kohë reale direkt nga sistemi zyrtar i Aeroportit Ndërkombëtar të Tiranës.</p>
+    <p data-en>Click the buttons below to view real-time departures and arrivals directly from Tirana International Airport's official system.</p>
+  </div>
+
+  <!-- TWO BIG BUTTONS -->
+  <div class="grid-auto" style="margin-bottom:1rem">
+
+    <!-- DEPARTURES -->
+    <a href="https://www.tirana-airport.com/sq/flights/departures" target="_blank" rel="noopener" class="fl-live-btn" id="btnDep">
+      <div class="fl-live-ico">✈️</div>
+      <div class="fl-live-body">
+        <div class="fl-live-title" data-sq>Nisjet</div>
+        <div class="fl-live-title" data-en>Departures</div>
+        <div class="fl-live-sub" data-sq>Shiko nisjet e sotme në kohë reale</div>
+        <div class="fl-live-sub" data-en>View today's departures in real time</div>
+      </div>
+      <div class="fl-live-arrow">↗</div>
+    </a>
+
+    <!-- ARRIVALS -->
+    <a href="https://www.tirana-airport.com/sq/flights/arrivals" target="_blank" rel="noopener" class="fl-live-btn fl-live-btn-arr" id="btnArr">
+      <div class="fl-live-ico">🛬</div>
+      <div class="fl-live-body">
+        <div class="fl-live-title" data-sq>Mbërritjet</div>
+        <div class="fl-live-title" data-en>Arrivals</div>
+        <div class="fl-live-sub" data-sq>Shiko mbërritjet e sotme në kohë reale</div>
+        <div class="fl-live-sub" data-en>View today's arrivals in real time</div>
+      </div>
+      <div class="fl-live-arrow">↗</div>
+    </a>
+
+  </div>
+
+  <!-- INFO NOTE -->
+  <div class="alert">
+    <span class="ai">ℹ️</span>
+    <span data-sq>Të dhënat janë <strong>live</strong> dhe jepen nga sistemi zyrtar i TIA. Informacioni përfshin: orën e nisjes/mbërritjes, numrin e fluturimit, destinacionin/origjinën, linjën ajrore dhe statusin aktual.</span>
+    <span data-en>Data is <strong>live</strong> and provided by TIA's official system. Information includes: departure/arrival time, flight number, destination/origin, airline and current status.</span>
+  </div>
+
+  <!-- ALSO SEE -->
+  <div class="sec-lbl" data-sq>Burime alternative</div>
+  <div class="sec-lbl" data-en>Alternative sources</div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap">
+    <a href="https://www.flightradar24.com/data/airports/tia" target="_blank" rel="noopener" class="fl-alt-btn">
+      <span>📡</span>
+      <span>FlightRadar24</span>
+    </a>
+    <a href="https://www.flightaware.com/live/airport/LATI" target="_blank" rel="noopener" class="fl-alt-btn">
+      <span>🛩️</span>
+      <span>FlightAware</span>
+    </a>
+    <a href="https://www.flightstats.com/v2/flight-tracker/departures/TIA" target="_blank" rel="noopener" class="fl-alt-btn">
+      <span>📊</span>
+      <span>FlightStats</span>
+    </a>
+    <a href="https://www.airportia.com/albania/tirana-international-mother-teresa-airport/" target="_blank" rel="noopener" class="fl-alt-btn">
+      <span>🌐</span>
+      <span>Airportia</span>
+    </a>
+  </div>
+
+</div>
+
+<!-- ══ PLANNER ══ -->
+<div class="section" id="tab-planner">
+  <div class="hero">
+    <h2 data-sq>⏰ Kalkulator i Kohës së Nisjes</h2>
+    <h2 data-en>⏰ Departure Time Calculator</h2>
+    <p data-sq>Fut orën e fluturimit dhe llogarit saktësisht kur duhet të nisesh nga shtëpia.</p>
+    <p data-en>Enter your flight time and calculate exactly when you need to leave home.</p>
+  </div>
+  <div class="planner-card">
+    <div class="planner-row">
+      <span class="planner-label" data-sq>Ora e fluturimit</span>
+      <span class="planner-label" data-en>Flight departure time</span>
+      <input type="time" class="planner-input" id="flightTime" value="10:00"/>
     </div>
-    <div class="fl-meta">
-      <span class="fl-updated" id="flUpd"></span>
-      <button class="fl-refresh" id="btnRefresh">🔄 <span data-sq>Rifresko</span><span data-en>Refresh</span></button>
+    <div class="planner-row">
+      <span class="planner-label" data-sq>Koha nga shtëpia deri te nisja (min): <strong id="distVal">20 min</strong></span>
+      <span class="planner-label" data-en>Time from home to transport (min): <strong id="distVal2">20 min</strong></span>
+      <input type="range" id="distSlider" min="5" max="90" value="20" step="5" style="margin-top:6px"/>
+    </div>
+    <div class="planner-row">
+      <span class="planner-label" data-sq>Mënyra e transportit</span>
+      <span class="planner-label" data-en>Transport method</span>
+      <div class="planner-tabs">
+        <button class="ptab active" data-travel="bus"><span data-sq>🚌 Autobus</span><span data-en>🚌 Bus</span></button>
+        <button class="ptab" data-travel="taxi"><span data-sq>🚖 Taksi</span><span data-en>🚖 Taxi</span></button>
+        <button class="ptab" data-travel="car"><span data-sq>🚗 Makinë</span><span data-en>🚗 Car</span></button>
+      </div>
     </div>
   </div>
-  <input type="text" class="fl-search" id="flSearch"/>
-  <div class="fl-thead">
-    <span data-sq>Fluturimi</span><span data-en>Flight</span>
-    <span data-sq>Destinacioni</span><span data-en>Destination</span>
-    <span data-sq>Ora</span><span data-en>Time</span>
-    <span>Gate</span>
-    <span data-sq>Statusi</span><span data-en>Status</span>
+  <div class="planner-result">
+    <div class="planner-result-main">
+      <div class="pr-label" data-sq>Nishu nga shtëpia jo më vonë se:</div>
+      <div class="pr-label" data-en>Leave home no later than:</div>
+      <div class="pr-time" id="leaveTime">--:--</div>
+      <div class="pr-sub" id="leaveNote"></div>
+    </div>
+    <div class="pr-breakdown" id="prBreakdown"></div>
   </div>
-  <div class="fl-table" id="flTable"></div>
+  <div class="alert">
+    <span class="ai">💡</span>
+    <span data-sq>Kalkulatori merr parasysh: kohën e transportit deri në aeroport, 2 orë buffer standard në aeroport, dhe kohën e pritjes për autobusin.</span>
+    <span data-en>The calculator accounts for: travel time to the airport, 2-hour standard airport buffer, and bus waiting time where applicable.</span>
+  </div>
+</div>
+
+<!-- ══ WEATHER ══ -->
+<div class="section" id="tab-weather">
+  <div class="hero">
+    <h2 data-sq>🌤️ Moti në Aeroport – Rinas</h2>
+    <h2 data-en>🌤️ Airport Weather – Rinas</h2>
+    <p data-sq>Kushtet aktuale atmosferike dhe parashikimi 5-ditor për Aeroportin Ndërkombëtar të Tiranës (TIA).</p>
+    <p data-en>Current weather conditions and 5-day forecast for Tirana International Airport (TIA).</p>
+  </div>
+  <div class="wx-now" id="wxNow">
+    <div class="wx-loading"><span class="wx-spin">🔄</span><span data-sq>Duke ngarkuar motin...</span><span data-en>Loading weather...</span></div>
+  </div>
+  <div class="sec-lbl" data-sq>Parashikimi 5-ditor</div>
+  <div class="sec-lbl" data-en>5-day forecast</div>
+  <div class="wx-forecast" id="wxForecast"></div>
+  <div class="alert">
+    <span class="ai">ℹ️</span>
+    <span data-sq>Të dhënat e motit jepen nga <strong>Open-Meteo</strong> (falas, pa API key). Koordinatat: 41.4149°N 19.7132°E — Rinas, TIA.</span>
+    <span data-en>Weather data provided by <strong>Open-Meteo</strong> (free, no API key). Coordinates: 41.4149°N 19.7132°E — Rinas, TIA.</span>
+  </div>
+</div>
+
+<!-- ══ HOTELS ══ -->
+<div class="section" id="tab-hotels">
+  <div class="hero">
+    <h2 data-sq>🏨 Hotele pranë TIA</h2>
+    <h2 data-en>🏨 Hotels near TIA</h2>
+    <p data-sq>Hotelet më të mira pranë Aeroportit Ndërkombëtar të Tiranës — ideale nëse keni fluturim herët ose vonë.</p>
+    <p data-en>The best hotels near Tirana International Airport — ideal for early morning or late-night flights.</p>
+  </div>
+  <div class="sec-lbl" data-sq>Hotele pranë aeroportit</div>
+  <div class="sec-lbl" data-en>Hotels near the airport</div>
+  <div class="hotels-grid">
+
+    <div class="hotel-card">
+      <div class="hotel-top">
+        <span class="hotel-badge badge-best" data-sq>⭐ Më i afërti</span>
+        <span class="hotel-badge badge-best" data-en>⭐ Closest</span>
+        <span class="hotel-dist">~200 m</span>
+      </div>
+      <div class="hotel-name">The Airport Hotel</div>
+      <div class="hotel-addr">📍 Rinas, Krujë, Durrës</div>
+      <div class="hotel-desc" data-sq>Hotel 4-yll direkt përballë hyrjes kryesore të terminalit. Ka salla konferencash deri në 50 persona.</div>
+      <div class="hotel-desc" data-en>4-star hotel directly opposite the main terminal entrance. Conference rooms up to 50 people available.</div>
+      <div class="hotel-features"><span class="hf">🌐 Wi-Fi</span><span class="hf">🚗 Parking</span><span class="hf">🍽️ Restaurant</span><span class="hf">📞 Shuttle</span></div>
+      <div class="hotel-actions">
+        <a href="tel:+35544500190" class="hotel-btn hotel-btn-call">📞 +355 4 450 0190</a>
+        <a href="https://maps.app.goo.gl/ZHsahUi2ha6sxYgR6" target="_blank" class="hotel-btn hotel-btn-map">📍 Harta</a>
+      </div>
+    </div>
+
+    <div class="hotel-card">
+      <div class="hotel-top">
+        <span class="hotel-badge badge-good" data-sq>🏨 I rekomanduar</span>
+        <span class="hotel-badge badge-good" data-en>🏨 Recommended</span>
+        <span class="hotel-dist">~5 km</span>
+      </div>
+      <div class="hotel-name">Te Stela Resort & SPA</div>
+      <div class="hotel-addr">📍 Fushë-Krujë, Durrës</div>
+      <div class="hotel-desc" data-sq>Resort me SPA dhe pishinë, vetëm 5 km nga aeroporti. Ambient i qetë dhe relaksues para ose pas fluturimit.</div>
+      <div class="hotel-desc" data-en>Resort with SPA and pool, only 5 km from the airport. Peaceful and relaxing environment before or after your flight.</div>
+      <div class="hotel-features"><span class="hf">🌐 Wi-Fi</span><span class="hf">🏊 Pool</span><span class="hf">💆 SPA</span><span class="hf">🍽️ Restaurant</span></div>
+      <div class="hotel-actions">
+        <a href="https://www.google.com/maps/search/Te+Stela+Resort+Fushe+Kruje" target="_blank" class="hotel-btn hotel-btn-map" style="flex:1">📍 <span data-sq>Shiko në hartë</span><span data-en>View on map</span></a>
+      </div>
+    </div>
+
+    <div class="hotel-card">
+      <div class="hotel-top">
+        <span class="hotel-badge badge-good" data-sq>🌟 Vlerësim i lartë</span>
+        <span class="hotel-badge badge-good" data-en>🌟 Highly rated</span>
+        <span class="hotel-dist">~5 km</span>
+      </div>
+      <div class="hotel-name">Hotel New York Kamëz</div>
+      <div class="hotel-addr">📍 Kamëz, Tiranë</div>
+      <div class="hotel-desc" data-sq>Hotel 4-yll me çmim të arsyeshëm, ~8 km nga aeroporti. Vlerësimi më i lartë në zonë nga udhëtarët.</div>
+      <div class="hotel-desc" data-en>4-star hotel with reasonable prices, ~8 km from the airport. Highest traveller rating in the area.</div>
+      <div class="hotel-features"><span class="hf">🌐 Wi-Fi</span><span class="hf">🚗 Parking</span><span class="hf">🍽️ Restaurant</span><span class="hf">🏋️ Gym</span></div>
+      <div class="hotel-actions">
+        <a href="https://www.google.com/maps/search/Hotel+New+York+Kamez+Albania" target="_blank" class="hotel-btn hotel-btn-map" style="flex:1">📍 <span data-sq>Shiko në hartë</span><span data-en>View on map</span></a>
+      </div>
+    </div>
+
+    <div class="hotel-card">
+      <div class="hotel-top">
+        <span class="hotel-badge badge-ok" data-sq>💰 Ekonomik</span>
+        <span class="hotel-badge badge-ok" data-en>💰 Budget</span>
+        <span class="hotel-dist">~3.5 km</span>
+      </div>
+      <div class="hotel-name">Hotel Egnatia</div>
+      <div class="hotel-addr">📍 Fushë-Krujë</div>
+      <div class="hotel-desc" data-sq>Hotel ekonomik me vendndodhje shumë të mirë — vetëm 3.5 km nga TIA. Ideal për qëndrime të shkurtra.</div>
+      <div class="hotel-desc" data-en>Budget hotel in an excellent location — only 3.5 km from TIA. Ideal for short stays.</div>
+      <div class="hotel-features"><span class="hf">🌐 Wi-Fi</span><span class="hf">🚗 Parking</span><span class="hf">☕ Breakfast</span></div>
+      <div class="hotel-actions">
+        <a href="https://www.google.com/maps/search/Hotel+Egnatia+Fushe+Kruje" target="_blank" class="hotel-btn hotel-btn-map" style="flex:1">📍 <span data-sq>Shiko në hartë</span><span data-en>View on map</span></a>
+      </div>
+    </div>
+
+  </div>
+  <div class="alert">
+    <span class="ai">💡</span>
+    <span data-sq>Për rezervime online me çmime më të mira, provoni <a href="https://www.booking.com/searchresults.html?ss=Rinas%2C+Albania" target="_blank" style="color:var(--accent);font-weight:700">Booking.com</a> ose <a href="https://www.hotels.com/search/keyword?q=Tirana+Airport+Albania" target="_blank" style="color:var(--accent);font-weight:700">Hotels.com</a>.</span>
+    <span data-en>For online bookings at the best prices, try <a href="https://www.booking.com/searchresults.html?ss=Rinas%2C+Albania" target="_blank" style="color:var(--accent);font-weight:700">Booking.com</a> or <a href="https://www.hotels.com/search/keyword?q=Tirana+Airport+Albania" target="_blank" style="color:var(--accent);font-weight:700">Hotels.com</a>.</span>
+  </div>
+</div>
+
+<!-- ══ PRM ══ -->
+<div class="section" id="tab-prm">
+  <div class="hero">
+    <h2 data-sq>♿ Pasagjerë me Nevoja Speciale (PRM)</h2>
+    <h2 data-en>♿ Passengers with Reduced Mobility (PRM)</h2>
+    <p data-sq>Aeroporti TIA ofron asistencë të plotë falas për pasagjerët me aftësi të kufizuara ose nevoja speciale. Ju lutemi njoftoni linjën ajrore <strong>të paktën 48 orë para</strong> fluturimit.</p>
+    <p data-en>TIA Airport offers full free assistance for passengers with disabilities or special needs. Please notify your airline <strong>at least 48 hours before</strong> your flight.</p>
+  </div>
+
+  <div class="sec-lbl" data-sq>Shërbimet e disponueshme</div>
+  <div class="sec-lbl" data-en>Available services</div>
+
+  <div class="prm-card"><div class="prm-ico">🦽</div><div class="prm-body"><h3 data-sq>Karroce me rrota falas</h3><h3 data-en>Wheelchair assistance (free)</h3><p data-sq>Karroce me rrota ofrohen falas nga hyrja e terminalit deri tek gate-i dhe në aeroplan. Njoftoni linjën ajrore paraprakisht.</p><p data-en>Wheelchairs are provided free from the terminal entrance to the gate and onto the aircraft. Notify your airline in advance.</p></div></div>
+
+  <div class="prm-card"><div class="prm-ico">🚗</div><div class="prm-body"><h3 data-sq>Parking i rezervuar PRM</h3><h3 data-en>Reserved PRM parking</h3><p data-sq>Ka vende parkimi të dedikuara dhe të shënjuara pranë hyrjes kryesore të terminalit, të gjitha me akses karroce. Falas për personat me kartelë invaliditeti.</p><p data-en>Designated and marked parking spaces are available near the main terminal entrance, all wheelchair accessible. Free for holders of disability cards.</p></div></div>
+
+  <div class="prm-card"><div class="prm-ico">🛂</div><div class="prm-body"><h3 data-sq>Rrugë prioritare në kontroll</h3><h3 data-en>Priority lanes at security & passport</h3><p data-sq>Pasagjerët PRM kanë akses në rreshtat prioritarë të kontrollit të sigurisë dhe pasaportave. Njoftoni stafin e aeroportit në hyrje.</p><p data-en>PRM passengers have access to priority lanes at security and passport control. Inform airport staff at the entrance.</p></div></div>
+
+  <div class="prm-card"><div class="prm-ico">✈️</div><div class="prm-body"><h3 data-sq>Boarding prioritar</h3><h3 data-en>Priority boarding</h3><p data-sq>Pasagjerët PRM dhe shoqëruesit e tyre embarkohen të parët. Drejtohuni tek sportelja e linjës ajrore suaj menjëherë pas mbërritjes.</p><p data-en>PRM passengers and their companions board first. Go to your airline's counter immediately upon arrival at the airport.</p></div></div>
+
+  <div class="prm-card"><div class="prm-ico">🐕</div><div class="prm-body"><h3 data-sq>Qen udhëzues të lejuar</h3><h3 data-en>Guide dogs allowed</h3><p data-sq>Qentë udhëzues lejohen në të gjitha zonat e aeroportit dhe në avion. Kërkohet dokumentacion veterinar dhe njoftim paraprak i linjës ajrore.</p><p data-en>Guide dogs are allowed in all airport areas and on the aircraft. Veterinary documentation and advance airline notification required.</p></div></div>
+
+  <div class="prm-card"><div class="prm-ico">📞</div><div class="prm-body"><h3 data-sq>Kontakt për asistencë PRM</h3><h3 data-en>PRM assistance contact</h3><p data-sq>Kontaktoni aeroportin për asistencë speciale: <a href="tel:+35542381800">+355 4 238 1800</a><br>Email: <a href="mailto:info@tirana-airport.com">info@tirana-airport.com</a></p><p data-en>Contact the airport for special assistance: <a href="tel:+35542381800">+355 4 238 1800</a><br>Email: <a href="mailto:info@tirana-airport.com">info@tirana-airport.com</a></p></div></div>
+
+  <div class="alert">
+    <span class="ai">⚠️</span>
+    <span data-sq>Për asistencë optimale, njoftoni linjën ajrore <strong>të paktën 48 orë para</strong> nisjes. Asistenca ofrohet falas sipas Rregullores Europiane EC 1107/2006.</span>
+    <span data-en>For optimal assistance, notify your airline <strong>at least 48 hours before</strong> departure. Assistance is provided free under European Regulation EC 1107/2006.</span>
+  </div>
+</div>
+
+<!-- ══ FAQ ══ -->
+<div class="section" id="tab-faq">
+  <div class="hero">
+    <h2 data-sq>❓ Pyetjet më të Shpeshta</h2>
+    <h2 data-en>❓ Frequently Asked Questions</h2>
+    <p data-sq>Klikoni mbi çdo pyetje për të parë përgjigjen.</p>
+    <p data-en>Click on any question to view the answer.</p>
+  </div>
+
+  <div class="sec-lbl" data-sq>Para fluturimit</div>
+  <div class="sec-lbl" data-en>Before the flight</div>
+
+  <div class="faq-item"><div class="faq-q"><span class="faq-q-text" data-sq>Sa herët duhet të arrij në aeroport?</span><span class="faq-q-text" data-en>How early should I arrive at the airport?</span><span class="faq-chevron">▾</span></div><div class="faq-a"><p data-sq>Për fluturime europiane: <strong>2 orë para</strong> nisjes. Për fluturime ndërkontinentale: <strong>3 orë para</strong>. Gjatë sezonit të verës (Qershor–Shtator) dhe festave, shtoni edhe 30–60 minuta shtesë.</p><p data-en>For European flights: <strong>2 hours before</strong> departure. For intercontinental: <strong>3 hours before</strong>. During summer season (June–September) and holidays, add an extra 30–60 minutes.</p></div></div>
+
+  <div class="faq-item"><div class="faq-q"><span class="faq-q-text" data-sq>A mund të udhëtoj me kartë identiteti (ID) apo duhet pasaportë?</span><span class="faq-q-text" data-en>Can I travel with an ID card or do I need a passport?</span><span class="faq-chevron">▾</span></div><div class="faq-a"><p data-sq>Qytetarët shqiptarë mund të udhëtojnë me kartë ID brenda vendeve të <strong>BE dhe Schengen</strong>. Për UK, SHBA, dhe vende jashtë BE-së, kërkohet <strong>pasaportë</strong>. Sigurohuni që pasaporta/ID të ketë të paktën <strong>6 muaj vlefshmëri</strong>.</p><p data-en>Albanian citizens can travel with an ID card within <strong>EU and Schengen</strong> countries. For UK, USA, and non-EU countries, a <strong>passport</strong> is required. Ensure your passport/ID has at least <strong>6 months validity</strong>.</p></div></div>
+
+  <div class="faq-item"><div class="faq-q"><span class="faq-q-text" data-sq>A mund të bëj online check-in?</span><span class="faq-q-text" data-en>Can I do online check-in?</span><span class="faq-chevron">▾</span></div><div class="faq-a"><p data-sq>Po, të gjitha linjat ajrore kryesore që operojnë nga TIA ofrojnë online check-in. Wizz Air: hapet 30 ditë para, mbyllet 3 orë para. Lufthansa/Turkish: hapet 23 orë para. Ruani boarding pass-in si screenshot ose printojeni.</p><p data-en>Yes, all major airlines operating from TIA offer online check-in. Wizz Air: opens 30 days before, closes 3 hours before. Lufthansa/Turkish: opens 23 hours before. Save your boarding pass as a screenshot or print it.</p></div></div>
+
+  <div class="faq-item"><div class="faq-q"><span class="faq-q-text" data-sq>Sa kg bagazh lejohet falas?</span><span class="faq-q-text" data-en>How many kg of baggage is allowed for free?</span><span class="faq-chevron">▾</span></div><div class="faq-a"><p data-sq>Ndryshon sipas linjës ajrore dhe tarifës. Si rregull i përgjithshëm: kabina e vogël (40×30×20 cm) është gjithmonë falas. Bagazhi i lëshuar (23 kg) zakonisht pagëhet si shtesë me Wizz Air dhe Ryanair, ndërsa Lufthansa, Turkish dhe Aegean e përfshijnë shpesh. Verifikoni gjithmonë me linjën tuaj.</p><p data-en>Varies by airline and ticket type. As a general rule: small cabin bag (40×30×20 cm) is always free. Checked baggage (23 kg) is usually an extra fee with Wizz Air and Ryanair, while Lufthansa, Turkish and Aegean often include it. Always verify with your airline.</p></div></div>
+
+  <div class="sec-lbl" data-sq>Në aeroport</div>
+  <div class="sec-lbl" data-en>At the airport</div>
+
+  <div class="faq-item"><div class="faq-q"><span class="faq-q-text" data-sq>A ka Wi-Fi falas në aeroport?</span><span class="faq-q-text" data-en>Is there free Wi-Fi at the airport?</span><span class="faq-chevron">▾</span></div><div class="faq-a"><p data-sq>Po, <strong>Wi-Fi falas</strong> është i disponueshëm në të gjithë terminalin e TIA-s, si në zonën publike ashtu edhe në zonën airside (pas kontrollit). Lidhu me rrjetin "TIA_FREE_WIFI".</p><p data-en>Yes, <strong>free Wi-Fi</strong> is available throughout the TIA terminal, both in the public area and the airside zone (after security). Connect to the "TIA_FREE_WIFI" network.</p></div></div>
+
+  <div class="faq-item"><div class="faq-q"><span class="faq-q-text" data-sq>A ka ATM/bankomat në aeroport?</span><span class="faq-q-text" data-en>Are there ATMs at the airport?</span><span class="faq-chevron">▾</span></div><div class="faq-a"><p data-sq>Po, ka disa ATM (bankomate) si në zonën publike ashtu edhe pas kontrollit të sigurisë. Monedha lokale është Leku Shqiptar (ALL), por euro pranohen gjerësisht.</p><p data-en>Yes, there are several ATMs both in the public area and after security. The local currency is the Albanian Lek (ALL), but euros are widely accepted.</p></div></div>
+
+  <div class="faq-item"><div class="faq-q"><span class="faq-q-text" data-sq>Ku mund të parkoj makinën dhe sa kushton?</span><span class="faq-q-text" data-en>Where can I park and how much does it cost?</span><span class="faq-chevron">▾</span></div><div class="faq-a"><p data-sq>TIA ka 3 zona parkimi (P1, P2, P3) me gjithsej 2,600 vende. <strong>7 minutat e para janë falas.</strong> Pas kësaj: afatshkurtër ~200–400 ALL/orë, afatgjatë me tarifa ditore të reduktuara. Ka vende të dedikuara për PRM pranë hyrjes kryesore.</p><p data-en>TIA has 3 parking zones (P1, P2, P3) with a total of 2,600 spaces. <strong>The first 7 minutes are free.</strong> After that: short-term ~200–400 ALL/hour, long-term at reduced daily rates. Dedicated PRM spaces are available near the main entrance.</p></div></div>
+
+  <div class="faq-item"><div class="faq-q"><span class="faq-q-text" data-sq>A ka dyqane dhe restorante pas kontrollit të sigurisë?</span><span class="faq-q-text" data-en>Are there shops and restaurants after security?</span><span class="faq-chevron">▾</span></div><div class="faq-a"><p data-sq>Po, zona airside ka: <strong>Aelia Duty Free</strong> (parfume, alkool, ushqime), <strong>restorante dhe kafene</strong>, <strong>sallë biznesi VIP</strong>, dhe disa dyqane të tjera. Çmimet janë të ngjashme me qytetet europiane.</p><p data-en>Yes, the airside zone has: <strong>Aelia Duty Free</strong> (perfumes, alcohol, food), <strong>restaurants and cafés</strong>, a <strong>VIP Business Lounge</strong>, and several other shops. Prices are similar to European cities.</p></div></div>
+
+  <div class="faq-item"><div class="faq-q"><span class="faq-q-text" data-sq>Çfarë ndodh nëse humbas valixhen ose dëmtohet?</span><span class="faq-q-text" data-en>What happens if my luggage is lost or damaged?</span><span class="faq-chevron">▾</span></div><div class="faq-a"><p data-sq>Drejtohuni menjëherë te <strong>sporteli i "Baggage Reclaim"</strong> para se të dilni nga zona e arrivals. Plotësoni formularin PIR (Property Irregularity Report). Linja ajrore është përgjegjëse dhe detyrohet të kompensojë sipas Konventës së Montrealit.</p><p data-en>Go immediately to the <strong>"Baggage Reclaim" desk</strong> before leaving the arrivals area. Fill in a PIR (Property Irregularity Report) form. The airline is responsible and obligated to compensate under the Montreal Convention.</p></div></div>
+</div>
+
+<!-- ══ CONTACTS ══ -->
+<div class="section" id="tab-contacts">
+  <div class="hero">
+    <h2 data-sq>📞 Kontakte të Rëndësishme</h2>
+    <h2 data-en>📞 Important Contacts</h2>
+    <p data-sq>Numrat dhe kontaktet kryesore të aeroportit, linjave ajrore, dhe shërbimeve të transportit.</p>
+    <p data-en>Key phone numbers and contacts for the airport, airlines, and transport services.</p>
+  </div>
+
+  <div class="sec-lbl" data-sq>Aeroporti TIA</div>
+  <div class="sec-lbl" data-en>TIA Airport</div>
+  <div class="contact-card">
+    <div class="contact-row">
+      <div class="contact-ico">✈️</div>
+      <div class="contact-body">
+        <div class="contact-name">Tirana International Airport (TIA)</div>
+        <div class="contact-detail" data-sq>Informacion i përgjithshëm · 24/7</div>
+        <div class="contact-detail" data-en>General information · 24/7</div>
+      </div>
+      <div class="contact-action"><a href="tel:+35542381800" class="cbtn green">📞 +355 4 238 1800</a></div>
+    </div>
+    <div class="contact-row">
+      <div class="contact-ico">📧</div>
+      <div class="contact-body">
+        <div class="contact-name">Email TIA</div>
+        <div class="contact-detail">info@tirana-airport.com</div>
+      </div>
+      <div class="contact-action"><a href="mailto:info@tirana-airport.com" class="cbtn blue">✉️ Email</a></div>
+    </div>
+    <div class="contact-row">
+      <div class="contact-ico">♿</div>
+      <div class="contact-body">
+        <div class="contact-name" data-sq>Asistencë PRM</div>
+        <div class="contact-name" data-en>PRM Assistance</div>
+        <div class="contact-detail" data-sq>Pasagjerë me nevoja speciale</div>
+        <div class="contact-detail" data-en>Passengers with special needs</div>
+      </div>
+      <div class="contact-action"><a href="tel:+35542381800" class="cbtn green">📞 +355 4 238 1800</a></div>
+    </div>
+    <div class="contact-row">
+      <div class="contact-ico">🌐</div>
+      <div class="contact-body">
+        <div class="contact-name" data-sq>Faqja zyrtare e aeroportit</div>
+        <div class="contact-name" data-en>Official airport website</div>
+        <div class="contact-detail">www.tirana-airport.com</div>
+      </div>
+      <div class="contact-action"><a href="https://www.tirana-airport.com" target="_blank" class="cbtn blue">🌐 Web</a></div>
+    </div>
+  </div>
+
+  <div class="sec-lbl" data-sq>Taksitë & Transporti</div>
+  <div class="sec-lbl" data-en>Taxis & Transport</div>
+  <div class="contact-card">
+    <div class="contact-row">
+      <div class="contact-ico">🚖</div>
+      <div class="contact-body">
+        <div class="contact-name">AHA – TIA Taxi (Zyrtar)</div>
+        <div class="contact-detail">tiataxi.al · Taksitë zyrtare të aeroportit</div>
+      </div>
+      <div class="contact-action"><a href="https://tiataxi.al" target="_blank" class="cbtn">🌐 Web</a></div>
+    </div>
+    <div class="contact-row">
+      <div class="contact-ico">🚕</div>
+      <div class="contact-body">
+        <div class="contact-name">Blue Taxi</div>
+        <div class="contact-detail">bluetaxi.al</div>
+      </div>
+      <div class="contact-action"><a href="tel:0694444444" class="cbtn green">📞 069 444 4444</a></div>
+    </div>
+    <div class="contact-row">
+      <div class="contact-ico">📱</div>
+      <div class="contact-body">
+        <div class="contact-name">MerrTaxi</div>
+        <div class="contact-detail">merrtaxi.com · App iOS & Android</div>
+      </div>
+      <div class="contact-action"><a href="tel:08005555" class="cbtn green">📞 0800 5555</a></div>
+    </div>
+    <div class="contact-row">
+      <div class="contact-ico">📱</div>
+      <div class="contact-body">
+        <div class="contact-name">VrapOn Taxi</div>
+        <div class="contact-detail">vrapon.al · App iOS & Android</div>
+      </div>
+      <div class="contact-action"><a href="tel:+355672019470" class="cbtn green">📞 App</a></div>
+    </div>
+    <div class="contact-row">
+      <div class="contact-ico">🚌</div>
+      <div class="contact-body">
+        <div class="contact-name">Rinas Express (Linja LUNA)</div>
+        <div class="contact-detail" data-sq>Sheshi Skënderbej ↔ TIA · çdo orë · €4</div>
+        <div class="contact-detail" data-en>Skanderbeg Square ↔ TIA · hourly · €4</div>
+      </div>
+      <div class="contact-action"><a href="https://maps.app.goo.gl/KnFnYsQMxsmrDtr2A" target="_blank" class="cbtn blue">📍 <span data-sq>Stacioni</span><span data-en>Station</span></a></div>
+    </div>
+  </div>
+
+  <div class="sec-lbl" data-sq>Linjat Ajrore Kryesore</div>
+  <div class="sec-lbl" data-en>Main Airlines</div>
+  <div class="contact-card">
+    <div class="contact-row">
+      <div class="contact-ico">🟣</div>
+      <div class="contact-body"><div class="contact-name">Wizz Air</div><div class="contact-detail">wizzair.com · App Wizz</div></div>
+      <div class="contact-action"><a href="https://wizzair.com" target="_blank" class="cbtn">🌐 Web</a></div>
+    </div>
+    <div class="contact-row">
+      <div class="contact-ico">🟡</div>
+      <div class="contact-body"><div class="contact-name">Ryanair</div><div class="contact-detail">ryanair.com</div></div>
+      <div class="contact-action"><a href="https://www.ryanair.com" target="_blank" class="cbtn">🌐 Web</a></div>
+    </div>
+    <div class="contact-row">
+      <div class="contact-ico">🔵</div>
+      <div class="contact-body"><div class="contact-name">Lufthansa</div><div class="contact-detail">lufthansa.com · +355 4 225 8288</div></div>
+      <div class="contact-action"><a href="tel:+35542258288" class="cbtn green">📞 Call</a></div>
+    </div>
+    <div class="contact-row">
+      <div class="contact-ico">🔴</div>
+      <div class="contact-body"><div class="contact-name">Turkish Airlines</div><div class="contact-detail">turkishairlines.com · +355 4 225 1851</div></div>
+      <div class="contact-action"><a href="tel:+35542251851" class="cbtn green">📞 Call</a></div>
+    </div>
+    <div class="contact-row">
+      <div class="contact-ico">🔵</div>
+      <div class="contact-body"><div class="contact-name">Aegean Airlines</div><div class="contact-detail">aegeanair.com · +355 4 225 9020</div></div>
+      <div class="contact-action"><a href="tel:+35542259020" class="cbtn green">📞 Call</a></div>
+    </div>
+    <div class="contact-row">
+      <div class="contact-ico">🔵</div>
+      <div class="contact-body"><div class="contact-name">Air Albania</div><div class="contact-detail">airalbania.al · +355 4 450 4000</div></div>
+      <div class="contact-action"><a href="tel:+35544504000" class="cbtn green">📞 Call</a></div>
+    </div>
+  </div>
+
+  <div class="sec-lbl" data-sq>Emergjenca & Shërbime</div>
+  <div class="sec-lbl" data-en>Emergency & Services</div>
+  <div class="contact-card">
+    <div class="contact-row">
+      <div class="contact-ico">🚨</div>
+      <div class="contact-body"><div class="contact-name" data-sq>Numri i Emergjencës</div><div class="contact-name" data-en>Emergency Number</div><div class="contact-detail" data-sq>Policia · Zjarrfikëse · Ambulanca</div><div class="contact-detail" data-en>Police · Fire · Ambulance</div></div>
+      <div class="contact-action"><a href="tel:112" class="cbtn green">📞 112</a></div>
+    </div>
+    <div class="contact-row">
+      <div class="contact-ico">🏥</div>
+      <div class="contact-body"><div class="contact-name" data-sq>Ndihma e Shpejtë në Aeroport</div><div class="contact-name" data-en>Airport First Aid</div><div class="contact-detail" data-sq>E disponueshme 24/7 brenda terminalit</div><div class="contact-detail" data-en>Available 24/7 inside the terminal</div></div>
+      <div class="contact-action"><a href="tel:+35542381800" class="cbtn green">📞 TIA</a></div>
+    </div>
+    <div class="contact-row">
+      <div class="contact-ico">🧳</div>
+      <div class="contact-body"><div class="contact-name" data-sq>Humbja e Bagazhit (Lost & Found)</div><div class="contact-name" data-en>Lost Luggage (Lost & Found)</div><div class="contact-detail" data-sq>Sporteli ndodhet pranë Baggage Claim</div><div class="contact-detail" data-en>Desk located near Baggage Claim</div></div>
+      <div class="contact-action"><a href="mailto:info@tirana-airport.com" class="cbtn blue">✉️ Email</a></div>
+    </div>
+  </div>
 </div>
 
 <!-- ══ CHECKLIST ══ -->
@@ -670,18 +1201,267 @@ html[data-lang="sq"] [data-en]{display:none}
   </div>
 </div>
 
+<!-- ══ PLANNER ══ -->
+<div class="section" id="tab-planner">
+  <div class="hero">
+    <h2 data-sq>⏰ Kalkulator Kohe Udhëtimit</h2>
+    <h2 data-en>⏰ Travel Time Planner</h2>
+    <p data-sq>Fus orën e nisjes dhe llojin e transportit — faqja llogarit saktësisht kur duhet të largohesh nga shtëpia.</p>
+    <p data-en>Enter your flight time and transport type — the page calculates exactly when you need to leave home.</p>
+  </div>
+
+  <div class="planner-card">
+    <div class="planner-row">
+      <label class="planner-label" data-sq>✈️ Ora e nisjes (fluturimit)</label>
+      <label class="planner-label" data-en>✈️ Flight departure time</label>
+      <input type="time" id="flightTime" class="planner-input" value="10:00"/>
+    </div>
+    <div class="planner-row">
+      <label class="planner-label" data-sq>🚗 Mënyra e transportit</label>
+      <label class="planner-label" data-en>🚗 Transport method</label>
+      <div class="planner-tabs" id="transportTabs">
+        <button class="ptab active" data-travel="bus" data-mins="50"><span data-sq>🚌 Autobus</span><span data-en>🚌 Bus</span></button>
+        <button class="ptab" data-travel="taxi" data-mins="30"><span data-sq>🚖 Taksi</span><span data-en>🚖 Taxi</span></button>
+        <button class="ptab" data-travel="car" data-mins="25"><span data-sq>🚗 Makinë</span><span data-en>🚗 Car</span></button>
+      </div>
+    </div>
+    <div class="planner-row">
+      <label class="planner-label" data-sq>🏠 Distanca nga shtëpia (minuta me transport)</label>
+      <label class="planner-label" data-en>🏠 Distance from home (travel minutes)</label>
+      <div style="display:flex;align-items:center;gap:10px">
+        <input type="range" id="distSlider" min="5" max="90" value="25" style="flex:1;accent-color:var(--accent)"/>
+        <span id="distVal" style="font-family:'Syne',sans-serif;font-weight:700;font-size:.9rem;color:var(--accent);min-width:36px">25 min</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULT CARD -->
+  <div class="planner-result" id="plannerResult">
+    <div class="planner-result-main">
+      <div class="pr-label" data-sq>Duhet të nisesh nga shtëpia</div>
+      <div class="pr-label" data-en>You should leave home at</div>
+      <div class="pr-time" id="leaveTime">--:--</div>
+      <div class="pr-sub" id="leaveNote"></div>
+    </div>
+    <div class="pr-breakdown" id="prBreakdown"></div>
+  </div>
+
+  <div class="alert" style="margin-top:1rem">
+    <span class="ai">💡</span>
+    <span data-sq>Gjatë sezonit të verës (Qershor–Shtator) dhe festave kombëtare, shtoni <strong>30 min shtesë</strong> për rreshtat e gjata në check-in dhe kontroll.</span>
+    <span data-en>During summer season (June–September) and national holidays, add an extra <strong>30 minutes</strong> for long check-in and security queues.</span>
+  </div>
+</div>
+
+<!-- ══ WEATHER ══ -->
+<div class="section" id="tab-weather">
+  <div class="hero">
+    <h2 data-sq>🌤️ Moti në Rinas – Live</h2>
+    <h2 data-en>🌤️ Weather at Rinas – Live</h2>
+    <p data-sq>Kushtet atmosferike aktuale dhe parashikimi për 5 ditët e ardhshme në Aeroportin Ndërkombëtar të Tiranës (TIA, 38m mbi detit).</p>
+    <p data-en>Current atmospheric conditions and 5-day forecast at Tirana International Airport (TIA, 38m above sea level).</p>
+  </div>
+
+  <!-- CURRENT WEATHER -->
+  <div class="wx-now" id="wxNow">
+    <div class="wx-loading">
+      <div class="wx-spin">🌀</div>
+      <span data-sq>Duke ngarkuar motin...</span>
+      <span data-en>Loading weather...</span>
+    </div>
+  </div>
+
+  <!-- 5-DAY FORECAST -->
+  <div class="sec-lbl" data-sq style="margin-top:1rem">Parashikimi 5 ditë</div>
+  <div class="sec-lbl" data-en style="margin-top:1rem">5-Day Forecast</div>
+  <div class="wx-forecast" id="wxForecast">
+    <div style="grid-column:1/-1;text-align:center;color:var(--muted);font-size:.78rem;padding:1rem" data-sq>Duke ngarkuar parashikimin...</div>
+    <div style="grid-column:1/-1;text-align:center;color:var(--muted);font-size:.78rem;padding:1rem" data-en>Loading forecast...</div>
+  </div>
+
+  <div class="alert" style="margin-top:1rem">
+    <span class="ai">ℹ️</span>
+    <span data-sq>Të dhënat e motit vijnë nga <strong>Open-Meteo</strong> (API falas, pa çelës). Koordinatat: 41.419°N, 19.713°E — Aeroporti i Tiranës.</span>
+    <span data-en>Weather data from <strong>Open-Meteo</strong> (free API, no key required). Coordinates: 41.419°N, 19.713°E — Tirana Airport.</span>
+  </div>
+</div>
+
+<!-- ══ HOTELS ══ -->
+<div class="section" id="tab-hotels">
+  <div class="hero">
+    <h2 data-sq>🏨 Hotele pranë Aeroportit TIA</h2>
+    <h2 data-en>🏨 Hotels near TIA Airport</h2>
+    <p data-sq>Hotele të verifikuara brenda <strong>5 km</strong> nga terminali. Të gjitha ofrojnë transfer deri në aeroport.</p>
+    <p data-en>Verified hotels within <strong>5 km</strong> of the terminal. All offer airport transfer service.</p>
+  </div>
+
+  <div class="sec-lbl" data-sq>Harta e hoteleve</div>
+  <div class="sec-lbl" data-en>Hotels map</div>
+
+  <!-- Hotels will be shown as cards + map link -->
+  <div class="hotels-grid" id="hotelsGrid">
+
+    <div class="hotel-card">
+      <div class="hotel-top">
+        <div class="hotel-badge badge-best">⭐ 4.8</div>
+        <div class="hotel-dist">~1 km</div>
+      </div>
+      <h3 class="hotel-name">Side Airport Hotel</h3>
+      <p class="hotel-addr">Rruga e Aeroportit, Krujë</p>
+      <p class="hotel-desc" data-sq>Hoteli më i vlerësuar pranë TIA. Dhomë shumë e pastër, transfer falas në aeroport, 24/7. Rreth 5 min me këmbë nga terminali.</p>
+      <p class="hotel-desc" data-en>Highest rated hotel near TIA. Very clean rooms, free airport transfer 24/7. About 5 min walk from the terminal.</p>
+      <div class="hotel-features">
+        <span class="hf">🚗 Transfer falas</span>
+        <span class="hf">📶 Wi-Fi</span>
+        <span class="hf">🕐 24/7</span>
+      </div>
+      <div class="hotel-actions">
+        <a href="tel:+355696077000" class="hotel-btn hotel-btn-call">📞 069 607 7000</a>
+        <a href="https://maps.app.goo.gl/search/?q=Side+Airport+Hotel+Tirana" target="_blank" rel="noopener" class="hotel-btn hotel-btn-map">📍 Harta</a>
+      </div>
+    </div>
+
+    <div class="hotel-card">
+      <div class="hotel-top">
+        <div class="hotel-badge badge-good">⭐ 4.7</div>
+        <div class="hotel-dist">~800 m</div>
+      </div>
+      <h3 class="hotel-name">Airport Garden Hotel</h3>
+      <p class="hotel-addr">Rruga e Aeroportit, Rinas</p>
+      <p class="hotel-desc" data-sq>300 metra nga terminali. Kopësht i bukur, bar 24 orë, ambient i qetë. Kasa e hapur 24 orë për check-in/out fleksibël.</p>
+      <p class="hotel-desc" data-en>300 metres from the terminal. Beautiful garden, 24hr bar, quiet atmosphere. Reception open 24hr for flexible check-in/out.</p>
+      <div class="hotel-features">
+        <span class="hf">🌿 Kopësht</span>
+        <span class="hf">🍺 Bar 24h</span>
+        <span class="hf">🚶 300 m</span>
+      </div>
+      <div class="hotel-actions">
+        <a href="tel:+355694553350" class="hotel-btn hotel-btn-call">📞 069 455 3350</a>
+        <a href="https://maps.app.goo.gl/search/?q=Airport+Garden+Hotel+Rinas" target="_blank" rel="noopener" class="hotel-btn hotel-btn-map">📍 Harta</a>
+      </div>
+    </div>
+
+    <div class="hotel-card">
+      <div class="hotel-top">
+        <div class="hotel-badge badge-good">⭐ 4.4</div>
+        <div class="hotel-dist">~200 m</div>
+      </div>
+      <h3 class="hotel-name">Hotel Airport Tirana</h3>
+      <p class="hotel-addr">Përballë Aeroportit TIA</p>
+      <p class="hotel-desc" data-sq>Drejtpërdrejt para terminalit — 100 metra larg. Restorante, pishinë, qendër fitness, shuttle falas. Opsioni më i afërt fizikisht.</p>
+      <p class="hotel-desc" data-en>Directly in front of the terminal — 100 metres away. Restaurant, pool, fitness centre, free shuttle. The physically closest option.</p>
+      <div class="hotel-features">
+        <span class="hf">🏊 Pishinë</span>
+        <span class="hf">🍽️ Restorant</span>
+        <span class="hf">💪 Gym</span>
+      </div>
+      <div class="hotel-actions">
+        <a href="tel:+35544500190" class="hotel-btn hotel-btn-call">📞 04 450 0190</a>
+        <a href="https://maps.app.goo.gl/search/?q=Hotel+Airport+Tirana" target="_blank" rel="noopener" class="hotel-btn hotel-btn-map">📍 Harta</a>
+      </div>
+    </div>
+
+    <div class="hotel-card">
+      <div class="hotel-top">
+        <div class="hotel-badge badge-ok">⭐ 4.3</div>
+        <div class="hotel-dist">~100 m</div>
+      </div>
+      <h3 class="hotel-name">Airport Holiday Hotel</h3>
+      <p class="hotel-addr">Rruga Aeroportit, Tiranë 1502</p>
+      <p class="hotel-desc" data-sq>Ngjitur me aeroportin — 2 minuta me këmbë. Mëngjes i shijshëm, staf profesionist dhe shuttle falas për pasagjerët.</p>
+      <p class="hotel-desc" data-en>Adjacent to the airport — 2 min walk. Delicious breakfast, professional staff and free shuttle service for passengers.</p>
+      <div class="hotel-features">
+        <span class="hf">🍳 Mëngjes</span>
+        <span class="hf">🚗 Shuttle</span>
+        <span class="hf">📶 Wi-Fi</span>
+      </div>
+      <div class="hotel-actions">
+        <a href="tel:+355697033336" class="hotel-btn hotel-btn-call">📞 069 703 3336</a>
+        <a href="https://maps.app.goo.gl/search/?q=Airport+Holiday+Hotel+Tirana" target="_blank" rel="noopener" class="hotel-btn hotel-btn-map">📍 Harta</a>
+      </div>
+    </div>
+
+    <div class="hotel-card">
+      <div class="hotel-top">
+        <div class="hotel-badge badge-ok">⭐ 4.3</div>
+        <div class="hotel-dist">~3 km</div>
+      </div>
+      <h3 class="hotel-name">Hotel Palma</h3>
+      <p class="hotel-addr">Rruga E762, Rinas</p>
+      <p class="hotel-desc" data-sq>Çmim i përballueshëm, transfer me €5. Dhoma të pastra dhe komode. Ideal për qëndrim të shkurtër para fluturimit herët.</p>
+      <p class="hotel-desc" data-en>Affordable price, transfer for €5. Clean and comfortable rooms. Ideal for a short stay before an early morning flight.</p>
+      <div class="hotel-features">
+        <span class="hf">💶 Ekonomik</span>
+        <span class="hf">🚗 Transfer €5</span>
+        <span class="hf">🕐 24/7</span>
+      </div>
+      <div class="hotel-actions">
+        <a href="tel:+355682092555" class="hotel-btn hotel-btn-call">📞 068 209 2555</a>
+        <a href="https://maps.app.goo.gl/search/?q=Hotel+Palma+Rinas+Albania" target="_blank" rel="noopener" class="hotel-btn hotel-btn-map">📍 Harta</a>
+      </div>
+    </div>
+
+    <div class="hotel-card">
+      <div class="hotel-top">
+        <div class="hotel-badge" style="background:rgba(107,122,153,.12);color:var(--muted)">⭐ 4.0</div>
+        <div class="hotel-dist">~4 km</div>
+      </div>
+      <h3 class="hotel-name">Grand Hotel Gjyshi</h3>
+      <p class="hotel-addr">E762, Qerekë</p>
+      <p class="hotel-desc" data-sq>Staf i ngrohtë, ambiente të pastra. 10 min me makinë nga aeroporti. Zgjidhje e mirë me çmim të arsyeshëm për grup ose familje.</p>
+      <p class="hotel-desc" data-en>Warm staff, clean premises. 10 min by car from the airport. A good option at a reasonable price for groups or families.</p>
+      <div class="hotel-features">
+        <span class="hf">👨‍👩‍👧 Familje</span>
+        <span class="hf">🍽️ Restorant</span>
+        <span class="hf">💶 Çmim i mirë</span>
+      </div>
+      <div class="hotel-actions">
+        <a href="tel:+355693325633" class="hotel-btn hotel-btn-call">📞 069 332 5633</a>
+        <a href="https://maps.app.goo.gl/search/?q=Grand+Hotel+Gjyshi+Qerekë" target="_blank" rel="noopener" class="hotel-btn hotel-btn-map">📍 Harta</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- MAP -->
+  <div class="sec-lbl" data-sq style="margin-top:1.2rem">Harta e hoteleve</div>
+  <div class="sec-lbl" data-en style="margin-top:1.2rem">Hotels on the map</div>
+  <div class="map-box" style="overflow:hidden">
+    <iframe class="gmap-iframe"
+      src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d4000!2d19.7132!3d41.419!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1shotels+near+tirana+airport!5e0!3m2!1sen!2sal!4v1700000000000"
+      height="280" style="border:0" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+</div>
+
 </main>
 
-<!-- BOTTOM NAV -->
-<nav class="bottom-nav">
+<!-- BOTTOM NAV — mobile only, max 5 + more -->
+<nav class="bottom-nav" id="bottomNav">
   <button class="bnav-item active" data-tab="transport"><span class="bnav-ico">🚗</span><span class="bnav-lbl" data-sq>Transport</span><span class="bnav-lbl" data-en>Transport</span></button>
-  <button class="bnav-item" data-tab="checkin"><span class="bnav-ico">🎫</span><span class="bnav-lbl">Check-in</span></button>
-  <button class="bnav-item" data-tab="baggage"><span class="bnav-ico">🧳</span><span class="bnav-lbl" data-sq>Bagazhi</span><span class="bnav-lbl" data-en>Baggage</span></button>
-  <button class="bnav-item" data-tab="security"><span class="bnav-ico">🔒</span><span class="bnav-lbl" data-sq>Siguria</span><span class="bnav-lbl" data-en>Security</span></button>
-  <button class="bnav-item" data-tab="gates"><span class="bnav-ico">🗺️</span><span class="bnav-lbl" data-sq>Harta</span><span class="bnav-lbl" data-en>Map</span></button>
   <button class="bnav-item" data-tab="flights"><span class="bnav-ico">📟</span><span class="bnav-lbl" data-sq>Fluturime</span><span class="bnav-lbl" data-en>Flights</span></button>
-  <button class="bnav-item" data-tab="checklist"><span class="bnav-ico">✅</span><span class="bnav-lbl" data-sq>Lista</span><span class="bnav-lbl" data-en>Checklist</span></button>
+  <button class="bnav-item" data-tab="planner"><span class="bnav-ico">⏰</span><span class="bnav-lbl" data-sq>Kalkulator</span><span class="bnav-lbl" data-en>Planner</span></button>
+  <button class="bnav-item" data-tab="checklist"><span class="bnav-ico">✅</span><span class="bnav-lbl" data-sq>Lista</span><span class="bnav-lbl" data-en>Lista</span></button>
+  <button class="bnav-item" id="btnMore" onclick="toggleMore()"><span class="bnav-ico">☰</span><span class="bnav-lbl" data-sq>Më shumë</span><span class="bnav-lbl" data-en>More</span></button>
 </nav>
+
+<!-- MORE MENU (slide up) -->
+<div id="moreBackdrop" onclick="closeMore()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:350"></div>
+<div id="moreMenu" style="display:none;position:fixed;bottom:60px;left:0;right:0;background:#fff;border-radius:18px 18px 0 0;z-index:400;padding:12px 0 6px;box-shadow:0 -4px 24px rgba(0,0,0,.15)">
+  <div style="width:36px;height:4px;background:var(--border);border-radius:4px;margin:0 auto 12px"></div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px;padding:0 8px">
+    <button class="more-item" data-tab="checkin"><span class="more-ico">🎫</span><span class="more-lbl" data-sq>Check-in</span><span class="more-lbl" data-en>Check-in</span></button>
+    <button class="more-item" data-tab="baggage"><span class="more-ico">🧳</span><span class="more-lbl" data-sq>Bagazhi</span><span class="more-lbl" data-en>Baggage</span></button>
+    <button class="more-item" data-tab="security"><span class="more-ico">🔒</span><span class="more-lbl" data-sq>Siguria</span><span class="more-lbl" data-en>Security</span></button>
+    <button class="more-item" data-tab="gates"><span class="more-ico">🗺️</span><span class="more-lbl" data-sq>Harta</span><span class="more-lbl" data-en>Map</span></button>
+    <button class="more-item" data-tab="weather"><span class="more-ico">🌤️</span><span class="more-lbl" data-sq>Moti</span><span class="more-lbl" data-en>Weather</span></button>
+    <button class="more-item" data-tab="hotels"><span class="more-ico">🏨</span><span class="more-lbl" data-sq>Hotele</span><span class="more-lbl" data-en>Hotels</span></button>
+    <button class="more-item" data-tab="prm"><span class="more-ico">♿</span><span class="more-lbl">PRM</span></button>
+    <button class="more-item" data-tab="faq"><span class="more-ico">❓</span><span class="more-lbl">FAQ</span></button>
+    <button class="more-item" data-tab="contacts"><span class="more-ico">📞</span><span class="more-lbl" data-sq>Kontakte</span><span class="more-lbl" data-en>Contacts</span></button>
+  </div>
+  <div style="height:8px"></div>
+</div>
 
 <script>
 var currentLang = 'sq';
@@ -700,27 +1480,71 @@ function setLang(lang){
   document.documentElement.setAttribute('data-lang', lang);
   document.getElementById('btnSq').classList.toggle('active', lang==='sq');
   document.getElementById('btnEn').classList.toggle('active', lang==='en');
-  updateFlightPlaceholder();
   updateProgressLabel();
-  updateFlightUpdLabel();
 }
 document.getElementById('btnSq').addEventListener('click', function(){ setLang('sq'); });
 document.getElementById('btnEn').addEventListener('click', function(){ setLang('en'); });
 setLang('sq');
 
 // ── TABS ──
+var MORE_TABS = ['checkin','baggage','security','gates','weather','hotels','prm','faq','contacts'];
+
 function openTab(id){
   document.querySelectorAll('.section').forEach(function(s){s.classList.remove('active');});
-  document.querySelectorAll('.tab-btn,.bnav-item').forEach(function(b){b.classList.remove('active');});
+  document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});
+  document.querySelectorAll('.bnav-item').forEach(function(b){b.classList.remove('active');});
+  document.querySelectorAll('.more-item').forEach(function(b){b.classList.remove('active-more');});
+
   var sec=document.getElementById('tab-'+id);
   if(sec) sec.classList.add('active');
-  document.querySelectorAll('[data-tab="'+id+'"]').forEach(function(b){b.classList.add('active');});
+
+  // top nav
+  document.querySelectorAll('.tab-btn[data-tab="'+id+'"]').forEach(function(b){b.classList.add('active');});
+
+  // bottom nav: if tab is in "more" group, highlight the More button
+  if(MORE_TABS.indexOf(id)>=0){
+    var moreBtn=document.getElementById('btnMore');
+    if(moreBtn) moreBtn.classList.add('active');
+    document.querySelectorAll('.more-item[data-tab="'+id+'"]').forEach(function(b){b.classList.add('active-more');});
+  } else {
+    document.querySelectorAll('.bnav-item[data-tab="'+id+'"]').forEach(function(b){b.classList.add('active');});
+  }
+
   window.scrollTo(0,0);
-  if(id==='flights') renderFlights();
+  if(id==='weather') loadWeather();
+  if(id==='planner') calcPlanner();
+  closeMore();
 }
-document.querySelectorAll('.tab-btn,.bnav-item').forEach(function(b){
+
+// top nav
+document.querySelectorAll('.tab-btn').forEach(function(b){
   b.addEventListener('click',function(){openTab(b.getAttribute('data-tab'));});
 });
+// bottom nav primary items
+document.querySelectorAll('.bnav-item:not(#btnMore)').forEach(function(b){
+  b.addEventListener('click',function(){openTab(b.getAttribute('data-tab'));});
+});
+// more menu items
+document.querySelectorAll('.more-item').forEach(function(b){
+  b.addEventListener('click',function(){openTab(b.getAttribute('data-tab'));});
+});
+
+// ── MORE MENU ──
+function toggleMore(){
+  var menu=document.getElementById('moreMenu');
+  var bd=document.getElementById('moreBackdrop');
+  var open=menu.style.display==='block';
+  menu.style.display=open?'none':'block';
+  bd.style.display=open?'none':'block';
+  if(!open){
+    menu.style.transform='translateY(20px)';menu.style.opacity='0';menu.style.transition='transform .25s ease,opacity .25s ease';
+    setTimeout(function(){menu.style.transform='translateY(0)';menu.style.opacity='1';},10);
+  }
+}
+function closeMore(){
+  document.getElementById('moreMenu').style.display='none';
+  document.getElementById('moreBackdrop').style.display='none';
+}
 
 // ── TRANSPORT CARDS ──
 document.querySelectorAll('.tcard').forEach(function(card){
@@ -768,97 +1592,181 @@ document.querySelectorAll('.gpill').forEach(function(p){
   p.addEventListener('click',function(){selectGate(parseInt(p.getAttribute('data-gate')));});
 });
 
-// ── FLIGHTS ──
-var flType='dep';
-var FL_DEP=[
-  {no:'W45027',dest:'Milano Malpensa',fl:'🇮🇹',time:'06:15',gate:'G3',st:'ok'},
-  {no:'TK1049',dest:'Istanbul',fl:'🇹🇷',time:'07:30',gate:'G2',st:'ok'},
-  {no:'LH1407',dest:'Frankfurt',fl:'🇩🇪',time:'08:00',gate:'G3',st:'bo'},
-  {no:'W45105',dest:'Berlin Brandenburg',fl:'🇩🇪',time:'08:45',gate:'G5',st:'dl'},
-  {no:'A3973',dest:'Athinë / Athens',fl:'🇬🇷',time:'09:20',gate:'G2',st:'ok'},
-  {no:'W45057',dest:'Torino',fl:'🇮🇹',time:'10:00',gate:'G1',st:'ok'},
-  {no:'FR8461',dest:'Londër Stansted / London',fl:'🇬🇧',time:'10:30',gate:'G6',st:'sc'},
-  {no:'W45153',dest:'Barcelona',fl:'🇪🇸',time:'11:15',gate:'G4',st:'sc'},
-  {no:'IB3761',dest:'Madrid',fl:'🇪🇸',time:'12:00',gate:'G5',st:'sc'},
-  {no:'EK354',dest:'Dubai',fl:'🇦🇪',time:'13:45',gate:'G7',st:'sc'},
-  {no:'OS755',dest:'Vjenë / Vienna',fl:'🇦🇹',time:'14:20',gate:'G3',st:'sc'},
-  {no:'W45201',dest:'Varshavë / Warsaw',fl:'🇵🇱',time:'15:00',gate:'G4',st:'sc'},
-  {no:'W45411',dest:'Londër Luton / London',fl:'🇬🇧',time:'18:15',gate:'G7',st:'sc'}
-];
-var FL_ARR=[
-  {no:'TK1048',dest:'Istanbul',fl:'🇹🇷',time:'06:05',gate:'G2',st:'la'},
-  {no:'LH1406',dest:'Frankfurt',fl:'🇩🇪',time:'06:50',gate:'G3',st:'la'},
-  {no:'W45026',dest:'Milano Malpensa',fl:'🇮🇹',time:'07:30',gate:'G1',st:'ok'},
-  {no:'A3972',dest:'Athinë / Athens',fl:'🇬🇷',time:'08:10',gate:'G2',st:'ok'},
-  {no:'W45104',dest:'Berlin Brandenburg',fl:'🇩🇪',time:'09:00',gate:'G5',st:'dl'},
-  {no:'FR8460',dest:'Londër Stansted / London',fl:'🇬🇧',time:'09:45',gate:'G6',st:'ok'},
-  {no:'W45152',dest:'Barcelona',fl:'🇪🇸',time:'10:30',gate:'G4',st:'ok'},
-  {no:'EK353',dest:'Dubai',fl:'🇦🇪',time:'11:20',gate:'G7',st:'sc'},
-  {no:'OS754',dest:'Vjenë / Vienna',fl:'🇦🇹',time:'13:00',gate:'G3',st:'sc'},
-  {no:'W45056',dest:'Torino',fl:'🇮🇹',time:'08:40',gate:'G1',st:'ok'}
-];
-var ST_SQ={ok:'✓ Në kohë',dl:'⚠ Vonesë',bo:'🔔 Boarding',la:'✈ Udhëtoi',sc:'○ Planifikuar'};
-var ST_EN={ok:'✓ On time',dl:'⚠ Delayed',bo:'🔔 Boarding',la:'✈ Landed',sc:'○ Scheduled'};
-var ST_C={ok:'s-ok',dl:'s-dl',bo:'s-bo',la:'s-la',sc:'s-sc'};
+// ── PLANNER ──
+var plannerTransport = {bus:50, taxi:30, car:25};
+var plannerSelected = 'bus';
 
-function getSTLabel(st){ return currentLang==='sq'? ST_SQ[st] : ST_EN[st]; }
+function calcPlanner(){
+  var flTimeVal = document.getElementById('flightTime').value;
+  if(!flTimeVal) return;
+  var parts = flTimeVal.split(':');
+  var fh = parseInt(parts[0]), fm = parseInt(parts[1]);
+  var totalFlight = fh*60 + fm;
+  var dist = parseInt(document.getElementById('distSlider').value);
+  var travelToAirport = plannerTransport[plannerSelected];
+  // Buffer times
+  var bufferCheckin = 120; // 2h before flight = standard
+  var bufferAtAirport = bufferCheckin; // need to be at airport this many mins before
+  var totalMinsNeeded = dist + travelToAirport + bufferAtAirport;
+  // Adjustments: bus has wait time
+  if(plannerSelected === 'bus') totalMinsNeeded += 15;
+  var leaveTotal = totalFlight - totalMinsNeeded;
+  if(leaveTotal < 0) leaveTotal += 24*60;
+  var lh = Math.floor(leaveTotal/60) % 24;
+  var lm = leaveTotal % 60;
+  var leaveStr = (lh<10?'0':'')+lh+':'+(lm<10?'0':'')+lm;
+  document.getElementById('leaveTime').textContent = leaveStr;
 
-function updateFlightPlaceholder(){
-  var inp=document.getElementById('flSearch');
-  if(inp) inp.placeholder=currentLang==='sq'?'🔍 Kërko destinacion ose numër fluturimi...':'🔍 Search destination or flight number...';
-}
-function updateFlightUpdLabel(){
-  var el=document.getElementById('flUpd');
-  if(!el||!el.textContent) return;
-  // just update the prefix
+  // Sub note
+  var now = new Date();
+  var nowMins = now.getHours()*60+now.getMinutes();
+  var diffMins = leaveTotal - nowMins;
+  if(diffMins < 0) diffMins += 24*60;
+  var noteText;
+  if(currentLang==='sq'){
+    if(diffMins < 30) noteText = '⚠️ Nishu menjëherë!';
+    else if(diffMins < 60) noteText = '⏳ Ke vetëm '+diffMins+' minuta.';
+    else { var dh=Math.floor(diffMins/60),dm=diffMins%60; noteText='⏰ '+dh+'h '+(dm?dm+'min ':'')+'mbetet.'; }
+  } else {
+    if(diffMins < 30) noteText = '⚠️ Leave immediately!';
+    else if(diffMins < 60) noteText = '⏳ Only '+diffMins+' minutes left.';
+    else { var dh=Math.floor(diffMins/60),dm=diffMins%60; noteText='⏰ '+dh+'h '+(dm?dm+'min ':'')+'remaining.'; }
+  }
+  document.getElementById('leaveNote').textContent = noteText;
+
+  // Breakdown
+  var labels = {
+    sq:{dist:'Shtëpi → Nisje',travel:'Transport deri në aeroport',airport:'Buffer në aeroport',flight:'Ora e nisjes'},
+    en:{dist:'Home → Departure',travel:'Travel to airport',airport:'Airport buffer',flight:'Flight time'}
+  };
+  var ll = labels[currentLang];
+  var arrMins = leaveTotal + dist;
+  var arrH = Math.floor((arrMins%1440)/60), arrM = arrMins%60;
+  var arStr = (arrH<10?'0':'')+arrH+':'+(arrM<10?'0':'')+arrM;
+  document.getElementById('prBreakdown').innerHTML =
+    '<div class="prb-item"><span class="prb-label">'+ll.dist+'</span><span class="prb-val">'+dist+' min</span></div>'+
+    '<div class="prb-item"><span class="prb-label">'+ll.travel+'</span><span class="prb-val">'+travelToAirport+(plannerSelected==='bus'?'+15':'')+' min</span></div>'+
+    '<div class="prb-item"><span class="prb-label">'+ll.airport+'</span><span class="prb-val">'+bufferAtAirport+' min</span></div>'+
+    '<div class="prb-item"><span class="prb-label">'+ll.flight+'</span><span class="prb-val">'+flTimeVal+'</span></div>';
 }
 
-function renderFlights(){
-  var q=(document.getElementById('flSearch').value||'').toLowerCase();
-  var src=flType==='dep'?FL_DEP:FL_ARR;
-  var list=q?src.filter(function(f){return f.dest.toLowerCase().indexOf(q)>=0||f.no.toLowerCase().indexOf(q)>=0;}):src;
-  var dir=flType==='dep'?(currentLang==='sq'?'Destinacion':'Destination'):(currentLang==='sq'?'Origjinë':'Origin');
-  var box=document.getElementById('flTable');
-  if(!list.length){box.innerHTML='<div class="empty">'+(currentLang==='sq'?'Nuk u gjetën fluturime.':'No flights found.')+'</div>';return;}
-  box.innerHTML=list.map(function(f){
-    var badge='<span class="fl-badge '+ST_C[f.st]+'">'+getSTLabel(f.st)+'</span>';
-    return '<div class="fl-row">'
-      +'<div class="fl-no">'+f.no+'</div>'
-      +'<div class="fl-dest">'+f.fl+' '+f.dest+'<small>'+dir+'</small></div>'
-      +'<div class="fl-time">'+f.time+'</div>'
-      +'<div class="fl-gate">'+f.gate+'</div>'
-      +'<div>'+badge+'</div>'
-      +'</div>'
-      +'<div class="fl-card">'
-      +'<div class="fl-card-no">'+f.no+'</div>'
-      +'<div class="fl-card-info"><div class="fl-card-dest">'+f.fl+' '+f.dest+'</div>'
-      +'<div class="fl-card-sub">'+dir+' · '+f.gate+'</div>'+badge+'</div>'
-      +'<div class="fl-card-right"><span class="fl-card-time">'+f.time+'</span></div>'
-      +'</div>';
-  }).join('');
-  var now=new Date();
-  var t=now.toLocaleTimeString('sq-AL',{timeZone:'Europe/Tirane',hour:'2-digit',minute:'2-digit'});
-  var upd=document.getElementById('flUpd');
-  if(upd) upd.textContent=(currentLang==='sq'?'Rifreskuar: ':'Updated: ')+t;
-}
-document.getElementById('swDep').addEventListener('click',function(){
-  flType='dep';
-  document.getElementById('swDep').classList.add('active');
-  document.getElementById('swArr').classList.remove('active');
-  document.getElementById('flSearch').value='';
-  renderFlights();
+document.getElementById('flightTime').addEventListener('input', calcPlanner);
+document.getElementById('distSlider').addEventListener('input', function(){
+  document.getElementById('distVal').textContent = this.value+' min';
+  calcPlanner();
 });
-document.getElementById('swArr').addEventListener('click',function(){
-  flType='arr';
-  document.getElementById('swArr').classList.add('active');
-  document.getElementById('swDep').classList.remove('active');
-  document.getElementById('flSearch').value='';
-  renderFlights();
+document.querySelectorAll('.ptab').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    document.querySelectorAll('.ptab').forEach(function(b){b.classList.remove('active');});
+    btn.classList.add('active');
+    plannerSelected = btn.getAttribute('data-travel');
+    calcPlanner();
+  });
 });
-document.getElementById('flSearch').addEventListener('input',renderFlights);
-document.getElementById('btnRefresh').addEventListener('click',function(){
-  document.getElementById('flTable').innerHTML='<div class="empty">⏳</div>';
-  setTimeout(renderFlights,600);
+calcPlanner();
+
+// ── WEATHER (Open-Meteo, no API key) ──
+var wxLoaded = false;
+var WMO_CODES = {
+  0:'☀️',1:'🌤️',2:'⛅',3:'☁️',
+  45:'🌫️',48:'🌫️',
+  51:'🌦️',53:'🌦️',55:'🌧️',
+  61:'🌧️',63:'🌧️',65:'🌧️',
+  71:'🌨️',73:'🌨️',75:'❄️',
+  77:'🌨️',
+  80:'🌦️',81:'🌧️',82:'⛈️',
+  85:'🌨️',86:'❄️',
+  95:'⛈️',96:'⛈️',99:'⛈️'
+};
+var WMO_DESC_SQ = {
+  0:'Qiell i pastër',1:'Kryesisht i kthjellët',2:'Pjesërisht i vranët',3:'I vranët',
+  45:'Mjegull',48:'Mjegull me akull',
+  51:'Shi i lehtë',53:'Shi mesatar',55:'Shi i dendur',
+  61:'Shi i lehtë',63:'Shi',65:'Shi i fortë',
+  71:'Borë e lehtë',73:'Borë',75:'Borë e dendur',
+  80:'Reshje të lehta',81:'Reshje',82:'Stuhie',
+  95:'Stuhi thunderi',99:'Stuhi thunderi me breshër'
+};
+var WMO_DESC_EN = {
+  0:'Clear sky',1:'Mainly clear',2:'Partly cloudy',3:'Overcast',
+  45:'Foggy',48:'Icy fog',
+  51:'Light drizzle',53:'Moderate drizzle',55:'Dense drizzle',
+  61:'Light rain',63:'Rain',65:'Heavy rain',
+  71:'Light snow',73:'Snow',75:'Heavy snow',
+  80:'Light showers',81:'Showers',82:'Violent showers',
+  95:'Thunderstorm',99:'Thunderstorm with hail'
+};
+var DAYS_SQ = ['Die','Hën','Mar','Mër','Enj','Pre','Sht'];
+var DAYS_EN = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+function loadWeather(){
+  if(wxLoaded) return;
+  var url = 'https://api.open-meteo.com/v1/forecast?latitude=41.4149&longitude=19.7132&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m,wind_direction_10m,precipitation&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,wind_speed_10m_max&wind_speed_unit=kmh&timezone=Europe%2FTirane&forecast_days=5';
+  fetch(url)
+    .then(function(r){return r.json();})
+    .then(function(d){
+      wxLoaded = true;
+      renderWeather(d);
+    })
+    .catch(function(){
+      document.getElementById('wxNow').innerHTML='<div style="padding:1.5rem;text-align:center;color:var(--muted);font-size:.8rem">'+(currentLang==='sq'?'❌ Nuk u ngarkua moti. Kontrolloni lidhjen.':'❌ Weather failed to load. Check your connection.')+'</div>';
+    });
+}
+
+function renderWeather(d){
+  var c = d.current, daily = d.daily;
+  var code = c.weather_code||0;
+  var ico = WMO_CODES[code]||'🌡️';
+  var desc = currentLang==='sq'?(WMO_DESC_SQ[code]||'—'):(WMO_DESC_EN[code]||'—');
+  var windDir = ['N','NE','E','SE','S','SW','W','NW'][Math.round(c.wind_direction_10m/45)%8];
+
+  document.getElementById('wxNow').innerHTML =
+    '<div class="wx-main">'+
+      '<div class="wx-top">'+
+        '<div>'+
+          '<div class="wx-temp-big">'+Math.round(c.temperature_2m)+'<span>°C</span></div>'+
+          '<div class="wx-desc">'+desc+'</div>'+
+          '<div class="wx-loc">📍 Aeroporti TIA, Rinas · '+(currentLang==='sq'?'Ndjehet si ':'Feels like ')+Math.round(c.apparent_temperature)+'°C</div>'+
+        '</div>'+
+        '<div class="wx-icon">'+ico+'</div>'+
+      '</div>'+
+      '<div class="wx-grid">'+
+        '<div class="wx-stat"><div class="wx-stat-ico">💧</div><span class="wx-stat-val">'+c.relative_humidity_2m+'%</span><span class="wx-stat-lbl">'+(currentLang==='sq'?'Lagështia':'Humidity')+'</span></div>'+
+        '<div class="wx-stat"><div class="wx-stat-ico">💨</div><span class="wx-stat-val">'+Math.round(c.wind_speed_10m)+' km/h</span><span class="wx-stat-lbl">'+(currentLang==='sq'?'Era ':'Wind ')+windDir+'</span></div>'+
+        '<div class="wx-stat"><div class="wx-stat-ico">🌧️</div><span class="wx-stat-val">'+c.precipitation+' mm</span><span class="wx-stat-lbl">'+(currentLang==='sq'?'Reshjet':'Precip.')+'</span></div>'+
+        '<div class="wx-stat"><div class="wx-stat-ico">🌡️</div><span class="wx-stat-val">'+Math.round(c.apparent_temperature)+'°C</span><span class="wx-stat-lbl">'+(currentLang==='sq'?'Ndjehet si':'Feels like')+'</span></div>'+
+      '</div>'+
+    '</div>';
+
+  // Forecast
+  var fcHTML = '';
+  for(var i=0;i<5;i++){
+    var dt = new Date(daily.time[i]+'T12:00:00');
+    var dayName = (currentLang==='sq'?DAYS_SQ:DAYS_EN)[dt.getDay()];
+    var fc = daily.weather_code[i]||0;
+    fcHTML += '<div class="wx-day">'+
+      '<div class="wx-day-name">'+dayName+'</div>'+
+      '<span class="wx-day-ico">'+(WMO_CODES[fc]||'🌡️')+'</span>'+
+      '<div class="wx-day-hi">'+Math.round(daily.temperature_2m_max[i])+'°</div>'+
+      '<div class="wx-day-lo">'+Math.round(daily.temperature_2m_min[i])+'°</div>'+
+      (daily.precipitation_sum[i]>0?'<span class="wx-day-rain">'+daily.precipitation_sum[i]+'mm</span>':'')+
+    '</div>';
+  }
+  document.getElementById('wxForecast').innerHTML = fcHTML;
+}
+
+// ── FAQ ──
+document.querySelectorAll('.faq-item').forEach(function(item){
+  item.addEventListener('click',function(){item.classList.toggle('open');});
+});
+
+// fix distVal dual label sync
+document.getElementById('distSlider').addEventListener('input',function(){
+  var v=this.value+' min';
+  var el=document.getElementById('distVal');
+  var el2=document.getElementById('distVal2');
+  if(el) el.textContent=v;
+  if(el2) el2.textContent=v;
 });
 
 // ── CHECKLIST ──
@@ -899,8 +1807,8 @@ document.getElementById('btnAll').addEventListener('click',function(){
 })();
 
 // init
-updateFlightPlaceholder();
-renderFlights();
+updateProgressLabel();
+calcPlanner();
 </script>
 </body>
 </html>
