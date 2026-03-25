@@ -321,9 +321,8 @@ main{max-width:960px;margin:0 auto;padding:14px 12px 80px;flex:1}
 ::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
 
 /* ── SURVEY CSS ── */
-/* Landing card - survey small button accent */
-.lp-ex-sv{background:rgba(200,16,46,.13)!important;border-color:rgba(200,16,46,.3)!important;color:#9B0E24!important;font-weight:700!important}
-.lp-ex-sv:hover{background:#C8102E!important;border-color:#C8102E!important;color:#fff!important}
+/* Landing card */
+
 
 /* NPS inline banner after check-in */
 .nps-banner{background:linear-gradient(135deg,#fff5f6,#ffe8ea);border:1px solid rgba(200,16,46,.18);border-radius:var(--r);padding:14px 16px;margin-top:12px}
@@ -402,10 +401,16 @@ main{max-width:960px;margin:0 auto;padding:14px 12px 80px;flex:1}
   .hclk{font-size:.9rem}
   .hdr{padding:0 10px}
   .bk{width:28px;height:28px;font-size:.9rem}
-  .lp-tx strong{font-size:1.15rem}
-  .lp-ico{width:44px;height:44px;font-size:22px}
-  .lp-logo{margin-bottom:16px;gap:9px}
-  .lp-q{font-size:.78rem;margin-bottom:14px}
+  /* FIX: lang switch no longer absolute — flows above logo, no overlap */
+  .lp{padding-top:12px;align-items:flex-start}
+  .lp-lang{position:static;margin-bottom:12px;align-self:flex-end}
+  .lp-logo{align-self:center;margin-bottom:12px;gap:9px}
+  .lp-q{align-self:center;font-size:.76rem;margin-bottom:12px}
+  .lp-cards{align-self:center}
+  .lp-extra{align-self:center}
+  .lp-clk{align-self:center}
+  .lp-tx strong{font-size:1.05rem}
+  .lp-tx span{font-size:.63rem}
   .nav-bar{flex-wrap:wrap}
   .nav-sel{min-width:100%;order:1;flex:none}
   .nav-go{flex:1;order:2}
@@ -422,19 +427,20 @@ main{max-width:960px;margin:0 auto;padding:14px 12px 80px;flex:1}
   .mscroll{touch-action:pan-x pan-y}
   .res-box{padding:13px}
   .rt{font-size:2.6rem}
-  .chatbase-bubble-button{bottom:66px!important;right:10px!important}
+  /* FIX: chatbase raised higher above bottom nav */
+  .chatbase-bubble-button{bottom:80px!important;right:12px!important}
 }
 @media(max-width:380px){
   .lp-cards{max-width:300px}
-  .lpc{padding:20px 14px 28px}
-  .lpc-ico{font-size:3.2rem;margin-bottom:9px}
-  .lpc-t{font-size:1.05rem}
-  .lpc-s{font-size:.72rem}
+  .lpc{padding:18px 13px 26px}
+  .lpc-ico{font-size:2.8rem;margin-bottom:7px}
+  .lpc-t{font-size:.95rem}
+  .lpc-s{font-size:.69rem}
   .hdr-r{gap:4px}
   .mlang button{padding:2px 6px;font-size:.62rem}
   .hclk{font-size:.82rem}
-  .lp-extra{gap:6px}
-  .lp-ex-btn{padding:5px 10px;font-size:.68rem}
+  .lp-extra{gap:5px}
+  .lp-ex-btn{padding:5px 9px;font-size:.66rem}
 }
 </style>
 </head>
@@ -479,13 +485,12 @@ main{max-width:960px;margin:0 auto;padding:14px 12px 80px;flex:1}
       <span class="lpc-arrow">↗</span>
     </div>
   </div>
-  <!-- Survey card on landing -->
   <div class="lp-extra">
     <button class="lp-ex-btn" onclick="oV('d');oT('d','d-wx')">🌤️ <span data-sq>Moti</span><span data-en>Weather</span></button>
     <button class="lp-ex-btn" onclick="oV('d');oT('d','d-faq')">❓ FAQ</button>
     <button class="lp-ex-btn" onclick="oV('a');oT('a','a-svc');setTimeout(function(){document.querySelector('#a-svc .itab:nth-child(3)').click()},120)">♿ PRM</button>
     <button class="lp-ex-btn" onclick="oV('a');oT('a','a-info');setTimeout(function(){document.querySelector('#a-info .itab:nth-child(2)').click()},120)">📞 <span data-sq>Kontakte</span><span data-en>Contacts</span></button>
-    <button class="lp-ex-btn lp-ex-sv" onclick="oV('d');oT('d','d-sv')">⭐ <span data-sq>Vlerëso TIA</span><span data-en>Rate TIA</span></button>
+    <button class="lp-ex-btn" style="background:rgba(200,16,46,.12);border-color:rgba(200,16,46,.28);color:#9B0E24;font-weight:700" onclick="oV('d');oT('d','d-sv')">⭐ <span data-sq>Vlerëso</span><span data-en>Rate</span></button>
   </div>
   <div class="lp-clk"><span data-sq>Ora aktuale TIA:</span><span data-en>Current time TIA:</span> <strong id="lpC">--:--</strong></div>
 </div>
