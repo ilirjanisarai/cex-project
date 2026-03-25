@@ -26,7 +26,7 @@ html[data-lang="sq"] [data-en]{display:none!important}
 
 /* LANDING */
 .lp{min-height:100vh;background:#ffffff;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 16px;position:relative;overflow:hidden}
-.lp-lang{position:absolute;top:16px;right:16px;display:flex;gap:4px;background:rgba(200,16,46,.08);border-radius:8px;padding:3px;border:1px solid rgba(200,16,46,.15)}
+.lp-lang{position:absolute;top:16px;right:16px;display:flex;gap:4px;background:rgba(200,16,46,.07);border-radius:8px;padding:3px;border:1px solid rgba(200,16,46,.15)}
 .lp-lang button{padding:4px 10px;border:none;border-radius:6px;background:transparent;color:#9B0E24;font-family:"DM Sans",sans-serif;font-size:.72rem;font-weight:600;cursor:pointer;transition:all .2s}
 .lp-lang button.on{background:#C8102E;color:#fff;font-weight:700}
 .lp-logo{display:flex;align-items:center;gap:12px;margin-bottom:24px}
@@ -36,6 +36,7 @@ html[data-lang="sq"] [data-en]{display:none!important}
 .lp-q{font-family:"Syne",sans-serif;font-size:.88rem;font-weight:700;color:#9B0E24;text-align:center;margin-bottom:18px;text-transform:uppercase;letter-spacing:1.5px}
 .lp-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;width:100%;max-width:580px}
 @media(max-width:460px){.lp-cards{grid-template-columns:1fr;max-width:320px}}
+
 .lpc{border-radius:18px;padding:26px 20px 36px;cursor:pointer;transition:all .25s;position:relative;overflow:hidden;border:2px solid transparent;text-align:center}
 .lpc:hover{transform:translateY(-5px)}
 .lpc-d{background:linear-gradient(145deg,#C8102E,#9B0E24)}
@@ -81,12 +82,11 @@ main{max-width:960px;margin:0 auto;padding:14px 12px 80px;flex:1}
 .sec{display:none}
 .sec.on{display:block;animation:fu .22s ease}
 @keyframes fu{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
-.bnav{display:none}.chatbase-bubble-button{bottom:66px!important}
+.bnav{display:none}
 @media(max-width:640px){
   .tnav{display:none}
   .bnav{display:flex;position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:1px solid var(--border);box-shadow:0 -2px 10px rgba(0,0,0,.08);z-index:300;height:56px}
   main{padding-bottom:70px}
-  .chatbase-bubble-button{bottom:66px!important;right:10px!important}
 }
 .bn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;border:none;background:transparent;cursor:pointer;padding:5px 2px;position:relative}
 .bn::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:0;height:3px;border-radius:0 0 3px 3px;transition:width .2s}
@@ -320,7 +320,83 @@ main{max-width:960px;margin:0 auto;padding:14px 12px 80px;flex:1}
 ::-webkit-scrollbar{width:3px;height:3px}
 ::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
 
-/* ── MOBILE IMPROVEMENTS ── */
+/* ── SURVEY CSS ── */
+/* Landing card - survey small button accent */
+.lp-ex-sv{background:rgba(200,16,46,.13)!important;border-color:rgba(200,16,46,.3)!important;color:#9B0E24!important;font-weight:700!important}
+.lp-ex-sv:hover{background:#C8102E!important;border-color:#C8102E!important;color:#fff!important}
+
+/* NPS inline banner after check-in */
+.nps-banner{background:linear-gradient(135deg,#fff5f6,#ffe8ea);border:1px solid rgba(200,16,46,.18);border-radius:var(--r);padding:14px 16px;margin-top:12px}
+.nps-banner-q{font-family:"Syne",sans-serif;font-size:.84rem;font-weight:700;color:var(--dep2);margin-bottom:10px}
+.nps-banner-btns{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px}
+.nps-b{width:36px;height:36px;border-radius:8px;border:1.5px solid rgba(200,16,46,.2);background:#fff;color:var(--dep2);font-family:"Syne",sans-serif;font-size:.8rem;font-weight:700;cursor:pointer;transition:all .18s;flex-shrink:0}
+.nps-b:hover{background:#C8102E;border-color:#C8102E;color:#fff;transform:scale(1.08)}
+.nps-b.nps-sel-d{background:#ef4444;border-color:#ef4444;color:#fff}
+.nps-b.nps-sel-p{background:#f97316;border-color:#f97316;color:#fff}
+.nps-b.nps-sel-pr{background:#22c55e;border-color:#22c55e;color:#fff}
+.nps-banner-done{font-size:.82rem;font-weight:600;color:var(--green);padding:4px 0}
+.nps-full-link{display:inline-block;font-size:.72rem;color:var(--dep);font-weight:600;text-decoration:none;opacity:.7;margin-top:4px}
+.nps-full-link:hover{opacity:1}
+
+/* Full survey page */
+.sv-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:10px}
+.sv-sec{padding:14px;border-bottom:1px solid var(--border)}
+.sv-sec:last-child{border-bottom:none}
+.sv-lbl{font-family:"Syne",sans-serif;font-size:.8rem;font-weight:700;color:var(--text);margin-bottom:10px}
+.sv-req{color:var(--dep);margin-left:2px}
+/* NPS full */
+.sv-nps-wrap{margin-top:4px}
+.sv-nps-row{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+.sv-nps-edge{font-size:.65rem;color:var(--muted);white-space:nowrap;flex-shrink:0}
+.sv-nps-r{margin-left:auto}
+.sv-nps-btns{display:flex;gap:4px;flex-wrap:wrap;justify-content:center;flex:1}
+.sv-nps-btn{width:36px;height:36px;border-radius:8px;border:1.5px solid var(--border);background:var(--card2);color:var(--muted);font-family:"Syne",sans-serif;font-size:.8rem;font-weight:700;cursor:pointer;transition:all .18s}
+.sv-nps-btn:hover{border-color:var(--dep);color:var(--dep);transform:translateY(-2px)}
+.sv-nps-btn.sel-d{background:#ef4444;border-color:#ef4444;color:#fff}
+.sv-nps-btn.sel-p{background:#f97316;border-color:#f97316;color:#fff}
+.sv-nps-btn.sel-pr{background:#22c55e;border-color:#22c55e;color:#fff}
+.sv-nps-legend{display:flex;gap:10px;margin-top:8px;flex-wrap:wrap}
+.sv-det-lbl,.sv-pas-lbl,.sv-pro-lbl{font-size:.65rem;color:var(--muted)}
+/* Stars */
+.sv-star-row{display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--border);gap:8px}
+.sv-star-row:last-child{border-bottom:none}
+.sv-star-name{font-size:.78rem;color:var(--text);flex:1}
+.sv-stars{display:flex;gap:3px;flex-shrink:0}
+.sv-star{font-size:1.45rem;cursor:pointer;color:#ddd;transition:all .1s;line-height:1;user-select:none}
+.sv-star.on{color:#f4c842}
+.sv-star:hover{transform:scale(1.15)}
+/* Textarea */
+.sv-ta{width:100%;padding:9px 11px;border:1.5px solid var(--border);border-radius:9px;font-family:"DM Sans",sans-serif;font-size:.78rem;color:var(--text);background:var(--card2);resize:vertical;outline:none;line-height:1.5;min-height:70px}
+.sv-ta:focus{border-color:var(--dep)}
+.sv-char{font-size:.64rem;color:var(--muted);text-align:right;margin-top:3px}
+/* Submit button */
+.sv-btn{width:100%;padding:13px;border:none;border-radius:10px;background:linear-gradient(135deg,var(--dep),var(--dep2));color:#fff;font-family:"Syne",sans-serif;font-size:.9rem;font-weight:700;cursor:pointer;transition:all .2s;margin-bottom:4px}
+.sv-btn:hover:not(:disabled){opacity:.9;transform:translateY(-1px)}
+.sv-btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+/* Thank you */
+.sv-ok-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:26px;text-align:center;margin-bottom:12px}
+.sv-ok-t{font-family:"Syne",sans-serif;font-size:1.1rem;font-weight:800;color:var(--text);margin-bottom:6px}
+.sv-ok-s{font-size:.78rem;color:var(--muted);line-height:1.6;margin-bottom:14px}
+.sv-again{padding:8px 20px;border-radius:20px;border:1.5px solid var(--dep);color:var(--dep);background:transparent;font-family:"DM Sans",sans-serif;font-size:.76rem;font-weight:600;cursor:pointer;transition:all .2s}
+.sv-again:hover{background:var(--dep);color:#fff}
+/* Results */
+.sv-res-wrap{background:var(--card);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:10px}
+.sv-res-hd{padding:9px 14px;font-family:"Syne",sans-serif;font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;background:rgba(200,16,46,.07);color:#9B0E24;border-bottom:1px solid var(--border)}
+.sv-res-row{display:flex;align-items:center;gap:8px;padding:9px 14px;border-bottom:1px solid var(--border)}
+.sv-res-row:last-child{border-bottom:none}
+.sv-res-l{font-size:.75rem;color:var(--text);flex:1}
+.sv-res-bar{width:80px;height:7px;background:var(--card2);border-radius:4px;overflow:hidden;flex-shrink:0}
+.sv-res-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,#f4c842,#C8102E);transition:width .5s}
+.sv-res-v{font-family:"Syne",sans-serif;font-size:.73rem;font-weight:700;color:var(--dep);flex-shrink:0;min-width:30px;text-align:right}
+.sv-nps-score{display:inline-flex;align-items:center;gap:6px;padding:3px 11px;border-radius:20px;font-size:.74rem;font-weight:700}
+.sv-nps-score.pr{background:rgba(34,197,94,.12);color:#166534}
+.sv-nps-score.pa{background:rgba(249,115,22,.12);color:#9a3412}
+.sv-nps-score.de{background:rgba(239,68,68,.12);color:#991b1b}
+@media(max-width:400px){
+  .sv-nps-btn,.nps-b{width:29px;height:29px;font-size:.72rem}
+  .sv-star{font-size:1.25rem}
+}
+
 @media(max-width:640px){
   .htx small{display:none}
   .hclk{font-size:.9rem}
@@ -346,7 +422,6 @@ main{max-width:960px;margin:0 auto;padding:14px 12px 80px;flex:1}
   .mscroll{touch-action:pan-x pan-y}
   .res-box{padding:13px}
   .rt{font-size:2.6rem}
-  /* push chatbase widget above bottom nav */
   .chatbase-bubble-button{bottom:66px!important;right:10px!important}
 }
 @media(max-width:380px){
@@ -404,11 +479,13 @@ main{max-width:960px;margin:0 auto;padding:14px 12px 80px;flex:1}
       <span class="lpc-arrow">↗</span>
     </div>
   </div>
+  <!-- Survey card on landing -->
   <div class="lp-extra">
     <button class="lp-ex-btn" onclick="oV('d');oT('d','d-wx')">🌤️ <span data-sq>Moti</span><span data-en>Weather</span></button>
     <button class="lp-ex-btn" onclick="oV('d');oT('d','d-faq')">❓ FAQ</button>
     <button class="lp-ex-btn" onclick="oV('a');oT('a','a-svc');setTimeout(function(){document.querySelector('#a-svc .itab:nth-child(3)').click()},120)">♿ PRM</button>
     <button class="lp-ex-btn" onclick="oV('a');oT('a','a-info');setTimeout(function(){document.querySelector('#a-info .itab:nth-child(2)').click()},120)">📞 <span data-sq>Kontakte</span><span data-en>Contacts</span></button>
+    <button class="lp-ex-btn lp-ex-sv" onclick="oV('d');oT('d','d-sv')">⭐ <span data-sq>Vlerëso TIA</span><span data-en>Rate TIA</span></button>
   </div>
   <div class="lp-clk"><span data-sq>Ora aktuale TIA:</span><span data-en>Current time TIA:</span> <strong id="lpC">--:--</strong></div>
 </div>
@@ -443,6 +520,7 @@ main{max-width:960px;margin:0 auto;padding:14px 12px 80px;flex:1}
       <button class="tn" data-v="d" data-t="d-wx">🌤️ <span data-sq>Moti</span><span data-en>Weather</span></button>
       <button class="tn" data-v="d" data-t="d-faq">❓ FAQ</button>
       <button class="tn" data-v="d" data-t="d-cl">✅ <span data-sq>Lista</span><span data-en>Checklist</span></button>
+      <button class="tn" data-v="d" data-t="d-sv">⭐ <span data-sq>Vlerëso</span><span data-en>Rate</span></button>
     </nav>
   </header>
   <main>
@@ -529,6 +607,20 @@ main{max-width:960px;margin:0 auto;padding:14px 12px 80px;flex:1}
         <div class="tip s"><div class="tpi">✅</div><div><h4 data-sq>Lejohen me deklarim</h4><h4 data-en>Allowed declared</h4><p data-sq>Barna me recetë, ushqime foshnjash.</p><p data-en>Prescription meds, baby food.</p></div></div>
       </div>
     </div>
+
+  <!-- NPS inline after check-in -->
+  <div class="nps-banner" id="d-nps-banner">
+    <div class="nps-banner-q" data-sq>💬 Si e vlerësoni Check-in-in sot?</div>
+    <div class="nps-banner-q" data-en>💬 How would you rate check-in today?</div>
+    <div class="nps-banner-btns" id="d-nb-btns"></div>
+    <div class="nps-banner-done" id="d-nb-done" style="display:none">
+      <span data-sq>✅ Faleminderit!</span><span data-en>✅ Thank you!</span>
+    </div>
+    <a class="nps-full-link" onclick="oT('d','d-sv')" href="javascript:void(0)">
+      <span data-sq>Vlerëso të plotë →</span><span data-en>Full rating →</span>
+    </a>
+  </div>
+
   </div>
 
   <!-- D: SECURITY -->
@@ -649,6 +741,65 @@ main{max-width:960px;margin:0 auto;padding:14px 12px 80px;flex:1}
     </div>
   </div>
 
+
+  <!-- D: SURVEY FULL -->
+  <div class="sec" id="d-sv">
+    <div class="hero hd">
+      <h2 data-sq>⭐ Vlerëso Shërbimin e TIA</h2>
+      <h2 data-en>⭐ Rate TIA Service</h2>
+      <p data-sq>Mendimi juaj na ndihmon të përmirësojmë çdo ditë. Vetëm 60 sekonda.</p>
+      <p data-en>Your feedback helps us improve every day. Only 60 seconds.</p>
+    </div>
+    <div id="d-sv-form">
+      <div class="sv-card">
+        <div class="sv-sec">
+          <div class="sv-lbl" data-sq>Sa ka gjasa ta rekomandoni TIA-n tek të tjerët? <span class="sv-req">*</span></div>
+          <div class="sv-lbl" data-en>How likely are you to recommend TIA to others? <span class="sv-req">*</span></div>
+          <div class="sv-nps-wrap">
+            <div class="sv-nps-row">
+              <span class="sv-nps-edge" data-sq>Aspak</span>
+              <span class="sv-nps-edge" data-en>Not at all</span>
+              <div class="sv-nps-btns" id="d-nps-btns"></div>
+              <span class="sv-nps-edge sv-nps-r" data-sq>Shumë gjasa</span>
+              <span class="sv-nps-edge sv-nps-r" data-en>Very likely</span>
+            </div>
+            <div class="sv-nps-legend">
+              <span class="sv-det-lbl" data-sq>🔴 Kritikues (0–6)</span><span class="sv-det-lbl" data-en>🔴 Detractor (0–6)</span>
+              <span class="sv-pas-lbl" data-sq>🟡 Pasiv (7–8)</span><span class="sv-pas-lbl" data-en>🟡 Passive (7–8)</span>
+              <span class="sv-pro-lbl" data-sq>🟢 Promovues (9–10)</span><span class="sv-pro-lbl" data-en>🟢 Promoter (9–10)</span>
+            </div>
+          </div>
+        </div>
+        <div class="sv-sec">
+          <div class="sv-lbl" data-sq>Vlerësoni aspektet: <span class="sv-req">*</span></div>
+          <div class="sv-lbl" data-en>Rate the aspects: <span class="sv-req">*</span></div>
+          <div id="d-star-rows"></div>
+        </div>
+        <div class="sv-sec">
+          <div class="sv-lbl" data-sq>Koment opsional</div>
+          <div class="sv-lbl" data-en>Optional comment</div>
+          <textarea id="d-comment" class="sv-ta" rows="3" maxlength="300"></textarea>
+          <div class="sv-char" id="d-char">0 / 300</div>
+        </div>
+      </div>
+      <button class="sv-btn" id="d-sv-btn" onclick="submitSv('d')" disabled>
+        <span data-sq>✅ Dërgo Vlerësimin</span><span data-en>✅ Submit Rating</span>
+      </button>
+    </div>
+    <div id="d-sv-ok" style="display:none">
+      <div class="sv-ok-card">
+        <div style="font-size:3rem;margin-bottom:8px">🎉</div>
+        <div class="sv-ok-t" data-sq>Faleminderit për vlerësimin!</div>
+        <div class="sv-ok-t" data-en>Thank you for your feedback!</div>
+        <div class="sv-ok-s" data-sq>Mendimi juaj ndihmon TIA-n të ofrojë shërbim më të mirë çdo ditë.</div>
+        <div class="sv-ok-s" data-en>Your feedback helps TIA deliver better service every day.</div>
+        <button class="sv-again" onclick="resetSv('d')" data-sq>+ Vlerëso sërish</button>
+        <button class="sv-again" onclick="resetSv('d')" data-en>+ Rate again</button>
+      </div>
+      <div id="d-sv-res"></div>
+    </div>
+  </div>
+
   </main>
   <nav class="bnav bnav-d">
     <button class="bn on" data-v="d" data-t="d-trans"><span class="bn-i">🚗</span><span class="bn-l" data-sq>Transport</span><span class="bn-l" data-en>Transport</span></button>
@@ -657,6 +808,7 @@ main{max-width:960px;margin:0 auto;padding:14px 12px 80px;flex:1}
     <button class="bn" data-v="d" data-t="d-map"><span class="bn-i">🗺️</span><span class="bn-l" data-sq>Harta</span><span class="bn-l" data-en>Map</span></button>
     <button class="bn" data-v="d" data-t="d-fl"><span class="bn-i">📟</span><span class="bn-l" data-sq>Nisjet</span><span class="bn-l" data-en>Flights</span></button>
     <button class="bn" data-v="d" data-t="d-cl"><span class="bn-i">✅</span><span class="bn-l" data-sq>Lista</span><span class="bn-l" data-en>List</span></button>
+    <button class="bn" data-v="d" data-t="d-sv"><span class="bn-i">⭐</span><span class="bn-l" data-sq>Vlerëso</span><span class="bn-l" data-en>Rate</span></button>
   </nav>
 </div>
 </div>
@@ -1219,8 +1371,146 @@ document.getElementById('dALL').addEventListener('click',function(){
 
 /* INIT */
 sL('sq');
-</script>
 
+/* ══ SURVEY JS ══ */
+var CATS_SQ=['Check-in & Sportelat','Kontrolli i Sigurisë','Pastërtia e Terminalit','Dyqanet & Restorantet','Transport (taksi/autobus)'];
+var CATS_EN=['Check-in & Counters','Security Control','Terminal Cleanliness','Shops & Restaurants','Transport (taxi/bus)'];
+var svSt={d:{nps:-1,stars:[0,0,0,0,0]},a:{nps:-1,stars:[0,0,0,0,0]}};
+
+function buildSurvey(p){
+  // NPS buttons
+  var nb=document.getElementById(p+'-nps-btns');
+  if(!nb||nb.children.length>0)return;
+  for(var i=0;i<=10;i++){
+    (function(n){
+      var b=document.createElement('button');
+      b.className='sv-nps-btn';b.textContent=n;
+      b.onclick=function(e){e.stopPropagation();
+        svSt[p].nps=n;
+        document.querySelectorAll('#'+p+'-nps-btns .sv-nps-btn').forEach(function(x){
+          x.className='sv-nps-btn';
+          var v=parseInt(x.textContent);
+          if(v===n)x.classList.add(v<=6?'sel-d':v<=8?'sel-p':'sel-pr');
+        });
+        svCheck(p);
+      };
+      nb.appendChild(b);
+    })(i);
+  }
+  // Star rows
+  var sr=document.getElementById(p+'-star-rows');
+  if(!sr)return;
+  var cats=lang==='sq'?CATS_SQ:CATS_EN;
+  sr.innerHTML='';
+  cats.forEach(function(cat,ci){
+    var row=document.createElement('div');row.className='sv-star-row';
+    var nm=document.createElement('span');nm.className='sv-star-name';nm.textContent=cat;row.appendChild(nm);
+    var box=document.createElement('div');box.className='sv-stars';
+    for(var si=1;si<=5;si++){
+      (function(s,idx){
+        var st=document.createElement('span');st.className='sv-star';st.textContent='★';
+        st.onmouseover=function(){box.querySelectorAll('.sv-star').forEach(function(x){x.classList.toggle('on',parseInt(x.dataset.v)<=s);});};
+        st.onmouseleave=function(){var cur=svSt[p].stars[idx];box.querySelectorAll('.sv-star').forEach(function(x){x.classList.toggle('on',parseInt(x.dataset.v)<=cur);});};
+        st.onclick=function(e){e.stopPropagation();svSt[p].stars[idx]=s;box.querySelectorAll('.sv-star').forEach(function(x){x.classList.toggle('on',parseInt(x.dataset.v)<=s);});svCheck(p);};
+        st.dataset.v=s;box.appendChild(st);
+      })(si,ci);
+    }
+    row.appendChild(box);sr.appendChild(row);
+  });
+  // Textarea counter
+  var ta=document.getElementById(p+'-comment'),ch=document.getElementById(p+'-char');
+  if(ta&&ch)ta.oninput=function(){ch.textContent=ta.value.length+' / 300';};
+  svCheck(p);
+}
+
+function svCheck(p){
+  var ok=svSt[p].nps>=0&&svSt[p].stars.every(function(s){return s>0;});
+  var btn=document.getElementById(p+'-sv-btn');if(btn)btn.disabled=!ok;
+}
+
+function submitSv(p){
+  var entry={nps:svSt[p].nps,stars:svSt[p].stars.slice(),
+    comment:document.getElementById(p+'-comment').value,ts:Date.now(),type:p};
+  try{var all=JSON.parse(localStorage.getItem('tia_sv')||'[]');
+    all.push(entry);if(all.length>500)all=all.slice(-500);
+    localStorage.setItem('tia_sv',JSON.stringify(all));}catch(e){}
+  document.getElementById(p+'-sv-form').style.display='none';
+  document.getElementById(p+'-sv-ok').style.display='block';
+  buildResults(p);
+}
+
+function buildResults(p){
+  try{
+    var all=JSON.parse(localStorage.getItem('tia_sv')||'[]');
+    if(!all.length)return;
+    var n=all.length,sumNPS=0,sumS=[0,0,0,0,0];
+    all.forEach(function(e){sumNPS+=e.nps;e.stars.forEach(function(s,i){sumS[i]+=s;});});
+    var avgNPS=(sumNPS/n).toFixed(1);
+    var avgS=sumS.map(function(s){return(s/n).toFixed(1);});
+    var pros=all.filter(function(e){return e.nps>=9;}).length;
+    var dets=all.filter(function(e){return e.nps<=6;}).length;
+    var npsScore=Math.round((pros-dets)/n*100);
+    var cls=npsScore>=50?'pr':npsScore>=0?'pa':'de';
+    var cats=lang==='sq'?CATS_SQ:CATS_EN;
+    var h='<div class="sv-res-wrap"><div class="sv-res-hd">'+(lang==='sq'?'📊 Rezultatet · '+n+' vlerësime':'📊 Results · '+n+' ratings')+'</div>';
+    h+='<div class="sv-res-row"><span class="sv-res-l">NPS Score <span class="sv-nps-score '+cls+'">'+npsScore+'</span></span><div class="sv-res-bar"><div class="sv-res-fill" style="width:'+Math.min(100,Math.max(0,(npsScore+100)/2))+'%"></div></div><span class="sv-res-v">'+avgNPS+'/10</span></div>';
+    cats.forEach(function(cat,i){var pct=Math.round(parseFloat(avgS[i])/5*100);
+      h+='<div class="sv-res-row"><span class="sv-res-l">'+cat+'</span><div class="sv-res-bar"><div class="sv-res-fill" style="width:'+pct+'%"></div></div><span class="sv-res-v">'+avgS[i]+'★</span></div>';
+    });
+    h+='</div>';
+    document.getElementById(p+'-sv-res').innerHTML=h;
+  }catch(e){}
+}
+
+function resetSv(p){
+  svSt[p]={nps:-1,stars:[0,0,0,0,0]};
+  document.getElementById(p+'-sv-form').style.display='block';
+  document.getElementById(p+'-sv-ok').style.display='none';
+  var ta=document.getElementById(p+'-comment');if(ta)ta.value='';
+  var ch=document.getElementById(p+'-char');if(ch)ch.textContent='0 / 300';
+  var nb=document.getElementById(p+'-nps-btns');if(nb)nb.innerHTML='';
+  var sr=document.getElementById(p+'-star-rows');if(sr)sr.innerHTML='';
+  buildSurvey(p);
+}
+
+// Build inline NPS banner in check-in
+function buildNPSBanner(){
+  var nb=document.getElementById('d-nb-btns');
+  if(!nb||nb.children.length>0)return;
+  for(var i=0;i<=10;i++){
+    (function(n){
+      var b=document.createElement('button');b.className='nps-b';b.textContent=n;
+      b.onclick=function(){
+        document.querySelectorAll('#d-nb-btns .nps-b').forEach(function(x){
+          x.className='nps-b';var v=parseInt(x.textContent);
+          if(v===n)x.classList.add(v<=6?'nps-sel-d':v<=8?'nps-sel-p':'nps-sel-pr');
+        });
+        // Save quick NPS
+        try{var all=JSON.parse(localStorage.getItem('tia_sv')||'[]');
+          all.push({nps:n,stars:[0,0,0,0,0],comment:'',ts:Date.now(),type:'quick'});
+          if(all.length>500)all=all.slice(-500);
+          localStorage.setItem('tia_sv',JSON.stringify(all));}catch(e){}
+        document.getElementById('d-nb-btns').style.display='none';
+        document.getElementById('d-nb-done').style.display='block';
+      };
+      nb.appendChild(b);
+    })(i);
+  }
+}
+
+// Hook into tab opening
+var _origOT=oT;
+oT=function(view,tabId){
+  _origOT(view,tabId);
+  if(tabId==='d-sv')buildSurvey('d');
+  if(tabId==='d-ci')setTimeout(buildNPSBanner,200);
+};
+// Also build banner if check-in is already active on load
+setTimeout(function(){
+  if(document.getElementById('d-ci').classList.contains('on'))buildNPSBanner();
+},300);
+
+</script>
 <script>
 (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="HwNmXWMZWBW9TloaTeRvy";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
 </script>
